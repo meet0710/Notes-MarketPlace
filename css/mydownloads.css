@@ -1,0 +1,532 @@
+/* ===========================
+        Header
+============================ */
+
+
+header {
+	height: 100px;
+}
+.navbar {
+	height: 100px;
+	padding-top: 25px;
+	margin-bottom: 0px;
+	background-color: #fff;
+	box-shadow: 0px 0px 30px 0 rgba(0,0,0,0.8);
+}
+
+.navbar-header a {
+	padding-top: 3px;
+}
+
+
+ul.navbar-nav > li > a {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	color: #333333;
+	
+}
+
+ul.navbar-nav > li > a > img {
+	width: 45px;
+	height: 45px;
+}
+
+ul.navbar-nav > li > a.photo{
+	padding-top: 0px;
+	
+}
+
+
+ul.navbar-nav > li >a:hover {
+	border-bottom: 3px solid #6255a5;
+	color: #6255a5;
+}
+
+ul.navbar-nav > li > a.login {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+
+
+
+
+ul.navbar-nav > li >a:hover,
+ul.navbar-nav > li >a:focus {
+	color: #6255a5;
+	background: none;
+}
+
+
+/* ===========================
+        Dropdown
+============================ */
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+	right: 5px;
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown-content a:hover {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+.show {
+	display: block;
+}
+
+
+
+
+/* ===========================
+        Modal
+============================ */
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: ;
+	padding-top: 150px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+	position: relative;
+	background-color: #fff;
+	margin: auto;
+	padding: 30px 50px;
+	border: 1px solid #d1d1d1;
+	width: 500px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	-webkit-animation-name: animatetop;
+  	-webkit-animation-duration: 0.4s;
+  	animation-name: animatetop;
+  	animation-duration: 0.4s
+}
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 0px;;
+  background-color: #fff;
+  border-bottom: none;
+margin-bottom: 40px;
+}
+
+.modal-body {
+	padding: 0px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #fff;
+  color: black;
+}
+
+.modal-header img {
+	width: 63px;
+	height: 63px;
+}
+
+.modal-header h4 {
+	font-family: "Open Sans";
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 30px;
+	color: #6255a5;
+}
+
+.modal-body h5 {
+	font-family: "Open Sans";
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: #333333;
+}
+
+.modal-body p {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+	margin-bottom: 10px;
+}
+
+
+
+
+
+/* ===========================
+            Modal Form
+============================ */
+/*
+.rating {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label i {
+	font-size: 45px;
+	margin-right: 30px;
+}
+
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: #ffc107;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #09f;
+}
+*/
+
+
+.hide {
+  display: none;
+}
+
+.clear {
+  float: none;
+  clear: both;
+}
+
+.rating {
+    width: 300px;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    position: relative;
+}
+
+.rating > label {
+    float: right;
+    display: inline;
+    padding-left: 30px;
+    margin-left:30px;
+    position: relative;
+    width: 1.0em;
+    cursor: pointer;
+    color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+    color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+    content: url("../img/images/star.png");
+    position: absolute;
+   
+}
+
+
+.comments textarea {
+	width: 100%;
+	height: 150px;
+}
+
+.comments {
+	margin-bottom: 0px;
+	margin-top: 60px;
+}
+
+
+
+#downloads {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+.pagination li a {
+	margin: 10px;
+	border-radius: 50%;
+	font-family: "Open Sans";
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	color: #333333;
+}
+
+.pagination {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.pagination .prev a  {
+	border: none;
+}
+
+.pagination .prev a:hover  {
+	background: none;
+}
+
+.pagination li a:hover {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+
+#tableData th {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	color: #333333;
+	text-transform: uppercase;
+}
+
+.table {
+	border-style: solid;
+	border-color: 3px #d1d1d1;
+	margin-bottom: 40px
+}
+
+.table tr {
+	height: 75px;
+}
+
+.table td {
+}
+
+#tableData th {
+	vertical-align: middle;
+}
+
+#tableData td {
+	vertical-align: middle;
+	font-family: "Open Sans";
+	font-size: 18px;
+	font-weight: 400;
+	color: #333333;
+}
+
+#tableData td span {
+	color: 6255a5;
+}
+
+#tableData tr:hover {
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+}
+
+.form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+}
+
+form .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 117px;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#search {
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+.search h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+}
+
+.arrow1 {
+	transform: rotate(90deg);
+}
+
+.arrow2 {
+	transform: rotate(-90deg);
+}
+
+.prev .page-link {
+	margin-top: 16px;
+}
+
+.page-item .active {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+
+
+/* ===========================
+            Footer
+============================ */
+
+
+footer p {
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+}
+
+ul.social-list {
+    padding: 0;
+}
+
+ul.social-list li {
+    display: inline-block;
+    padding: 0;
+}
+
+ul.social-list li a {
+    border: 1px solid #fff;
+    width: 45px;
+	background-color: #6255a5;
+    height: 45px;
+    display: inline-block;
+    line-height: 50px;
+    color: #fff;
+    border-radius: 50%;
+    -webkit-transition: all 400ms linear;
+    transition: all 400ms linear;
+	position: relative;
+}
+
+ul.social-list li a img {
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+ul.social-list li:nth-child(1) a:hover {
+    background: #3b5998;
+    border-color: transparent;
+}
+
+ul.social-list li:nth-child(2) a:hover {
+    background: #00aced;
+    border-color: transparent;
+}
+
+ul.social-list li:nth-child(3) a:hover {
+    background: #dd4b39;
+    border-color: transparent;
+}
+

@@ -1,0 +1,17 @@
+.detail {
+border-spacing: 30px;
+border-collapse: separate;
+
+}
+
+
+table.detail td {
+	height: 151px;
+	border: 1px solid #d1d1d1;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.length { 
+	width: 151px;
+}

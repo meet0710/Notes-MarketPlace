@@ -1,0 +1,444 @@
+/* ===========================
+        Dropdown
+============================ */
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown Content (Hidden by Default) */
+#tableData .dropdown-content {
+  display: none;
+  position: absolute;
+	right: 5px;
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+header .dropdown-content {
+	display: none;
+  position: absolute;
+left: 50%;
+	right: 50%;
+	transform: translate(-50%,0);
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+/* Show the dropdown menu on hover */
+#tableData .dropdown:hover .dropdown-content {display: block;}
+
+header .dropdown:hover .dropdown-content {display: block;}
+
+.dropdown-content a:hover {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+.show {
+	display: block;
+}
+
+
+
+
+
+
+
+/* ===========================
+        Header
+============================ */
+
+
+header {
+	height: 100px;
+}
+.navbar {
+	height: 100px;
+	padding-top: 25px;
+	margin-bottom: 0px;
+	background-color: #fff;
+	box-shadow: 0px 0px 30px 0 rgba(0,0,0,0.8);
+}
+
+.navbar-header a {
+	padding-top: 3px;
+}
+
+
+ul.navbar-nav > li > a {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	color: #333333;
+	
+}
+
+ul.navbar-nav > li > a > img {
+	width: 45px;
+	height: 45px;
+}
+
+ul.navbar-nav > li > a.photo{
+	padding-top: 0px;
+	
+}
+
+
+ul.navbar-nav > li >a:hover {
+	border-bottom: 3px solid #6255a5;
+	color: #6255a5;
+}
+
+ul.navbar-nav > li > a.login {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+
+
+
+
+ul.navbar-nav > li >a:hover,
+ul.navbar-nav > li >a:focus {
+	color: #6255a5;
+	background: none;
+}
+
+
+
+/* ===========================
+        Modal
+============================ */
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: ;
+	padding-top: 150px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+	position: relative;
+	background-color: #fff;
+	margin: auto;
+	padding: 50px 55px 0px 40px;
+	border: 1px solid #d1d1d1;
+	width: 500px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	-webkit-animation-name: animatetop;
+  	-webkit-animation-duration: 0.4s;
+  	animation-name: animatetop;
+  	animation-duration: 0.4s
+}
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 0px;;
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.modal-body {
+	padding: 0px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #fff;
+  color: black;
+}
+
+.modal-header img {
+	width: 63px;
+	height: 63px;
+}
+
+.modal-header h4 {
+	font-family: "Open Sans";
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 30px;
+	color: #6255a5;
+}
+
+.modal-body h5 {
+	font-family: "Open Sans";
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: #333333;
+}
+
+.modal-body p {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+	margin-bottom: 30px;
+}
+
+/* ===========================
+        Modal form
+============================ */
+
+.hide {
+  display: none;
+}
+
+.clear {
+  float: none;
+  clear: both;
+}
+
+
+.rating > label {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 1.1em;
+    cursor: pointer;
+    color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+    color: #FFD700;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+    content: "\2605";
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+}
+
+
+
+
+
+
+/* ===========================
+        Downloads
+============================ */
+
+
+#downloads {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+.pagination li a {
+	margin: 10px;
+	border-radius: 50%;
+	font-family: "Open Sans";
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	color: #333333;
+}
+
+.pagination {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.pagination .prev a  {
+	border: none;
+}
+
+.pagination .prev a:hover  {
+	background: none;
+}
+
+.pagination li a:hover {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+
+#tableData th {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	color: #333333;
+	text-transform: uppercase;
+	
+}
+
+.table {
+	border-style: solid;
+	border-color: 3px #d1d1d1;
+	margin-bottom: 40px
+}
+
+.table tr {
+	height: 75px;
+}
+
+.table td {
+	
+}
+
+#tableData th {
+	vertical-align: middle;
+}
+
+#tableData td {
+	vertical-align: middle;
+	font-family: "Open Sans";
+	font-size: 18px;
+	font-weight: 400;
+	color: #333333;
+}
+
+#tableData td span {
+	color: 6255a5;
+}
+
+#tableData tr:hover {
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+}
+
+table .status {
+	width: 120px;
+}
+
+.form-control {
+	width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+}
+
+.searchandfilter {
+	background-color: #6255a5;
+	color: #fff;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#search {
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+.btn-success,.btn-danger,.btn-secondary {
+	height: 40px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	width: 112px;
+	color: #fff;
+	font-weight: 600;
+	line-height: 22px;
+}
+
+.btn-success {
+	background-color: #28a745;
+}
+
+.btn-danger {
+	background-color: #ff3636;
+}
+
+.btn-secondary {
+	background-color: #cccccc;
+}
+.heading h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 25px;
+}
+
+.arrow1 {
+transform: rotate(90deg);
+}
+
+.arrow2 {
+transform: rotate(-90deg);
+}
+
+.prev .page-link {
+margin-top: 16px;
+}
+
+.page-item .active {
+background-color: #6255a5;
+color: #fff;
+}
+
+
+/* ===========================
+            Footer
+============================ */
+
+
+footer p {
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+}

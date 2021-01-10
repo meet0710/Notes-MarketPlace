@@ -1,0 +1,107 @@
+body, html {
+  height: 100%;
+  
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("../img/pre-login/banner-with-overlay.jpg");
+
+  min-height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 580px;
+}
+
+#details {
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 15px;
+	max-width: 580px;
+}
+
+#details h1{
+	font-family: "Open Sans";
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	margin-top: 0;
+}
+
+#details p:nth-child(2) {
+	font-family: "Open Sans";
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 19px;
+	color: #333333;
+}
+
+#details p {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+#details p span a {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	font-family: "Open Sans";
+}
+
+#details .form-check-input {
+	width: 30px;
+	height: 30px;
+}
+
+#details .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 450px;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0;
+	margin-bottom: 20px;
+	
+}
+
+#details .form-control {
+	max-width: 480px;
+	max-height: 50px;
+	border: 1px solid #6255a5;
+	margin-bottom: 30px;
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #000;
+}
+
+.logo {
+	margin-bottom: 25px;
+}
+/* Full-width input fields */
+
+

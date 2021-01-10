@@ -1,0 +1,202 @@
+<html>
+	<head>
+		
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!--Favicon-->
+    <link rel="shortcut icon" href="../img/images/favicon.ico">
+
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
+    
+    
+
+    <!--Google Fonts-->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans
+             :wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.css">
+    
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="../css/admin-addcategory.css">
+    
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="../css/responsiveindex.css">
+    
+	</head>
+	
+	<body>
+	
+	<!--Header-->
+		<header>
+		<nav class="navbar navbar-fixed-top">
+		<div class="container">
+			<div class="site-nav-wrapper">
+				
+				<div class="navbar-header">
+				
+					<!--Mobile menu Open Button-->
+					<span id="mobile-nav-open-btn">&#9776;</span>
+					
+					<!--Logo-->
+					<a href="index.html" class="navbar-brand"><img src="../home/logo.png"></a>
+				</div>
+				
+				<div class="container">
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav pull-right ">
+							<li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+							<li class="dropdown">
+							
+							<a href="#sell">Notes</a>
+							<div class="dropdown-content" >
+								<a href="admin-notesunderreview.html">Notes Under Review</a>
+								<a href="admin-publishednotes.html">Published Notes</a>
+								<a href="admin-downloadednotes.html">Downloaded Notes</a>
+								<a href="admin-rejectednotes.html">Rejected Notes</a>
+							</div>
+								</li>
+							<li><a href="admin-memberspage.html">Members</a></li>
+							<li class="dropdown">
+							<a href="#contact">Reports</a>
+							<div class="dropdown-content">
+								<a href="admin-spamreports.html">Spam Reports</a>
+							</div>
+							</li>
+							<li><a href="admin-managesystem.html">Settings</a></li>
+							<li class="dropdown">
+							<a href="#profile" class="photo"><img src="../img/images/reviewer-1.png" class="img-circle dropbtn"></a>
+							
+							<div class="dropdown-content">
+								<a href="admin-myprofile.html">Update Profile</a>
+								<a href="finalchangepassword.html">Change Password</a>
+								<a href="admin-login.html">Logout</a>
+							</div>
+							</li>
+							<li><a href="admin-login.html" >Logout</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				<!--Mobile Menu-->
+                    <div id="mobile-nav">
+                       <!--Mobile Menu Close Button-->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                            <li class="dropdown">
+							<a href="#profile" class="photo"><img src="../img/images/reviewer-1.png" class="img-circle dropbtn"></a>
+							
+							<div class="dropdown-content">
+								<a href="admin-myprofile.html">Update Profile</a>
+								<a href="finalchangepassword.html">Change Password</a>
+								<a href="admin-login.html">Logout</a>
+							</div>
+							</li>
+							<li><a href="admin-dashboard.html">Dashboard</a></li>
+							<li class="dropdown">
+							
+							<a href="#sell">Notes <i class="fa fa-caret-down"></i></a>
+							<div class="dropdown-content" >
+								<a href="admin-notesunderreview.html">Notes Under Review</a>
+								<a href="admin-publishednotes.html">Published Notes</a>
+								<a href="admin-downloadednotes.html">Downloaded Notes</a>
+								<a href="admin-rejectednotes.html">Rejected Notes</a>
+							</div>
+								</li>
+							<li><a href="admin-memberspage.html">Members</a></li>
+							<li class="dropdown">
+							<a href="#contact">Reports <i class="fa fa-caret-down"></i></a>
+							<div class="dropdown-content">
+								<a href="admin-spamreports.html">Spam Reports</a>
+							</div>
+							</li>
+							<li><a href="admin-managesystem.html">Settings</a></li>
+							<li><a href="admin-login.html">Logout</a></li>
+						</ul>
+                        </div>
+                    </div>
+				
+			</div>
+			</div>
+		</nav>
+	</header>
+	<!--Header ends-->
+	
+    
+    <div id="user-details">
+    	<form class="container">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<h4>Add Category</h4>
+    		</div>
+			</div>
+   			<div class="row">
+   				<div class="col-md-6">
+   					<p>Category Name <sup>&#8727;</sup></p>
+   					<div class="form-group">
+									<input type="text" class="form-control" id="firstname" placeholder="Enter Category">
+								</div>
+   				</div>
+   			</div>
+   			
+   			<div class="row">
+   				<div class="col-md-6">
+   					<p>Description <sup>&#8727;</sup></p>
+   					<div class="form-group">
+								<textarea class="form-control" id="message" placeholder="Enter your description"></textarea>
+							</div>
+   				</div>
+   			</div>
+   			
+   			<div class="row">
+   				<div class="col-md-6">
+   					<button class="btn btn-general btn-yellow" href="#" title="Submit" role="button">Submit</button>
+   				</div>
+   			</div>
+   			
+    	</form>
+    </div>
+    
+    
+    <footer>
+    <hr>
+   	<div class="container">
+   		<div class="row">
+   			<div class="col-md-6 col-sm-6 col-xs-6">
+   				<p>Version:1.1.24</p>
+			</div>
+   				<div class="col-md-6 col-sm-6 col-xs-6 text-right"> 
+   				<p>Copyright &#169; Tatvasoft All rights reserved.</p>
+				</div>
+   		</div>
+   	</div>
+   </footer>
+		
+		
+	<!--JS-->	
+	
+	<!--JQUERY JS-->
+    <script src="../js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="../js/bootstrap.min.js"></script>
+    
+    <!--Custom JS-->
+    <script src="../js/admin-addcategory.js"></script>
+
+	</body>
+	
+	
+	
+</html>
+	
