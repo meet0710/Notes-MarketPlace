@@ -1,0 +1,303 @@
+﻿@{
+	ViewBag.Title = "Home Page";
+}
+
+<!--Header-->
+<header>
+	<nav class="navbar navbar-fixed-top">
+		<div class="container header-container">
+			<div class="site-nav-wrapper">
+
+				<div class="navbar-header">
+
+					<!--Mobile Menu Open Button-->
+					<span id="mobile-nav-open-btn">&#9776;</span>
+
+					<!--Logo-->
+					<a href="@Url.Action("Index","Home")" class="navbar-brand">
+						<img src="~/Content/img/pre-login/top-logo.png" alt="logo">
+					</a>
+				</div>
+
+				<!--Main Menu-->
+				<div class="container">
+					<div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav pull-right">
+                            <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                            <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                            <li><a href="html/FAQ.html">FAQ</a></li>
+                            <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a class="photo" href="@Url.Action("SellYourNotes","User")"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                    @*<div class="dropdown-content">
+                                        <a href="@Url.Action()">My Profile</a>
+                                        <a href="@Url.Action()">My Downloads</a>
+                                        <a href="@Url.Action()">My Sold Notes</a>
+                                        <a href="@Url.Action()">My Rejected Notes</a>
+                                        <a href="@Url.Action()">Change Password</a>
+                                        <a href="@Url.Action()">Logout</a>
+                                    </div>*@
+                                </li>
+                                <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                            }
+                        </ul>
+					</div>
+				</div>
+
+				<!--Mobile Menu-->
+				<div id="mobile-nav">
+					<!--Mobile Menu Close Button-->
+					<span id="mobile-nav-close-btn">&times;</span>
+					<div id="mobile-nav-content">
+                        <ul class="nav">
+                            <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                            <li><a href="@Url.Action("AddNotes","User")">Sell Your Notes</a></li>
+                            <li><a href="@Url.Action()">FAQ</a></li>
+                            <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                    @*<div class="dropdown-content">
+                                        <a href="@Url.Action()">My Profile</a>
+                                        <a href="@Url.Action()">My Downloads</a>
+                                        <a href="@Url.Action()">My Sold Notes</a>
+                                        <a href="@Url.Action()">My Rejected Notes</a>
+                                        <a href="@Url.Action()">Change Password</a>
+                                        <a href="@Url.Action("Logout","User")">Logout</a>
+                                    </div>*@
+                                </li>
+                                <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                            }
+                        </ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</nav>
+</header>
+<!--Header Ends-->
+<!--Home-->
+<section id="home">
+	<div id="home">
+		<!-- Background Video -->
+		<img src="~/Content/img/Homepage/banner-with-overlay.jpg" id="home-bg-video" alt="Home">
+
+
+		<div id="home-content" class="container">
+
+			<h1>Download Free/Paid Notes <br>or Sale your Book</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing <br> tempora harum voluptatibus cuates!</p>
+			<button type="button" class="btn btn-primary">Learn More</button>
+
+
+		</div>
+	</div>
+
+</section>
+
+<!--Home Ends-->
+<!--About us-->
+<section id="about">
+	<div id="about01">
+		<div class="content-box-md">
+			<div class="container">
+				<div class="row">
+					<!--ABout us left side-->
+					<div class="col-md-5">
+						<div id="about-left">
+							<div class="horizontal-heading">
+								<h4>About<br>NoteMarketPlace</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div id="about-right">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt facilis amet sed, molestiae sapiente voluptas ipsum. Veritatis officiis aspernatur consectetur, illo sit nisi, rerum, nam dolorum vero consequatur natus soluta.Veritatis officiis aspernatur consectetur, illo sit nisi, rerum, nam dolorum vero consequatur natus soluta.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nobis illum praesentium tempora asperiores impedit. Vitae eveniet, excepturi quidem eius laboriosam, sit, eligendi, dolore dignissimos ea perspiciatis exercitationem consequuntur praesentium.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+<!--About ends-->
+<!--How it works-->
+<section id="work">
+	<div id="works">
+		<div class="content-box-md">
+			<div class="central-heading text-center">
+				<h1>How it Works</h1>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div class="work1 text-center">
+							<img src="~/Content/img/Homepage/download.png">
+							<h3>Download Free/Paid Notes</h3>
+							<p>Get Material for your <br>Course etc.</p>
+							<a href="html/finalsearch.html">
+								<button type="button" class="btn btn-primary">Learn More</button>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div class="work1 text-center">
+							<img src="~/Content/img/images/seller.png">
+							<h3>Seller</h3>
+							<p>Upload and Download Course<br>and Materials etc.</p>
+							<a href="html/addnotes.html">
+								<button type="button" class="btn btn-primary">sell book</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--How it works ends-->
+<!--Testimonial-->
+<section id="testimonial">
+	<div id="testimonials">
+		<div class="content-box-md">
+			<div class="central-heading text-center">
+				<h1>What our Customers Saying</h1>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-sm-12 col-xs-12">
+
+						<div class="author">
+							<div class="row">
+								<div class="col-md-3 col-sm-3 col-xs-5">
+									<img src="~/Content/img/images/customer-1.png" alt="customer" class="img-responsive img-circle">
+								</div>
+								<div class="col-md-9 col-sm-9 col-xs-7">
+
+									<div class="author-name-des">
+
+										<h4>Walter Meller</h4>
+										<h5>Founder &#38; CEO, Matrix Group</h5>
+
+									</div>
+
+								</div>
+							</div>
+
+							<div class="statement">
+								<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi odit voluptatem dolor natus aliquid nobis minima odio iste, te."</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div class="author">
+							<div class="row">
+								<div class="col-md-3 col-sm-3 col-xs-5">
+									<img src="~/Content/img/images/customer-2.png" alt="customer" class="img-responsive img-circle">
+								</div>
+								<div class="col-md-9 col-sm-9 col-xs-7">
+
+									<div class="author-name-des">
+
+										<h4>Jonnie Riley</h4>
+										<h5>Employee, Curious Snakes</h5>
+
+									</div>
+
+								</div>
+							</div>
+
+							<div class="statement">
+								<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, error molestiae quod nesciunt, quam asperiores aut ipsandae fu!"</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div class="author">
+
+							<div class="row">
+								<div class="col-md-3 col-sm-3 col-xs-5">
+									<img src="~/Content/img/images/customer-3.png" alt="customer" class="img-responsive img-circle">
+								</div>
+								<div class="col-md-9 col-sm-9 col-xs-7">
+
+									<div class="author-name-des">
+
+										<h4>Amilia Luna</h4>
+										<h5>Teacher,Saint Joseph High School</h5>
+
+									</div>
+
+								</div>
+							</div>
+
+
+							<div class="statement">
+								<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, hic, excepturi. Excepturi quisquam omnis magni cor!"</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div class="author">
+							<div class="row">
+								<div class="col-md-3 col-sm-3 col-xs-5">
+									<img src="~/Content/img/images/customer-4.png" alt="customer" class="img-responsive img-circle">
+								</div>
+								<div class="col-md-9 col-sm-9 col-xs-7">
+
+									<div class="author-name-des">
+
+										<h4>Daniel Cardos</h4>
+										<h5>Software Engineer, Infinitum Company</h5>
+
+									</div>
+
+								</div>
+							</div>
+
+							<div class="statement">
+								<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, minima! Aperiam vero hic, eum quis doloremque, dolore est? Q!"</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--Testimonial Ends-->
+<hr>
+<!--Footer-->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-sm-6 col-xs-6">
+				<p>Copyright &#169; Tatvasoft All rights reserved.</p>
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+				<ul class="social-list">
+					<li><a href="#"><img src="~/Content/img/home/facebook.png" alt="fb"></a></li>
+					<li><a href="#"><img src="~/Content/img/home/twitter.png"></a></li>
+					<li><a href="#"><img src="~/Content/img/home/linkedin.png"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+<!--Footer ends-->
