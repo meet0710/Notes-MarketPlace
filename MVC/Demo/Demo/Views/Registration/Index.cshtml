@@ -1,0 +1,60 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<div id="signup">
+	<div class="bg-img">
+		<img src="~/Content/img/pre-login/banner-with-overlay.jpg" alt="bg-image" />
+		<div id="loginform">
+			<div class="logo text-center">
+				<img src="~/Content/img/pre-login/top-logo.png" alt="logo">
+			</div>
+			<form method="post">
+
+				@Html.AntiForgeryToken()
+
+				<div id="details">
+					<h1 class="text-center">Create an Account</h1>
+					<p class="text-center">Enter your details to signup</p>
+                    <p class="text-center success"> @ViewBag.Success</p>
+
+
+					<p>First name <sup>&#8727;</sup></p>
+					<div class="form-group">
+						<input type="text" class="form-control" id="fname" placeholder="Enter your first name" name="Firstname" required>
+					</div>
+
+					<p>Last name <sup>&#8727;</sup></p>
+					<div class="form-group">
+						<input type="text" class="form-control" id="lname" placeholder="Enter your last name" name="LastName" required>
+					</div>
+
+					<p>Email <sup>&#8727;</sup></p>
+					<div class="form-group">
+						<input type="text" class="form-control" id="email" placeholder="Enter your email address" name="EmailID" required>
+					</div>
+
+					<p>Password</p>
+					<div class="form-group">
+						<input type="password" class="form-control" id="pwd" placeholder="Enter your password" name="Password">
+					</div>
+
+					<p>Confirm Password</p>
+					<div class="form-group">
+						<input type="password" class="form-control" id="repwd" placeholder="Re-enter your password" name="ConfirmPassword">
+					</div>
+					
+					<div id="submit-btn">
+						<button class="btn btn-general btn-yellow" title="Submit" type="submit" role="button">sign up</button>
+					</div>
+					<p class="text-center">Already have an account? <a href="@Url.Action("Index","Login")">Login</a></p>
+				</div>
+				</form>
+			
+		</div>
+	</div>
+</div>
+
+

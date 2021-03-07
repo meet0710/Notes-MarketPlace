@@ -1,0 +1,356 @@
+﻿@model IEnumerable<Demo.Models.NoteDetail>
+
+<html>
+
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
+
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
+
+    <!--Google Fonts-->
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans
+             :wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/Content/css/responsiveindex.css">
+
+</head>
+
+<body>
+
+    <!--Header-->
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="site-nav-wrapper">
+
+                    <div class="navbar-header">
+
+                        <!--Mobile menu Open Button-->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+
+                        <!--Logo-->
+                        <a href="index.html" class="navbar-brand"><img src="~/Content/home/logo.png"></a>
+                    </div>
+
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right ">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="html/FAQ.html">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action()">My Profile</a>
+                                            <a href="@Url.Action()">My Downloads</a>
+                                            <a href="@Url.Action()">My Sold Notes</a>
+                                            <a href="@Url.Action()">My Rejected Notes</a>
+                                            <a href="@Url.Action()">Change Password</a>
+                                            <a href="@Url.Action()">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <!--Mobile Menu-->
+                    <div id="mobile-nav">
+                        <!--Mobile Menu Close Button-->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action()">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action()">My Profile</a>
+                                            <a href="@Url.Action()">My Downloads</a>
+                                            <a href="@Url.Action()">My Sold Notes</a>
+                                            <a href="@Url.Action()">My Rejected Notes</a>
+                                            <a href="@Url.Action()">Change Password</a>
+                                            <a href="@Url.Action()">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Header ends-->
+    <!--Note Details-->
+    <div id="notesdetails">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-left">
+                    @*@foreach(var item in Model)
+                    {
+                        <p>@item.note.Description</p>
+                        <p>@item.note.Description</p>
+                        <p>@item.country.Name</p>
+                    }*@
+                <h4 class="title">Notes Details</h4>
+                </div>
+            </div>
+            <div class="row" id="topdetails">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12">
+                            <img src="~/Content/img/Notes-Details/1.jpg" alt="notes" class="img-responsive">
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12 detail">
+                            @foreach (var item in Model)
+                            {
+                                <h3>@item.note.Title</h3>
+                                <h4>@item.category.Name</h4>
+                                <br>
+                                <p>@item.note.Description</p>
+                                <br>
+                                if (item.note.IsPaid == true)
+                                {
+                                    <button class="btn btn-general btn-yellow" title="Download"  onclick="location.href='@Url.Action("Download", "User", new { noteid = item.note.ID })'">Download/&#36;@item.note.SellingPrice</button>
+                                }
+                                else
+                                {
+                                <button class="btn btn-general btn-yellow" title="Download" onclick="location.href='@Url.Action("Download", "User", new { noteid = item.note.ID })'">Download/&#36;@item.note.SellingPrice</button>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12 col-xs-12 notedetail">
+                    @foreach (var item in Model)
+                    {
+                    <p class="text-left">Institution<span>@item.note.UniversityName</span></p>
+                    <p class="text-left">Country<span>@item.country.Name</span></p>
+                    <p class="text-left">Course Name<span>@item.note.Title</span></p>
+                    <p class="text-left">course Code<span>248705</span></p>
+                    <p class="text-left">Professor<span>Mr. Richard Brown</span></p>
+                    <p class="text-left">Number of Pages<span>@item.note.NumberofPages</span></p>
+                    <p class="text-left">Approved Date<span>@item.note.PublishedDate</span></p>
+                    <p class="text-left">
+                        Rating<span>
+                         @for (int i = 1; i <= item.Rating; i++)
+                              {
+                                    <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                              }
+                         @for (int j = 5; j > item.Rating; j--)
+                              {
+                                    <img src="~/Content/img/images/star-white.png" style="width: 20px; height: 20px;">
+                              }
+                              @item.Total Reviews
+                              </span>
+                    </p>
+                    <p class="text-left report">@item.TotalSpam users marked this note as inappropriate</p>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                </div>
+            </div>
+            <div id="previewandreview">
+                <div class="row">
+                    <div class="col-md-5 col-sm-12 col-xs-12 ">
+                        <h4>Notes Preview</h4>
+                        <div class="preview">
+                            @foreach (var item in Model)
+                            {
+                            <embed src="@Url.Content(item.note.NotesPreview)" class="previewpdf">
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-12 col-xs-12">
+                        <h4>Customer Reviews</h4>
+                        <div id="customer">
+                            <!--Review 1-->
+                            <div id="ratings">
+
+                                @foreach (var item in Model)
+                                {
+                                    if (item.IndRating > 0)
+                                    {
+                                    <div class="reviews">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2 col-xs-2 text-center"><img src="@Url.Content(item.ProfilePicture)" class="img-circle" style="height: 45px; width:45px"></div>
+                                            <div class="col-md-10 col-sm-10 col-xs-10">
+
+                                                <h5>@item.FirstName @item.LastName</h5>
+                                                @for (int i = 1; i <= item.IndRating; i++)
+                                                {
+                                                    <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                                }
+                                                @for (int j = 5; j > item.IndRating; j--)
+                                                {
+                                                    <img src="~/Content/img/images/star-white.png" style="width: 20px; height: 20px;">
+                                                }
+                                                <br>
+                                                <p>@item.Review</p>
+                                            </div>
+
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    }
+                                }
+                                <div class="reviews">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-xs-2 text-center"><img src="~/Content/img/images/reviewer-1.png" class="img-circle" style="height: 45px; width:45px"></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <h5>Richard Brown</h5>
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star-white.png" style="width: 20px; height: 20px;">
+                                            <br>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum distinctio a laborum quia dignissimos omnis eaque vitae harum? Similique repudiandae corrupti maiores voluptas, corporis quisquam quod possimus, laboriosam deleniti omnis.</p>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                </div>
+
+                                <!--Review 2-->
+                                <div class="reviews">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-xs-2 text-center"><img src="~/Content/img/images/reviewer-2.png" class="img-circle" style="height: 45px; width:45px"></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <h5>Alice Ortiaz</h5>
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star-white.png" style="width: 20px; height: 20px;">
+                                            <br>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum distinctio a laborum quia dignissimos omnis eaque vitae harum? Similique repudiandae corrupti maiores voluptas, corporis quisquam quod possimus, laboriosam deleniti omnis.</p>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                </div>
+
+                                <!--Review 3-->
+                                <div class="reviews">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-xs-2 text-center"><img src="~/Content/img/images/reviewer-3.png" class="img-circle" style="height: 45px; width:45px"></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <h5>Sara Passmore</h5>
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                                            <img src="~/Content/img/images/star-white.png" style="width: 20px; height: 20px;">
+                                            <br>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum distinctio a laborum quia dignissimos omnis eaque vitae harum? Similique repudiandae corrupti maiores voluptas, corporis quisquam quod possimus, laboriosam deleniti omnis.</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <span class="close">&times;</span>
+                    <img src="~/Content/img/Notes-Details/SUCCESS.png" class="img-circle purchase">
+                    <h4>Thank you for purchasing</h4>
+
+                </div>
+
+                <div class="modal-body">
+                    <h5>Dear Smith</h5>
+                    <p>As this is paid notes-you need to pay to seller Rahil Shah offline. We will send hime an email that you want to download this note. He may contact you further for payment process Completion</p>
+                    <p>In case, you have urgency<br>Please contact us on +9195377345959</p>
+                    <p>
+                        Once he receives the payment and acknowledge us - selected notes you can see over my downloads tab for download.
+                    </p>
+                    <p>Have a good day</p>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p>Copyright &#169; Tatvasoft All rights reserved.</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <ul class="social-list">
+                        <li><a href="#"><img src="~/Content/img/home/facebook.png" alt="fb"></a></li>
+                        <li><a href="#"><img src="~/Content/img/home/twitter.png"></a></li>
+                        <li><a href="#"><img src="~/Content/img/home/linkedin.png"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--JS-->
+    <!--JQUERY JS-->
+    <script src="~/Content/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <!--Custom JS-->
+    <script src="~/Content/js/notedetails.js"></script>
+
+</body>
+</html>

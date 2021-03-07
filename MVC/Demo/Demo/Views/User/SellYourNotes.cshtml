@@ -1,0 +1,441 @@
+﻿@model IEnumerable<Demo.Models.SellYourNotes>
+<html>
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
+
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
+
+    <!--Google Fonts-->
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans
+             :wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/Content/css/responsiveindex.css">
+
+</head>
+
+
+<body>
+
+    <!--Header-->
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="site-nav-wrapper">
+
+                    <div class="navbar-header">
+
+                        <!--Mobile menu Open Button-->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+
+                        <!--Logo-->
+                        <a href="@Url.Action("Index","Home")" class="navbar-brand"><img src="~/Content/home/logo.png"></a>
+                    </div>
+
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right ">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action()">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action()">My Profile</a>
+                                            <a href="@Url.Action()">My Downloads</a>
+                                            <a href="@Url.Action()">My Sold Notes</a>
+                                            <a href="@Url.Action()">My Rejected Notes</a>
+                                            <a href="@Url.Action()">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <!--Mobile Menu-->
+                    <div id="mobile-nav">
+                        <!--Mobile Menu Close Button-->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action()">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action()">My Profile</a>
+                                            <a href="@Url.Action()">My Downloads</a>
+                                            <a href="@Url.Action()">My Sold Notes</a>
+                                            <a href="@Url.Action()">My Rejected Notes</a>
+                                            <a href="@Url.Action()">Change Password</a>
+                                            <a href="@Url.Action()">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Header ends-->
+
+
+    <div id="dashboard">
+        <div id="my-table">
+            <div class="container">
+
+                <div class="row search">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <h3>Dashboard</h3>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+                           <button type="submit" class="btn btn-primary mb-2" >Add Note</button>
+                    </div>
+                </div>
+
+
+
+                <table class="table detail">
+                    <tr>
+                        @foreach (var item in Model)
+                        {
+                        <td style="padding: 0px;">
+                            <table class="table stats" style="margin-bottom:0px; padding: 0px;">
+                                <tr>
+
+                                    <td class="earning text-center" style="border: none; vertical-align: middle; width: 253px; border-right: 1px solid #d1d1d1;">
+                                        <img src="~/Content/img/images/my-earning.png" alt="earning">
+
+                                        <h5>My earning</h5>
+                                    </td>
+                                    <td class="text-center" style="border:none; vertical-align: middle;">
+                                        <h5>@item.Notessold</h5>
+                                        <p>No. Notes Sold</p>
+                                    </td>
+                                    <td class="text-center" style="border: none; vertical-align: middle">
+                                        
+                                        <h5>$ @item.TotalMoney</h5>
+                                        <p>Money Earned</p>
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </td>
+
+                        <td class="text-center length" style="vertical-align: middle">
+                            <h5>@item.Downloads</h5>
+                            <p>My Download</p>
+                        </td>
+                        <td class="text-center length" style="vertical-align: middle">
+                            <h5>@item.RejectedNotes</h5>
+                            <p>My Rejected Notes</p>
+                        </td>
+
+                        <td class="text-center length" style="vertical-align: middle">
+                            <h5>@item.Buyerrequests</h5>
+                            <p>Buyer requests</p>
+                        </td>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row search">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h4>In Progress Notes</h4>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-inline searchform">
+                        <div class="form-group mx-sm-3 mb-2">
+
+                            <input type="text" class="form-control" id="search" placeholder="Search">
+                        </div>
+                        <button type="submit" data-table-id="#tableData" data-search-input="#search" class="btn btn-primary mb-2 searchandfilter search-in-table">Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table inprogress" id="tableData">
+                    <thead>
+                        <tr>
+                            <th scope="col">Added Date</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" class="text-center">Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody data-tr-per-page="10">
+
+                        @foreach (var item in Model)
+                        {
+                            if (item.Note.Status == 1 || item.Note.Status == 2 || item.Note.Status == 3)
+                            {
+                                <tr>
+                                    <td>09-10-2020</td>
+                                    <td>@item.Note.Title</td>
+                                    <td>@item.category.Name</td>
+                                    <td>@item.Note.Status</td>
+                                    <td class="text-center"><img src="~/Content/img/images/edit.png"><img src="~/Content/img/images/delete.png"></td>
+                                </tr>
+                            }
+                        }
+                        @*<tr>
+                            <td>09-10-2020</td>
+                            <td>Data Science</td>
+                            <td>Science</td>
+                            <td>Draft</td>
+                            <td class="text-center"><img src="~/Content/img/images/edit.png"><img src="~/Content/img/images/delete.png"></td>
+                        </tr>*@
+
+                        @*<tr>
+            <td>10-10-2020</td>
+            <td>Accounts</td>
+            <td>Commerce</td>
+            <td>In Review</td>
+            <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
+        </tr>
+
+        <tr>
+            <td>11-10-2020</td>
+            <td>Social Studies</td>
+            <td>Social</td>
+            <td>Submitted</td>
+            <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
+        </tr>
+
+        <tr>
+            <td>12-10-2020</td>
+            <td>AI</td>
+            <td>IT</td>
+            <td>Submitted</td>
+            <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
+        </tr>
+
+        <tr>
+            <td>13-10-2020</td>
+            <td>Lorem ipsum dolor sit ametsectetur</td>
+            <td>Lorem</td>
+            <td>Draft</td>
+            <td class="text-center"><img src="~/Content/img/images/edit.png"><img src="~/Content/img/images/delete.png"></td>
+        </tr>*@
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <span class="pagination-control" pagination-data="#tableData tbody" max-page-shown="20">
+
+                <nav aria-label="Page navigation example" class="text-center">
+                    <ul class="pagination" style="display: flex; justify-content: center">
+                        <li class="page-item" start-page="1">
+                            <a class="page-link previous" aria-label="Previous">
+                                <img src="~/Content/img/images/left-arrow.png" class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="page-item" end-page="1">
+                            <a class="page-link next" aria-label="Next">
+                                <img src="~/Content/img/images/right-arrow.png" class="img-fluid">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </span>
+
+        </div>
+
+        <div class="container">
+            <div class="row search">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <h4>Published Notes</h4>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-inline searchform">
+                        <div class="form-group mx-sm-3 mb-2">
+
+                            <input type="text" class="form-control" id="search1" placeholder="Search">
+                        </div>
+                        <button type="submit" data-table-id="#tableData1" data-search-input="#search1" class="btn btn-primary mb-2 searchandfilter search-in-table">Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table published" id="tableData1">
+                    <thead>
+                        <tr>
+                            <th scope="col">Added Date</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Sell Type</th>
+                            <th scope="col">Price</th>
+                            <th scope="col" class="text-center">Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody data-tr-per-page="10">
+
+                        @foreach (var item in Model)
+                        {
+                            if (item.Note.Status == 4)
+                            {
+                                <tr>
+                                    <td>09-10-2020</td>
+                                    <td>@item.Note.Title</td>
+                                    <td>@item.category.Name</td>
+                                    <td>@item.Note.Status</td>
+                                    <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
+                                </tr>
+                            }
+                        }
+                        <tr>
+                            <td>09-10-2020</td>
+                            <td>Data Science</td>
+                            <td>Science</td>
+                            <td>Paid</td>
+                            <td>$575</td>
+                            <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
+                        </tr>
+
+                        <tr>
+                            <td>10-10-2020</td>
+                            <td>Accounts</td>
+                            <td>Commerce</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
+                        </tr>
+
+                        <tr>
+                            <td>11-10-2020</td>
+                            <td>Social Studies</td>
+                            <td>Social</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
+                        </tr>
+
+                        <tr>
+                            <td>12-10-2020</td>
+                            <td>AI</td>
+                            <td>IT</td>
+                            <td>Paid</td>
+                            <td>$3542</td>
+                            <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
+                        </tr>
+
+                        <tr>
+                            <td>13-10-2020</td>
+                            <td>Lorem ipsum dolor sit ametsectetur</td>
+                            <td>Lorem</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <span class="pagination-control" pagination-data="#tableData tbody" max-page-shown="20">
+
+                <nav aria-label="Page navigation example" class="text-center">
+                    <ul class="pagination" style="display: flex; justify-content: center">
+                        <li class="page-item" start-page="1">
+                            <a class="page-link previous" aria-label="Previous">
+                                <img src="~/Content/img/images/left-arrow.png" class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="page-item" end-page="1">
+                            <a class="page-link next" aria-label="Next">
+                                <img src="~/Content/img/images/right-arrow.png" class="img-fluid">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </span>
+
+        </div>
+        <hr>
+
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p>Copyright &#169; Tatvasoft All rights reserved.</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <ul class="social-list">
+                        <li><a href="#"><img src="~/Content/img/home/facebook.png" alt="fb"></a></li>
+                        <li><a href="#"><img src="~/Content/img/home/twitter.png"></a></li>
+                        <li><a href="#"><img src="~/Content/img/home/linkedin.png"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--JS-->
+    <!--JQUERY JS-->
+    <script src="~/Content/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <!--Custom JS-->
+    <script src="~/Content/js/script.js"></script>
+
+</body>
+</html>
