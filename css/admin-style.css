@@ -1,0 +1,1707 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    color: #212226;
+}
+
+
+
+section {
+    background: #fff;
+    overflow: hidden;
+}
+
+/* ===========================
+        Header
+============================ */
+
+
+header {
+	height: 100px;
+}
+.navbar {
+	height: 100px;
+	padding-top: 25px;
+	margin-bottom: 0px;
+	background-color: #fff;
+	box-shadow: 0px 0px 30px 0 rgba(0,0,0,0.08);
+}
+
+.navbar-header a {
+	padding-top: 3px;
+}
+
+ul.navbar-nav > li > a {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	color: #333333;
+	
+}
+
+ul.navbar-nav > li > a > img {
+	width: 45px;
+	height: 45px;
+}
+
+ul.navbar-nav > li > a.photo{
+	padding-top: 0px;
+	
+}
+
+
+ul.navbar-nav > li >a:hover {
+	border-bottom: 3px solid #6255a5;
+	color: #6255a5;
+}
+
+ul.navbar-nav > li > a.login {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+
+
+
+
+ul.navbar-nav > li >a:hover,
+ul.navbar-nav > li >a:focus {
+	color: #6255a5;
+	background: none;
+}
+
+
+
+/*Add admin*/
+#addadmin {
+	margin: 60px 80px;
+}
+
+#addadmin .form-control {
+	min-width: 100%;
+	height: 40px;
+}
+
+#addadmin .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 150px;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0;
+	margin-top: 15px;
+	text-transform: uppercase;
+}
+
+#addadmin h4 {
+	font-family: "Open Sans";
+	color: #6255a5;
+	font-weight: 500;
+	font-size: 38px;
+	margin-bottom: 25px;
+	line-height: 38px;
+}
+
+#addadmin p {
+	font-family: "Open Sans";
+	font-size: 17px;
+	font-weight: 400;
+	margin: 0;
+}
+
+
+
+/*Add Category*/
+#addcategory {
+	margin-top: 60px;
+	margin-bottom: 110px;
+}
+
+#addcategory .form-control {
+	min-width: 100%;
+	min-height: 40px;
+}
+
+#addcategory .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 150px;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0;
+	margin-top: 15px;
+	text-transform: uppercase;
+}
+
+#addcategory h4 {
+	font-family: "Open Sans";
+	color: #6255a5;
+	font-weight: 500;
+	font-size: 38px;
+	margin-bottom: 25px;
+	line-height: 38px;
+}
+
+#add-category p {
+	font-family: "Open Sans";
+	font-size: 17px;
+	font-weight: 400;
+	margin: 0;
+}
+
+#addcategory form textarea {
+	height: 150px;
+}
+
+
+/*Add Country*/
+#addcountry {
+	margin: 60px 80px;
+	margin-bottom: 220px;
+}
+
+#addcountry .form-control {
+	min-width: 100%;
+	min-height: 40px;
+}
+
+#addcountry .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 150px;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0;
+	margin-top: 15px;
+	text-transform: uppercase;
+}
+
+#addcountry h4 {
+	font-family: "Open Sans";
+	color: #6255a5;
+	font-weight: 500;
+	font-size: 38px;
+	margin-bottom: 25px;
+	line-height: 38px;
+}
+
+#addcountry p {
+	font-family: "Open Sans";
+	font-size: 17px;
+	font-weight: 400;
+	margin: 0;
+}
+
+
+/*Add Type*/
+
+#addtype {
+	margin-top: 60px;
+	margin-bottom: 118px;
+}
+
+#addtype .form-control {
+	min-width: 100%;
+	min-height: 40px;
+}
+
+#addtype .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 150px;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0;
+	margin-top: 15px;
+	text-transform: uppercase;
+}
+
+#addtype h4 {
+	font-family: "Open Sans";
+	color: #6255a5;
+	font-weight: 500;
+	font-size: 38px;
+	margin-bottom: 25px;
+	line-height: 38px;
+}
+
+#addtype p {
+	font-family: "Open Sans";
+	font-size: 17px;
+	font-weight: 400;
+	margin: 0;
+}
+
+#addtype form textarea {
+	height: 150px;
+}
+
+
+/*Admin Dashboard*/
+
+#stats table{
+	border-spacing: 20px;
+	border-collapse: separate;
+	border: none;
+}
+
+#stats table td {
+	height: 151px;
+	border: 1px solid #d1d1d1;
+	padding: 30px;
+	width: 460px;
+}
+
+#stats table td h5 {
+	font-family: "Open Sans";
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 34px;
+	color: #6255a5;
+}
+
+#stats table td p {
+	font-family: "Open Sans";
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+}
+
+#stats h4 {
+	font-family: "Open Sans";
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+}
+
+
+#admindashboard {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+#admindashboard .search {
+	margin-bottom: 15px;;
+}
+.pagination li a {
+	margin: 10px;
+	border-radius: 50%;
+	font-family: "Open Sans";
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	color: #333333;
+}
+
+.pagination {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.pagination .prev a  {
+	border: none;
+}
+
+.pagination .prev a:hover  {
+	background: none;
+}
+
+.pagination li a:hover {
+	cursor: pointer;
+	background-color: #6255a5;
+	color: #fff;
+}
+
+
+.pagination .page-item .previous, 
+.pagination .page-item .next,
+.pagination .page-item .previous:hover,
+.pagination .page-item .next:hover{
+	cursor: pointer;
+	background:none;
+	border: none;
+}
+
+
+
+
+.prev .page-link {
+	margin-top: 16px;
+}
+
+.page-item .active {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+
+
+#admindashboard .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	
+}
+
+#admindashboard form .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 117px;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	margin-right: 10px;
+	text-transform: uppercase;
+}
+
+#search {
+	margin-right: 10px;
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+
+#admindashboard .search h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+}
+
+.arrow1 {
+	transform: rotate(90deg);
+}
+
+.arrow2 {
+	transform: rotate(-90deg);
+}
+
+.prev .page-link {
+	margin-top: 16px;
+}
+
+.page-item .active {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+
+/*Admin Downloaded Notes*/
+#admindownloads {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+
+#admindownloads .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+}
+
+.searchandfilter {
+	background-color: #6255a5;
+	color: #fff;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+
+
+
+#admindownloads .heading h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 25px;
+}
+
+
+/*Admin Forgot Password*/
+#forgotpwd .bg-img {
+  /* The image used */
+  background-image: url("../img/pre-login/banner-with-overlay.jpg");
+
+  min-height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+#forgotpwd .container {
+  	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 580px;
+}
+
+#forgotpwd #details {
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 15px;
+	max-width: 580px;
+}
+
+#forgotpwd #details h1{
+	font-family: "Open Sans";
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	margin-top: 0;
+}
+
+#forgotpwd #details p:nth-child(2) {
+	font-family: "Open Sans";
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 19px;
+	color: #333333;
+}
+
+#forgotpwd #details p {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+#forgotpwd #details p span a {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	font-family: "Open Sans";
+}
+
+#forgotpwd #details .form-check-input {
+	width: 30px;
+	height: 30px;
+}
+
+#forgotpwd #details .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 450px;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	
+}
+
+#forgotpwd #details .form-control {
+	max-width: 480px;
+	max-height: 50px;
+	border: 1px solid #6255a5;
+	margin-bottom: 30px;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #000;
+}
+
+#forgotpwd .logo {
+	margin-bottom: 25px;
+}
+
+
+/*Admin Login*/
+
+#adminlogin .bg-img {
+ background-image: url("../img/pre-login/banner-with-overlay.jpg");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  min-height: 100%;
+  background-size: cover;
+  position: relative;
+}
+
+
+
+
+/* Add styles to the form container */
+#adminlogin #loginform {
+  	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 580px;
+	margin: 0 10px;
+	max-height: 100%
+}
+
+#adminlogin #details {
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 15px;
+	max-width: 580px;
+}
+
+#adminlogin #details h1{
+	font-family: "Open Sans";
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	margin-top: 0;
+}
+
+#adminlogin #details p:nth-child(2) {
+	font-family: "Open Sans";
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 19px;
+	color: #333333;
+}
+
+#adminlogin #details p {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+#adminlogin #details p span a {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	font-family: "Open Sans";
+}
+
+#adminlogin #details .form-check-input {
+	width: 30px;
+	height: 30px;
+}
+
+#adminlogin #details .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 480px;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	
+}
+
+#adminlogin #details .form-control {
+	width: 480px;
+	max-height: 50px;
+	border: 1px solid #6255a5;
+	margin-bottom: 30px;
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #000;
+}
+
+#adminlogin .form-check-label {
+	margin-bottom: 30px;
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+}
+
+#adminlogin .logo {
+	margin-bottom: 25px;
+}
+/* Full-width input fields */
+
+#pwd,#confirmpwd {
+	background: url(../img/images/eye.png) no-repeat;
+	background-position: 440px;
+}
+
+
+/*Admin Manage Admin */
+#adminmanageadmin {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+
+#adminmanageadmin .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+	
+}
+
+#adminmanageadmin form .btn {
+	background-color: #6255a5;
+	color: #fff;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#adminmanageadmin .heading h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 25px;
+}
+
+
+/*Admin Manage Category*/
+
+#adminmanagecategory {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+
+#adminmanagecategory .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+#adminmanagecategory form .btn {
+	background-color: #6255a5;
+	color: #fff;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#adminmanagecategory .heading h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 25px;
+}
+
+
+/*Admin Manage Country*/
+
+#adminmanagecountry {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+
+
+#adminmanagecountry .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+#adminmanagecountry form .btn {
+	background-color: #6255a5;
+	color: #fff;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#adminmanagecountry .heading h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 25px;
+}
+
+/*Admin Manage System */
+
+#adminmanagesystem {
+	margin: 60px 80px;
+}
+
+#adminmanagesystem .form-control {
+	min-width: 100%;
+	min-height: 40px;
+}
+
+#adminmanagesystem .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 150px;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0;
+	margin-top: 15px;
+	text-transform: uppercase;
+}
+
+#adminmanagesystem h4 {
+	font-family: "Open Sans";
+	color: #6255a5;
+	font-weight: 500;
+	font-size: 38px;
+	margin-bottom: 25px;
+	line-height: 38px;
+}
+
+#adminmanagesystem p {
+	font-family: "Open Sans";
+	font-size: 17px;
+	font-weight: 400;
+	margin: 0;
+}
+
+.custom-drop-file{
+      position: relative;
+      padding: 40px 16px;
+		height: 150px;
+      border: 1px solid #d1d1d1;
+	border-radius: 3px
+      cursor: pointer;
+	width: 100%;
+    }
+    .custom-drop-file input {
+      position: absolute;
+		top: 0%;
+		left: 0%;
+      height: 150px;
+      width: 100%;
+      opacity: 0;
+      z-index: 1;
+      cursor: pointer;
+    }
+    .custom-drop-file img {
+      margin-bottom: 8px;
+      width: 40px;
+    }
+    .custom-drop-file p {
+      margin: 0;
+      color: #d1d1d1;
+    }
+
+/*Admin Manage Type */
+
+#adminmanagetype {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+
+
+#adminmanagetype .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+#adminmanagetype form .btn {
+	background-color: #6255a5;
+	color: #fff;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#adminmanagetype .heading h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 25px;
+}
+
+
+/*Admin Memberdetails*/
+
+#memberdetails {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+
+
+#memberdetails .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+	
+}
+
+#memberdetails form .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 117px;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+}
+
+#memberdetails .search h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+}
+
+#memberdetails .memberdetails {
+	column-count: 2;
+	column-gap: 30px;
+	column-rule-style: solid;
+	column-rule-color: #d1d1d1
+}
+
+#memberdetails .memberheading {
+	font-family: "Open Sans";
+	font-size: 34px;
+	font: 600;
+	line-height: 38px;
+	color: #6255a5;
+	margin-bottom: 20px;
+}
+
+#memberdetails .memberdetails ul {
+	list-style: none;
+}
+
+#memberdetails .memberdetails .info {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 22px;
+	color: #333333;
+	margin-bottom: 10px
+}
+
+#memberdetails .memberdetails .personal {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 22px;
+	color: #6255a5;
+	margin-bottom: 10px;
+}
+
+
+/*Admin Members Page*/
+
+#memberspage {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+#memberspage .search {
+	margin-bottom: 15px;
+}
+
+
+
+
+#memberspage .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+#memberspage form .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 117px;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+	
+}
+
+#memberspage .search h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+}
+
+
+/*Admin Profile*/
+
+#adminprofile {
+	margin: 60px 80px;
+}
+
+#adminprofile .form-control {
+	min-width: 100%;
+	min-height: 40px;
+}
+
+#adminprofile .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 150px;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	padding: 0;
+	margin-top: 15px;
+	text-transform: uppercase;
+}
+
+#adminprofile h4 {
+	font-family: "Open Sans";
+	color: #6255a5;
+	font-weight: 500;
+	font-size: 38px;
+	margin-bottom: 25px;
+	line-height: 38px;
+}
+
+#adminprofile p {
+	font-family: "Open Sans";
+	font-size: 17px;
+	font-weight: 400;
+	margin: 0;
+}
+
+
+/*Admin NoteDetails */
+
+
+#notesdetails {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+#notesdetails .title{
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 20px;
+}
+
+#notesdetails .reviews hr {
+	margin-top: 0px;
+}
+
+#ratings {
+	border: 1px solid #d1d1d1;
+	padding: 30px;
+}
+
+#ratings h4 {
+	margin-top: 0px;
+	margin-bottom: 0px
+}
+
+#ratings h5 {
+	font-weight: 600;
+	
+}
+
+#ratings p {
+	margin-top: 10px;
+}
+
+#notesdetails .report {
+	color: red
+}
+
+#notesdetails .preview {
+	border: 1px solid #000;
+}
+
+#notesdetails .preview embed {
+	width: 100%;
+	height: 75%;
+}
+
+.detail {
+	
+}
+
+#previewandreview h5 {
+	margin-top: 0px;
+}
+
+#previewandreview h4 {
+	margin-top: 60px;
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+}
+
+#topdetails {
+	margin-bottom: 60px;
+}
+
+.notedetail {
+	/*padding-left: 55px;*/
+}
+#notesdetails .notedetail p span {
+	float: right;
+	color: #6255a5;
+}
+
+#notesdetails .btn-general {
+	background-color: #6255a5;
+	color: #fff;
+	width: 204px;
+	height: 50px;
+	border-radius: 3px;
+	font-family: "Open Sans";
+	font-size: 18px;
+	line-height: 22px;
+	margin-bottom: 20px;
+}
+
+
+/* ===========================
+        Modal
+============================ */
+
+#notesdetails .modal {
+	display: none;
+	position: fixed;
+	z-index: ;
+	padding-top: 150px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+#notesdetails .modal-content {
+	position: relative;
+	background-color: #fff;
+	margin: auto;
+	padding: 50px 55px 0px 40px;
+	border: 1px solid #d1d1d1;
+	width: 500px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	-webkit-animation-name: animatetop;
+  	-webkit-animation-duration: 0.4s;
+  	animation-name: animatetop;
+  	animation-duration: 0.4s
+}
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+#notesdetails .close {
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#notesdetails .close:hover,
+#notesdetails .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#notesdetails .modal-header {
+  padding: 0px;;
+  background-color: #fff;
+  border-bottom: none;
+}
+
+#notesdetails .modal-body {
+	padding: 0px;
+}
+
+#notesdetails .modal-footer {
+  padding: 2px 16px;
+  background-color: #fff;
+  color: black;
+}
+
+#notesdetails .modal-header img {
+	width: 63px;
+	height: 63px;
+}
+
+#notesdetails .modal-header h4 {
+	font-family: "Open Sans";
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 30px;
+	color: #6255a5;
+}
+
+#notesdetails .modal-body h5 {
+	font-family: "Open Sans";
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: #333333;
+}
+
+#notesdetails .modal-body p {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+	margin-bottom: 30px;
+}
+
+
+/*Admin Published Notes */
+
+#adminpublished {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+
+
+#adminpublished .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+}
+
+.searchandfilter {
+	background-color: #6255a5;
+	color: #fff;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#search {
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+
+#adminpublished .heading h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 25px;
+}
+
+
+/*Admin Rejected*/
+
+#adminrejected {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+
+#adminrejected .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+}
+
+.searchandfilter {
+	background-color: #6255a5;
+	color: #fff;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#search {
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+
+
+
+#adminrejected .heading h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 25px;
+}
+
+
+/*Admin Spam*/
+#adminspam {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+#adminspam .search {
+	margin-bottom: 15px;
+}
+
+
+#adminspam .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+
+#adminspam form .btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 117px;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+}
+
+#adminspam .search h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+}
+
+
+/*Admin Notes Under Review*/
+
+
+#adminunderreview {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+
+
+
+#adminunderreview .form-control {
+	max-width: 322px;
+	height: 50px;
+	border: 1px solid #d1d1d1;
+	margin-right: 10px;
+}
+
+#search {
+	background: url("../img/images/search-icon.png") left no-repeat;
+	background-position: 10px;
+	padding-left: 35px;
+}
+
+.searchandfilter {
+	background-color: #6255a5;
+	color: #fff;
+	height: 50px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.btn-success,.btn-danger,.btn-secondary {
+	height: 40px;
+	font-family: "Open Sans";
+	border-radius: 3px;
+	font-size: 18px;
+	width: 112px;
+	color: #fff;
+	font-weight: 600;
+	line-height: 22px;
+}
+
+.btn-success {
+	background-color: #28a745;
+}
+
+.btn-danger {
+	background-color: #ff3636;
+}
+
+.btn-secondary {
+	background-color: #cccccc;
+}
+#adminunderreview .heading h4 {
+	font-family: "Open Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 25px;
+}
+
+/* ===========================
+        Modal
+============================ */
+
+#adminunderreview .modal {
+	display: none;
+	position: fixed;
+	z-index: ;
+	padding-top: 150px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+#adminunderreview .modal-content {
+	position: relative;
+	background-color: #fff;
+	margin: auto;
+	padding: 50px 55px 0px 40px;
+	border: 1px solid #d1d1d1;
+	width: 500px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	-webkit-animation-name: animatetop;
+  	-webkit-animation-duration: 0.4s;
+  	animation-name: animatetop;
+  	animation-duration: 0.4s
+}
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+#adminunderreview .close {
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#adminunderreview .close:hover,
+#adminunderreview .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#adminunderreview .modal-header {
+  background-color: #fff;
+  border-bottom: none;
+}
+
+#adminunderreview .modal-body textarea {
+	min-height: 150px;
+	margin-bottom: 60px;
+	width: 100%;
+}
+
+
+
+
+
+#adminunderreview .modal-header h4 {
+	font-family: "Open Sans";
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 30px;
+	color: #6255a5;
+}
+
+
+
+#adminunderreview .modal-body p {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+	margin-bottom: 5px;
+}
+
+
+
+
+
+/*Table CSS*/
+
+#tableData th {
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	color: #333333;
+	text-transform: uppercase;
+
+}
+
+#tableData {
+	border-style: solid;
+	border-color: 3px #d1d1d1;
+	margin-bottom: 40px
+}
+
+#tableData tr {
+	height: 75px;
+}
+
+
+
+#tableData th {
+	vertical-align: middle;
+}
+
+#tableData td {
+	vertical-align: middle;
+	font-family: "Open Sans";
+	font-size: 18px;
+	font-weight: 400;
+	color: #333333;
+}
+
+#tableData td span {
+	color: 6255a5;
+}
+
+#tableData tr:hover {
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+}
+
+#tableData .status {
+	width: 120px;
+}
+
+#tableData .date {
+	width: 180px;
+}
+
+#tableData .action {
+	margin-bottom: 0px;
+	width: 350px;
+}
+
+#tableData .seller {
+	width: 110px;
+}
+
+#tableData .download {
+	width: 100px;
+}
+
+
+#tableData td img {
+	padding-right: 15px;
+}
+
+
+
+
+
+
+/*Dropdown*/
+
+/* ===========================
+        Dropdown
+============================ */
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown Content (Hidden by Default) */
+header .dropdown-content {
+  display: none;
+  position: absolute;
+	left: 50%;
+	right: 50%;
+	transform: translate(-50%,0);
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+#tableData .dropdown-content {
+	display: none;
+	position: absolute;
+	right: 5px;
+	background-color: #fff;
+	min-width: 180px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+/* Show the dropdown menu on hover */
+/* .dropdown:hover .dropdown-content {display: block;}*/
+/*#tableData .dropdown:hover .dropdown-content {
+	display: block;
+}*/
+
+.dropdown-content a:hover {
+	background-color: #6255a5;
+	color: #fff;
+}
+
+.show {display: block;}
+
+
+
+
+
+
+
+
+/* ===========================
+            Footer
+============================ */
+
+footer p {
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+}

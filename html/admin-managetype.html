@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="../font-awesome/css/font-awesome.css">
 
 	<!--Custom CSS-->
-	<link rel="stylesheet" href="../css/admin-managetype.css">
+	<link rel="stylesheet" href="../css/admin-style.css">
 
 	<!--Responsive CSS-->
 	<link rel="stylesheet" href="../css/responsiveindex.css">
@@ -131,7 +131,7 @@
 	<!--Header ends-->
 
 	<!--Table-->
-	<section id="downloads">
+	<section id="adminmanagetype">
 		<div class="container">
 			<div class="row heading">
 				<div class="col-md-12">
@@ -141,17 +141,19 @@
 			<div class="row search">
 				<div class="col-md-6 col-sm-6 col-xs-12">
 					<form>
-						<button type="submit" class="btn btn-primary mb-2">ADD TYPE</button>
+					<a href="../html/admin-addtype.html">
+						<button type="submit" class="btn btn-primary mb-2">Add type</button></a>
+						
 					</form>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12">
-					<form class="form-inline searchform">
+					<div class="form-inline searchform">
 						<div class="form-group mx-sm-3 mb-2">
 
 							<input type="text" class="form-control" id="search" placeholder="Search">
 						</div>
-						<button type="submit" class="btn btn-primary mb-2 searchandfilter">Search</button>
-					</form>
+						<button type="submit" data-table-id="#tableData" data-search-input="#search" class="btn btn-primary mb-2 searchandfilter search-in-table">Search</button>
+					</div>
 				</div>
 			</div>
 			<div class="table-responsive">
@@ -168,7 +170,7 @@
 
 						</tr>
 					</thead>
-					<tbody>
+					<tbody data-tr-per-page="5">
 						<tr>
 							<td class="text-center"><span>1</span></td>
 							<td class="text-center">Val 1</td>
@@ -235,27 +237,24 @@
 				</table>
 			</div>
 
-			<nav aria-label="Page navigation example" class="text-center">
-				<ul class="pagination ">
-					<li class="page-item prev">
-						<a class="page-link" href="#" aria-label="Previous">
-							<span aria-hidden="true"><img src="../img/images/arrow-down.png" class="arrow1"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-					</li>
-					<li class="page-item"><a class="page-link active" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">4</a></li>
-					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item prev">
-						<a class="page-link" href="#" aria-label="Next">
-							<span aria-hidden="true"><img src="../img/images/arrow-down.png" class="arrow2"></span>
-							<span class="sr-only">Next</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
+			<span class="pagination-control" pagination-data="#tableData tbody" max-page-shown="20">
+
+                                        <nav aria-label="Page navigation example" class="text-center">
+                                            <ul class="pagination" style="display: flex; justify-content: center">
+                                                <li class="page-item" start-page="1">
+                                                    <a class="page-link previous" aria-label="Previous">
+                                                        <img src="../img/images/left-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                                <li class="page-item" end-page="1">
+                                                    <a class="page-link next" aria-label="Next">
+                                                        <img src="../img/images/right-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+
+                                    </span>
 
 		</div>
 	</section>
@@ -278,5 +277,5 @@
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/jquery.js"></script>
 
-	<script src="../js/admin-managetype.js"></script>
+	<script src="../js/admin-script.js"></script>
 </body></html>

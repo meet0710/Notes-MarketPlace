@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="../font-awesome/css/font-awesome.css">
 
 	<!--Custom CSS-->
-	<link rel="stylesheet" href="../css/dashboard.css">
+	<link rel="stylesheet" href="../css/style.css">
 
 	<!--Responsive CSS-->
 	<link rel="stylesheet" href="../css/responsiveindex.css">
@@ -91,13 +91,13 @@
 			<div class="container">
 
 				<div class="row search">
-					<div class="col-md-6 col-sm-6 col-xs-6">
+					<div class="col-md-6 col-sm-12 col-xs-12">
 						<h3>Dashboard</h3>
 					</div>
-					<div class="col-md-6 col-sm-6 col-xs-6 text-right">
-						<form class="form-inline">
+					<div class="col-md-6 col-sm-12 col-xs-12 text-right">
+					
 							<button type="submit" class="btn btn-primary mb-2">Add Note</button>
-						</form>
+						
 					</div>
 				</div>
 
@@ -147,17 +147,17 @@
 		</div>
 		<div class="container">
 			<div class="row search">
-				<div class="col-md-6 col-sm-6 col-xs-6">
+				<div class="col-md-6 col-sm-12 col-xs-12">
 					<h4>In Progress Notes</h4>
 				</div>
-				<div class="col-md-6 col-sm-6 col-xs-12">
-					<form class="form-inline searchform">
+				<div class="col-md-6 col-sm-12 col-xs-12">
+					<div class="form-inline searchform">
 						<div class="form-group mx-sm-3 mb-2">
 
 							<input type="text" class="form-control" id="search" placeholder="Search">
 						</div>
-						<button type="submit" class="btn btn-primary mb-2 searchandfiler">Search</button>
-					</form>
+						<button type="submit" data-table-id="#tableData" data-search-input="#search" class="btn btn-primary mb-2 searchandfilter search-in-table">Search</button>
+					</div>
 				</div>
 			</div>
 
@@ -173,7 +173,7 @@
 
 						</tr>
 					</thead>
-					<tbody>
+					<tbody data-tr-per-page="5">
 						<tr>
 							<td>09-10-2020</td>
 							<td>Data Science</td>
@@ -219,27 +219,24 @@
 				</table>
 			</div>
 
-			<nav aria-label="Page navigation example" class="text-center">
-				<ul class="pagination ">
-					<li class="page-item prev">
-						<a class="page-link" href="#" aria-label="Previous">
-							<span aria-hidden="true"><img src="../img/images/arrow-down.png" class="arrow1"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">4</a></li>
-					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item prev">
-						<a class="page-link" href="#" aria-label="Next">
-							<span aria-hidden="true"><img src="../img/images/arrow-down.png" class="arrow2"></span>
-							<span class="sr-only">Next</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
+			<span class="pagination-control" pagination-data="#tableData tbody" max-page-shown="20">
+
+                                        <nav aria-label="Page navigation example" class="text-center">
+                                            <ul class="pagination" style="display: flex; justify-content: center">
+                                                <li class="page-item" start-page="1">
+                                                    <a class="page-link previous" aria-label="Previous">
+                                                        <img src="../img/images/left-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                                <li class="page-item" end-page="1">
+                                                    <a class="page-link next" aria-label="Next">
+                                                        <img src="../img/images/right-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+
+                                    </span>
 
 		</div>
 
@@ -249,18 +246,18 @@
 					<h4>Published Notes</h4>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12">
-					<form class="form-inline searchform">
+					<div class="form-inline searchform">
 						<div class="form-group mx-sm-3 mb-2">
 
-							<input type="text" class="form-control" id="search" placeholder="Search">
+							<input type="text" class="form-control" id="search1" placeholder="Search">
 						</div>
-						<button type="submit" class="btn btn-primary mb-2 searchandfilter">Search</button>
-					</form>
+						<button type="submit" data-table-id="#tableData1" data-search-input="#search1" class="btn btn-primary mb-2 searchandfilter search-in-table">Search</button>
+					</div>
 				</div>
 			</div>
 
 			<div class="table-responsive">
-				<table class="table published" id="tableData">
+				<table class="table published" id="tableData1">
 					<thead>
 						<tr>
 							<th scope="col">Added Date</th>
@@ -272,7 +269,7 @@
 
 						</tr>
 					</thead>
-					<tbody>
+					<tbody data-tr-per-page="5">
 						<tr>
 							<td>09-10-2020</td>
 							<td>Data Science</td>
@@ -323,27 +320,24 @@
 				</table>
 			</div>
 
-			<nav aria-label="Page navigation example" class="text-center">
-				<ul class="pagination ">
-					<li class="page-item prev">
-						<a class="page-link" href="#" aria-label="Previous">
-							<span aria-hidden="true"><img src="../img/images/arrow-down.png" class="arrow1"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">4</a></li>
-					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item prev">
-						<a class="page-link" href="#" aria-label="Next">
-							<span aria-hidden="true"><img src="../img/images/arrow-down.png" class="arrow2"></span>
-							<span class="sr-only">Next</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
+			<span class="pagination-control" pagination-data="#tableData1 tbody" max-page-shown="20">
+
+                                        <nav aria-label="Page navigation example" class="text-center">
+                                            <ul class="pagination" style="display: flex; justify-content: center">
+                                                <li class="page-item" start-page="1">
+                                                    <a class="page-link previous" aria-label="Previous">
+                                                        <img src="../img/images/left-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                                <li class="page-item" end-page="1">
+                                                    <a class="page-link next" aria-label="Next">
+                                                        <img src="../img/images/right-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+
+                                    </span>
 
 		</div>
 		<hr>
@@ -377,6 +371,6 @@
 	<script src="../js/bootstrap.min.js"></script>
 
 	<!--Custom JS-->
-	<script src="../js/dashboard.js"></script>
+	<script src="../js/script.js"></script>
 
 </body></html>

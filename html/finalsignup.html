@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="../font-awesome/css/font-awesome.css">
 
 	<!--Custom CSS-->
-	<link rel="stylesheet" href="../css/loginfinal.css">
+	<link rel="stylesheet" href="../css/style.css">
 
 	<!--Responsive CSS-->
 	<link rel="stylesheet" href="../css/responsiveindex.css">
@@ -32,18 +32,19 @@
 </head>
 
 <body>
-
+<div id="signup">
 	<div class="bg-img">
 		<div id="loginform">
 			<div class="logo text-center">
 				<img src="../img/pre-login/top-logo.png" alt="logo">
 			</div>
-			<form>
+			
 				<div id="details">
 					<h1 class="text-center">Create an Account</h1>
 					<p class="text-center">Enter your details to signup</p>
 
-
+					<form>
+					<p class="text-center success"><i class="fa fa-check-circle"></i> Your Account has been Successfully Created</p>
 					<p>First name <sup>&#8727;</sup></p>
 					<div class="form-group">
 						<input type="text" class="form-control" id="fname" placeholder="Enter your first name" required>
@@ -60,22 +61,30 @@
 					</div>
 
 					<p>Password</p>
-					<div class="form-group">
+					<div class="form-group" id="password">
 						<input type="password" class="form-control" id="pwd" placeholder="Enter your password">
+						<img class="eye" src="../img/images/eye.png" onclick="showpassword()">
+						
 					</div>
 
 					<p>Confirm Password</p>
-					<div class="form-group">
-						<input type="password" class="form-control" id="confirmpwd" placeholder="Re-enter your password">
+					<div class="form-group" id="repassword">
+						<input type="password" class="form-control" id="repwd" placeholder="Re-enter your password">
+						<img class="eye" src="../img/images/eye.png" onclick="showconfirmpassword()">
 					</div>
 
 					<div id="submit-btn">
 						<button class="btn btn-general btn-yellow" href="#" title="Submit" role="button">sign up</button>
 					</div>
 					<p class="text-center">Already have an account? <a href="loginfinal.html">Login</a></p>
+					</form>
 				</div>
-			</form>
+			
 		</div>
 	</div>
+	</div>
+
+
+	<script src="../js/script.js"></script>
 
 </body></html>
