@@ -75,8 +75,8 @@ namespace Demo.Controllers
                 throw e;
             }
             
-            ViewBag.Success = "Your Account has been Successfully Created";
-            return RedirectToAction("Index", "Registration");
+            ViewBag.Success = "<p><span><i class='fa fa-check-circle'></i></span> Your account has been successfully created </p>";
+            return View();
 		}
 
         public ActionResult ConfirmEmail(string userId, string pass)

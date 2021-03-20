@@ -27,6 +27,40 @@ $(function() {
 
 
 /* ===========================
+        Show Password
+============================ */
+
+function showpassword() {
+    var x = document.getElementById("pwd");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+
+
+}
+
+function showconfirmpassword() {
+    var x = document.getElementById("repwd");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
+function shownewconfirmpassword() {
+    var x = document.getElementById("renewpwd");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
+
+/* ===========================
         FAQ
 ============================ */
 

@@ -748,14 +748,14 @@ header .dropdown-content {
 /* Full-width input fields */
 
 
-#newpwd, #oldpwd, #confirmpwd {
-    background: url("../img/images/eye.png") no-repeat;
-    background-position: 410px;
+#password, #repassword {
+    position: relative;
 }
 
-#repwd, #pwd {
-    background: url("../img/images/eye.png") no-repeat;
-    background-position: 440px;
+#password .eye, #repassword .eye {
+    position: absolute;
+    right: 10px;
+    top: 8px;
 }
 
 /*Forogtpwd*/
@@ -1235,12 +1235,12 @@ header .dropdown-content {
 ============================ */
 
 /* The container <div> - needed to position the dropdown content */
-#downloads .dropdown {
+/*#downloads .dropdown {
     position: relative;
-}
+}*/
 
 /* Dropdown Content (Hidden by Default) */
-#downloads .dropdown-content {
+/*#downloads .dropdown-content {
     display: none;
     position: absolute;
     right: 5px;
@@ -1248,19 +1248,19 @@ header .dropdown-content {
     min-width: 180px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-}
+}*/
 
     /* Links inside the dropdown */
-    #downloads .dropdown-content a {
+    /*#downloads .dropdown-content a {
         color: black;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
-    }
+    }*/
 
 
 /* Show the dropdown menu on hover */
-#downloads .dropdown:hover .dropdown-content {
+/*#downloads .dropdown:hover .dropdown-content {
     display: block;
 }
 
@@ -1271,7 +1271,7 @@ header .dropdown-content {
 
 #downloads .show {
     display: block;
-}
+}*/
 
 
 
@@ -1279,6 +1279,21 @@ header .dropdown-content {
 /* ===========================
         Modal
 ============================ */
+
+#downloads .btn {
+    background-color: #6255a5;
+    color: #fff;
+    width: 150px;
+    height: 30px;
+    border-radius: 3px;
+    font-family: "Open Sans";
+    font-size: 18px;
+    line-height: 22px;
+    padding: 0;
+    
+    text-transform: uppercase;
+}
+
 
 #downloads .modal {
     display: none;
@@ -1495,7 +1510,7 @@ header .dropdown-content {
 }
 
 #downloads .search {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
     #downloads .search h4 {
@@ -1515,44 +1530,6 @@ header .dropdown-content {
 ============================ */
 
 /* The container <div> - needed to position the dropdown content */
-#rejected .dropdown {
-    position: relative;
-}
-
-/* Dropdown Content (Hidden by Default) */
-#rejected .dropdown-content {
-    display: none;
-    position: absolute;
-    right: 5px;
-    background-color: #fff;
-    min-width: 180px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-    /* Links inside the dropdown */
-    #rejected .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-
-/* Show the dropdown menu on hover */
-#rejected .dropdown:hover .dropdown-content {
-    display: block;
-}
-
-#rejected .dropdown-content a:hover {
-    background-color: #6255a5;
-    color: #fff;
-}
-
-#rejected .show {
-    display: block;
-}
-
 
 
 
@@ -1575,7 +1552,7 @@ header .dropdown-content {
         margin-right: 10px;
     }
 
-    #rejected form .btn {
+    #rejected .btn {
         background-color: #6255a5;
         color: #fff;
         width: 117px;
@@ -1602,6 +1579,10 @@ header .dropdown-content {
     color: #6255a5;
 }
 
+#rejected .search {
+    margin-bottom: 15px;
+}
+
 
 
 /*SoldNotes*/
@@ -1610,12 +1591,12 @@ header .dropdown-content {
 ============================ */
 
 /* The container <div> - needed to position the dropdown content */
-#sold .dropdown {
+/*#sold .dropdown {
     position: relative;
-}
+}*/
 
 /* Dropdown Content (Hidden by Default) */
-#sold .dropdown-content {
+/*#sold .dropdown-content {
     display: none;
     position: absolute;
     right: 5px;
@@ -1623,19 +1604,19 @@ header .dropdown-content {
     min-width: 180px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-}
+}*/
 
     /* Links inside the dropdown */
-    #sold .dropdown-content a {
+    /*#sold .dropdown-content a {
         color: black;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
-    }
+    }*/
 
 
 /* Show the dropdown menu on hover */
-#sold .dropdown:hover .dropdown-content {
+/*#sold .dropdown:hover .dropdown-content {
     display: block;
 }
 
@@ -1646,7 +1627,7 @@ header .dropdown-content {
 
 #sold .show {
     display: block;
-}
+}*/
 
 
 
@@ -1660,14 +1641,18 @@ header .dropdown-content {
 
 
 
-    #sold .form-control {
-        width: 322px;
-        height: 50px;
-        border: 1px solid #d1d1d1;
-        margin-right: 10px;
-    }
+   #sold .search {
+       margin-bottom: 15px;
+   }
 
-    #sold form .btn {
+#sold .form-control {
+    max-width: 322px;
+    height: 50px;
+    border: 1px solid #d1d1d1;
+    margin-right: 10px;
+}
+
+    #sold .btn {
         background-color: #6255a5;
         color: #fff;
         width: 117px;

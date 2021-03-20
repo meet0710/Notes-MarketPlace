@@ -33,6 +33,7 @@ namespace Demo.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
+            
             var obj = _Context.Users.Where(m => m.EmailID == user.EmailID && m.Password == user.Password).FirstOrDefault();
 
             if (obj != null)
@@ -74,7 +75,7 @@ namespace Demo.Controllers
             else
             {
                 ViewBag.Message = "Email or Password is Incorrect";
-                return RedirectToAction("Index", "Login");
+                return View();
             }
         }
     }

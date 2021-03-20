@@ -1,60 +1,94 @@
-﻿
-@{
-	ViewBag.Title = "Index";
-	Layout = "~/Views/Shared/UserLayout.cshtml";
-}
+﻿<html>
+<head>
 
-<div id="signup">
-	<div class="bg-img">
-		<img src="~/Content/img/pre-login/banner-with-overlay.jpg" alt="bg-image" />
-		<div id="loginform">
-			<div class="logo text-center">
-				<img src="~/Content/img/pre-login/top-logo.png" alt="logo">
-			</div>
-			<form method="post">
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-				@Html.AntiForgeryToken()
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
 
-				<div id="details">
-					<h1 class="text-center">Create an Account</h1>
-					<p class="text-center">Enter your details to signup</p>
-                    <p class="text-center success"> @ViewBag.Success</p>
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
+
+    <!--Google Fonts-->
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans
+             :wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/Content/css/responsiveindex.css">
+
+</head>
+<body>
+    <div id="signup">
+        <div class="bg-img">
+            <img src="~/Content/img/pre-login/banner-with-overlay.jpg" alt="bg-image" />
+            <div id="loginform">
+                <div class="logo text-center">
+                    <img src="~/Content/img/pre-login/top-logo.png" alt="logo">
+                </div>
+                <form method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <div id="details">
+                        <h1 class="text-center">Create an Account</h1>
+                        <p class="text-center">Enter your details to signup</p>
+                        <div class="text-center success" style="color: green; margin-bottom: 45px;"> @Html.Raw(@ViewBag.Success)</div>
 
 
-					<p>First name <sup>&#8727;</sup></p>
-					<div class="form-group">
-						<input type="text" class="form-control" id="fname" placeholder="Enter your first name" name="Firstname" required>
-					</div>
+                        <p>First name <sup>&#8727;</sup></p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="fname" placeholder="Enter your first name" name="Firstname" required>
+                        </div>
 
-					<p>Last name <sup>&#8727;</sup></p>
-					<div class="form-group">
-						<input type="text" class="form-control" id="lname" placeholder="Enter your last name" name="LastName" required>
-					</div>
+                        <p>Last name <sup>&#8727;</sup></p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="lname" placeholder="Enter your last name" name="LastName" required>
+                        </div>
 
-					<p>Email <sup>&#8727;</sup></p>
-					<div class="form-group">
-						<input type="text" class="form-control" id="email" placeholder="Enter your email address" name="EmailID" required>
-					</div>
+                        <p>Email <sup>&#8727;</sup></p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="email" placeholder="Enter your email address" name="EmailID" required>
+                        </div>
 
-					<p>Password</p>
-					<div class="form-group">
-						<input type="password" class="form-control" id="pwd" placeholder="Enter your password" name="Password">
-					</div>
+                        <p>Password</p>
+                        <div class="form-group" id="password">
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter your password">
+                            <img class="eye" src="~/Content/img/images/eye.png" onclick="showpassword()">
 
-					<p>Confirm Password</p>
-					<div class="form-group">
-						<input type="password" class="form-control" id="repwd" placeholder="Re-enter your password" name="ConfirmPassword">
-					</div>
-					
-					<div id="submit-btn">
-						<button class="btn btn-general btn-yellow" title="Submit" type="submit" role="button">sign up</button>
-					</div>
-					<p class="text-center">Already have an account? <a href="@Url.Action("Index","Login")">Login</a></p>
-				</div>
-				</form>
-			
-		</div>
-	</div>
-</div>
+                        </div>
+
+                        <p>Confirm Password</p>
+                        <div class="form-group" id="repassword">
+                            <input type="password" class="form-control" id="repwd" placeholder="Re-enter your password">
+                            <img class="eye" src="~/Content/img/images/eye.png" onclick="showconfirmpassword()">
+                        </div>
+
+                        <div id="submit-btn">
+                            <button class="btn btn-general btn-yellow" title="Submit" type="submit" role="button">sign up</button>
+                        </div>
+                        <p class="text-center">Already have an account? <a href="@Url.Action("Index","Login")">Login</a></p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/js/script.js"></script>
+</body>
+</html>
+
 
 
