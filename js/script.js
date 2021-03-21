@@ -92,6 +92,10 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 
+$('.accordion').click(function(){
+	$(this).find('i').toggleClass('fa fa-plus fa fa-minus');
+});
+
 
 
 /* ===========================
