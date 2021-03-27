@@ -34,49 +34,61 @@ namespace Demo.Controllers
                 return RedirectToAction("Index", "Registration");
             }
 
-
-			var register = _Context.Set<User>();
-			register.Add(new User
-			{
-				RoleID = 1,
-				FirstName = user.Firstname,
-				LastName = user.LastName,
-				EmailID = user.EmailID,
-				Password = user.Password,
-				CreatedDate = DateTime.Now,
-				isActive = true,
-				isEmailVerified = false
-			});
-
-            /* _Context.SaveChanges();
-             _Context.Dispose();*/
-
-            string body = string.Empty;
-            using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/EmailConfirmation.html")))
+            var emailexist = _Context.Users.Where(m => m.EmailID == user.EmailID).FirstOrDefault();
+            if (emailexist != null)
             {
-                body = reader.ReadToEnd();
+                ViewBag.Fail = "Your Account is already registerd!";
             }
-
-            var callbackUrl = Url.Action("ConfirmEmail", "Registration", new { userId = user.EmailID
-                , pass = user.Password }, protocol: Request.Url.Scheme);
-
-            body = body.Replace("{Username}",user.Firstname);
-            body = body.Replace("{ConfirmationLink}", callbackUrl);
-
-            try
+            else
             {
-                bool IsSendEmail = SendEmail.EmailSend(user.EmailID, "Notes Marketplace - Email Verification", body, true);
-                _Context.SaveChanges();
-                _Context.Dispose();
-            }
+                var register = _Context.Set<User>();
+                register.Add(new User
+                {
+                    RoleID = 1,
+                    FirstName = user.Firstname,
+                    LastName = user.LastName,
+                    EmailID = user.EmailID,
+                    Password = user.Password,
+                    CreatedDate = DateTime.Parse(DateTime.Now.ToString("dd MMMM yyyy HH:mm:ss")),
+                    isActive = true,
+                    isEmailVerified = false
+                });
 
-            catch (Exception e)
-            {
-                throw e;
+                /* _Context.SaveChanges();
+                 _Context.Dispose();*/
+
+                string body = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/EmailConfirmation.html")))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                var callbackUrl = Url.Action("ConfirmEmail", "Registration", new
+                {
+                    userId = user.EmailID
+                    ,
+                    pass = user.Password
+                }, protocol: Request.Url.Scheme);
+
+                body = body.Replace("{Username}", user.Firstname);
+                body = body.Replace("{ConfirmationLink}", callbackUrl);
+
+                try
+                {
+                    bool IsSendEmail = SendEmail.EmailSend(user.EmailID, "Notes Marketplace - Email Verification", body, true);
+                    _Context.SaveChanges();
+                    _Context.Dispose();
+                }
+
+                catch (Exception e)
+                {
+                    throw e;
+                }
+
+                ViewBag.Success = "<p><span><i class='fa fa-check-circle'></i></span> Your account has been successfully created </p>";
             }
+                return View();
             
-            ViewBag.Success = "<p><span><i class='fa fa-check-circle'></i></span> Your account has been successfully created </p>";
-            return View();
 		}
 
         public ActionResult ConfirmEmail(string userId, string pass)

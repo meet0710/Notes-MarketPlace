@@ -28,12 +28,12 @@ namespace Demo
         public bool isSellerHasAllowedDownload { get; set; }
         public string AttachmentPath { get; set; }
         public bool IsAttachmentDownloaded { get; set; }
-        public Nullable<System.DateTime> AttachmentDownloadedDate { get; set; }
+        public string AttachmentDownloadedDate { get; set; }
         public bool isPaid { get; set; }
         public Nullable<decimal> PurchasedPrice { get; set; }
         public string NoteTitle { get; set; }
         public string NoteCategory { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string CreatedDate { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }

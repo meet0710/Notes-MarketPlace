@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Demo.Models.ContactUs
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -15,8 +16,8 @@
 
     <!--Google Fonts-->
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans
-             :wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
     <!--Bootstrap CSS-->
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
@@ -46,8 +47,8 @@
                         <span id="mobile-nav-open-btn">&#9776;</span>
 
                         <!--Logo-->
-                        <a href="index.html" class="navbar-brand">
-                            <img src="~/Content/img/images/logo.png" />
+                        <a href="@Url.Action("Index","Home")" class="navbar-brand-img">
+                            <img src="~/Content/img/logo.png" alt="logo" />
                         </a>
                     </div>
 
@@ -56,19 +57,19 @@
                             <ul class="nav navbar-nav pull-right ">
                                 <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
                                 <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                <li><a href="html/FAQ.html">FAQ</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
                                 <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="dropdown">
                                         <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
                                         <div class="dropdown-content">
-                                            <a href="@Url.Action()">My Profile</a>
-                                            <a href="@Url.Action()">My Downloads</a>
-                                            <a href="@Url.Action()">My Sold Notes</a>
-                                            <a href="@Url.Action()">My Rejected Notes</a>
-                                            <a href="@Url.Action()">Change Password</a>
-                                            <a href="@Url.Action()">Logout</a>
+                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
                                         </div>
                                     </li>
                                     <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
@@ -87,23 +88,23 @@
                         <!--Mobile Menu Close Button-->
                         <span id="mobile-nav-close-btn">&times;</span>
                         <div id="mobile-nav-content">
-                            <ul class="nav">
+
                                 <ul class="nav">
                                     <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
                                     <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                    <li><a href="@Url.Action()">FAQ</a></li>
+                                    <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
                                     <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
                                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <li class="dropdown">
                                             <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
                                             <div class="dropdown-content">
-                                                <a href="@Url.Action()">My Profile</a>
-                                                <a href="@Url.Action()">My Downloads</a>
-                                                <a href="@Url.Action()">My Sold Notes</a>
-                                                <a href="@Url.Action()">My Rejected Notes</a>
-                                                <a href="@Url.Action()">Change Password</a>
-                                                <a href="@Url.Action()">Logout</a>
+                                                <a href="@Url.Action("Myprofie","User")">My Profile</a>
+                                                <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                                <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                                <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                                <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                                <a href="@Url.Action("Logout","User")">Logout</a>
                                             </div>
                                         </li>
                                         <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
@@ -113,7 +114,7 @@
                                         <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
                                     }
                                 </ul>
-                            </ul>
+                            
                         </div>
                     </div>
 
@@ -151,12 +152,28 @@
                         <div class="col-md-6">
                             <p>Full Name <sup>&#8727;</sup></p>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="name" placeholder="Enter your full name" name="Fullname" required>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your full name" name="Fullname" required>
+                                }
                             </div>
 
                             <p>Email Address <sup>&#8727;</sup></p>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="email" placeholder="Enter your email address" name="EmailID" required>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" id="email" placeholder="Enter your email address" name="EmailID" required>
+                                }
+
                             </div>
 
                             <p>Subject <sup>&#8727;</sup></p>

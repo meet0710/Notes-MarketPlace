@@ -15,8 +15,8 @@
 
     <!--Google Fonts-->
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans
-             :wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
@@ -46,7 +46,10 @@
                         <span id="mobile-nav-open-btn">&#9776;</span>
 
                         <!--Logo-->
-                        <a href="index.html" class="navbar-brand"><img src="~/Content/home/logo.png"></a>
+                       
+                            <a href="@Url.Action("Index","Home")" class="navbar-brand-img">
+                            <img src="~/Content/img/logo.png" alt="logo" />
+                        </a>
                     </div>
 
                     <div class="container">
@@ -54,19 +57,19 @@
                             <ul class="nav navbar-nav pull-right ">
                                 <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
                                 <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                <li><a href="html/FAQ.html">FAQ</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
                                 <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="dropdown">
                                         <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
                                         <div class="dropdown-content">
-                                            <a href="@Url.Action()">My Profile</a>
-                                            <a href="@Url.Action()">My Downloads</a>
-                                            <a href="@Url.Action()">My Sold Notes</a>
-                                            <a href="@Url.Action()">My Rejected Notes</a>
-                                            <a href="@Url.Action()">Change Password</a>
-                                            <a href="@Url.Action()">Logout</a>
+                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
                                         </div>
                                     </li>
                                     <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
@@ -88,19 +91,19 @@
                             <ul class="nav">
                                 <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
                                 <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                <li><a href="@Url.Action()">FAQ</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
                                 <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="dropdown">
                                         <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
                                         <div class="dropdown-content">
-                                            <a href="@Url.Action()">My Profile</a>
-                                            <a href="@Url.Action()">My Downloads</a>
-                                            <a href="@Url.Action()">My Sold Notes</a>
-                                            <a href="@Url.Action()">My Rejected Notes</a>
-                                            <a href="@Url.Action()">Change Password</a>
-                                            <a href="@Url.Action()">Logout</a>
+                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
                                         </div>
                                     </li>
                                     <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
@@ -506,7 +509,7 @@
 
                 <div class="container">
                     <span class="pagination-control" pagination-data="#results-row" max-page-shown="20">
-
+                        
                         <nav aria-label="Page navigation example" class="text-center">
                             <ul class="pagination" style="display: flex; justify-content: center">
                                 <li class="page-item" start-page="1">
@@ -521,7 +524,7 @@
                                 </li>
                             </ul>
                         </nav>
-
+                            
                     </span>
                 </div>
 

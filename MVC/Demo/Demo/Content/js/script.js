@@ -83,7 +83,9 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 
-
+$('.accordion').click(function () {
+    $(this).find('i').toggleClass('fa fa-plus fa fa-minus');
+});
 
 /* ===========================
       Pagination
@@ -227,4 +229,35 @@ $(function () {
         });
 
     });
+});
+
+
+/*  =====================================
+    Table sorter
+    ===================================== */
+
+$(function () {
+
+    //initialize table sorter and sort on descending 1st column
+    $('.tablesorter').each(function () {
+
+        //disable sort on action column
+        $(".tablesorter thead tr th:last-child").data("sorter", false);
+        $(".tablesorter thead tr th:nth-last-child(2)").data("sorter", false);
+
+        //get default sort type
+        var sortType = $(this).attr('data-sort-on-col-and-order').split(',');
+        var sortArr = sortType.map(Number);
+
+        //sort on default sort type
+        $(this).tablesorter({
+
+            sortList: [sortArr],
+
+            dateFormat: "ddmmyyyy"
+
+        });
+
+    });
+
 });

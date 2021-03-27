@@ -17,7 +17,6 @@ namespace Demo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ReferenceData()
         {
-            this.SellerNotes = new HashSet<SellerNote>();
             this.UserProfiles = new HashSet<UserProfile>();
         }
     
@@ -31,8 +30,6 @@ namespace Demo
         public Nullable<int> ModifiedBy { get; set; }
         public bool isActive { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SellerNote> SellerNotes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserProfile> UserProfiles { get; set; }
     }

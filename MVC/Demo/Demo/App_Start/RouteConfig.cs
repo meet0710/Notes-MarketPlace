@@ -24,6 +24,12 @@ namespace Demo
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Registration", action = "Index", id = UrlParameter.Optional }
 			);
+
+			routes.MapRoute(
+				name: "Default2",
+				url: "{controller}/{action}/{id}",
+				defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
+			);
 		}
 	}
 }

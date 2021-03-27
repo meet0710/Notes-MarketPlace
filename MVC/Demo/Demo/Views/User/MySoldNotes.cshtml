@@ -1,0 +1,383 @@
+﻿@model IEnumerable<Demo.Models.Buyerrequest>
+
+<html>
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
+
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
+
+    <!--Google Fonts-->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/Content/css/responsiveindex.css">
+
+</head>
+
+<body>
+
+    <!--Header-->
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="site-nav-wrapper">
+
+                    <div class="navbar-header">
+
+                        <!--Mobile menu Open Button-->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+
+                        <!--Logo-->
+                        <a href="@Url.Action("Index","Home")" class="navbar-brand-img">
+                            <img src="~/Content/img/logo.png" alt="logo" />
+                        </a>
+                    </div>
+
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right ">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <!--Mobile Menu-->
+                    <div id="mobile-nav">
+                        <!--Mobile Menu Close Button-->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action("Myprofie","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Header ends-->
+    <!--Table-->
+    <section id="sold">
+        <div class="container">
+            <div class="row search">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <h4>My Sold Notes</h4>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-inline searchform">
+                        <div class="form-group mx-sm-3 mb-2">
+
+                            <input type="text" class="form-control" id="search" placeholder="Search">
+                        </div>
+                        <button type="submit" data-table-id="#tableData" data-search-input="#search" class="btn btn-primary mb-2 searchandfilter search-in-table">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table tablesorter" data-sort-on-col-and-order="6,1" id="tableData">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Sr No.</th>
+                            <th scope="col">Note Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Buyer</th>
+                            <th scope="col">Sell Type</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Downloaded Date/Time</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody data-tr-per-page="10">
+                        @{ int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center"><span>@(++i)</span></td>
+                                <td><a href="@Url.Action("NoteDetails","Home",new { id = item.download.NoteID})"><span>@item.download.NoteTitle</span></a></td>
+                                <td>@item.download.NoteCategory</td>
+                                <td>@item.user.EmailID</td>
+                                @if (item.download.isPaid == true)
+                                {
+                                    <td>Paid</td>
+                                }
+                                else
+                                {
+                                    <td>Free</td>
+                                }
+                                <td>@item.download.PurchasedPrice</td>
+                                <td>@item.download.AttachmentDownloadedDate</td>
+                                <td><a href="@Url.Action("NoteDetails","Home",new { id = item.download.NoteID})"><img src="~/Content/img/pre-login/eye.png"></a></td>
+                                <td class="dropdown">
+                                    <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <a href="@Url.Action("DownloadSoldNotes","User",new { noteid = item.download.NoteID})">Download Notes</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td class="text-center"><span>1</span></td>
+                            <td>Data Science</td>
+                            <td>Science</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Paid</td>
+                            <td>$250</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>2</span></td>
+                            <td>Accounts</td>
+                            <td>Commerce</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>3</span></td>
+                            <td>Social Studies</td>
+                            <td>Social</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>4</span></td>
+                            <td>AI</td>
+                            <td>IT</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Paid</td>
+                            <td>$158</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>5</span></td>
+                            <td>Lorem ipsum</td>
+                            <td>lorem</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>6</span></td>
+                            <td>Data Science</td>
+                            <td>Science</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Paid</td>
+                            <td>$555</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>7</span></td>
+                            <td>Accounts</td>
+                            <td>Commerce</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>8</span></td>
+                            <td>Social Studies</td>
+                            <td>Social</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>9</span></td>
+                            <td>AI</td>
+                            <td>IT</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Paid</td>
+                            <td>$250</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>10</span></td>
+                            <td>Lorem ipsum</td>
+                            <td>Lorem</td>
+                            <td>testing123@gmail.com</td>
+                            <td>Paid</td>
+                            <td>$115</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><img src="~/Content/img/pre-login/eye.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <span class="pagination-control" pagination-data="#tableData tbody" max-page-shown="20">
+
+                <nav aria-label="Page navigation example" class="text-center">
+                    <ul class="pagination" style="display: flex; justify-content: center">
+                        <li class="page-item" start-page="1">
+                            <a class="page-link previous" aria-label="Previous">
+                                <img src="~/Content/img/images/left-arrow.png" class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="page-item" end-page="1">
+                            <a class="page-link next" aria-label="Next">
+                                <img src="~/Content/img/images/right-arrow.png" class="img-fluid">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </span>
+
+        </div>
+    </section>
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p>Copyright &#169; Tatvasoft All rights reserved.</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <ul class="social-list">
+                        <li><a href="#"><img src="~/Content/img/home/facebook.png" alt="fb"></a></li>
+                        <li><a href="#"><img src="~/Content/img/home/twitter.png"></a></li>
+                        <li><a href="#"><img src="~/Content/img/home/linkedin.png"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--JS-->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/tablesorter/jquery.tablesorter.min.js"></script>
+    <script src="~/Content/js/script.js"></script>
+</body>
+</html>

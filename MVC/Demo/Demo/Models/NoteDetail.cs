@@ -24,5 +24,9 @@ namespace Demo.Models
         public double IndRating { get; set; }
 
         public string ProfilePicture { get; set; }
+
+        public List<RatingandReview> rr { get; set; }
+
+        
     }
 }

@@ -53,7 +53,7 @@ namespace Demo
         public virtual Country Country1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Download> Downloads { get; set; }
-        public virtual ReferenceData ReferenceData { get; set; }
+        public virtual NoteStatu NoteStatu { get; set; }
         public virtual SellerNote SellerNotes1 { get; set; }
         public virtual SellerNote SellerNote1 { get; set; }
         public virtual Type Type { get; set; }

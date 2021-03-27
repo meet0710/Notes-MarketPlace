@@ -246,3 +246,33 @@ $(function() {
 
     });
 });
+
+/*  =====================================
+    Initialize table sorter
+    ===================================== */
+
+$(function() {
+    
+    //initialize table sorter and sort on descending 1st column
+    $('.tablesorter').each(function() {
+        
+        //disable sort on action column
+        $(".tablesorter thead tr th:last-child").data("sorter", false);
+		$(".tablesorter thead tr th:")
+        
+        //get default sort type
+        var sortType = $(this).attr('data-sort-on-col-and-order').split(',');
+        var sortArr = sortType.map(Number);
+        
+        //sort on default sort type
+        $(this).tablesorter({ 
+            
+            sortList: [sortArr],
+            
+            dateFormat : "ddmmyyyy"
+            
+        });
+        
+    });
+
+});

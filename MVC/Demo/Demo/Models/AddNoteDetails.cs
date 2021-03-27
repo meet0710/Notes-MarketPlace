@@ -7,15 +7,16 @@ namespace Demo.Models
 {
 	public class AddNoteDetails
 	{
+
 		public string Title { get; set; }
 
 		public string Category { get; set; }
 
-		public string NotesPicture { get; set; }
+		public HttpPostedFileBase NotesPicture { get; set; }
 
-		public string Notespdf { get; set; }
+		public HttpPostedFileBase Notespdf { get; set; }
 
-		public string Type { get; set; }
+		public string NoteType { get; set; }
 
 		public string Pages { get; set; }
 
@@ -29,6 +30,15 @@ namespace Demo.Models
 
 		public string SellingPrice { get; set; }
 
-		public string NotesPreview { get; set; }
+		public HttpPostedFileBase NotesPreview { get; set; }
+
+		public string CourseName { get; set; }
+
+		public string CourseCode { get; set; }
+
+		public string ProfessorName { get; set; }
+
+		public string noteid { get; set; }
+
 	}
 }

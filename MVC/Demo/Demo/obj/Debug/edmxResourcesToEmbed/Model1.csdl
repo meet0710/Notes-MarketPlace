@@ -39,12 +39,12 @@
     <Property Name="isSellerHasAllowedDownload" Type="Boolean" Nullable="false" />
     <Property Name="AttachmentPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="IsAttachmentDownloaded" Type="Boolean" Nullable="false" />
-    <Property Name="AttachmentDownloadedDate" Type="DateTime" Precision="3" />
+    <Property Name="AttachmentDownloadedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="isPaid" Type="Boolean" Nullable="false" />
     <Property Name="PurchasedPrice" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="NoteTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NoteCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="CreatedBy" Type="Int32" />
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="ModifiedBy" Type="Int32" />
@@ -53,6 +53,14 @@
     <NavigationProperty Name="User1" Relationship="Self.FK_Downloads_Users1" FromRole="Downloads" ToRole="Users" />
     <NavigationProperty Name="SellerNotesReportedIssues" Relationship="Self.FK_SellerNotesReportedIssues_Downloads" FromRole="Downloads" ToRole="SellerNotesReportedIssues" />
     <NavigationProperty Name="SellerNotesReviews" Relationship="Self.FK_SellerNotesReviews_Downloads" FromRole="Downloads" ToRole="SellerNotesReviews" />
+  </EntityType>
+  <EntityType Name="NoteStatu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="SellerNotes" Relationship="Self.FK_SellerNotes_NoteStatus" FromRole="NoteStatus" ToRole="SellerNotes" />
   </EntityType>
   <EntityType Name="ReferenceData">
     <Key>
@@ -67,7 +75,6 @@
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="SellerNotes" Relationship="Self.FK_SellerNotes_ReferenceData" FromRole="ReferenceData" ToRole="SellerNotes" />
     <NavigationProperty Name="UserProfiles" Relationship="Self.FK_UserProfile_ReferenceData" FromRole="ReferenceData" ToRole="UserProfile" />
   </EntityType>
   <EntityType Name="SellerNote">
@@ -102,7 +109,7 @@
     <NavigationProperty Name="Category1" Relationship="Self.FK_SellerNotes_Categories" FromRole="SellerNotes" ToRole="Categories" />
     <NavigationProperty Name="Country1" Relationship="Self.FK_SellerNotes_Countries" FromRole="SellerNotes" ToRole="Countries" />
     <NavigationProperty Name="Downloads" Relationship="Self.FK_Downloads_SellerNotes" FromRole="SellerNotes" ToRole="Downloads" />
-    <NavigationProperty Name="ReferenceData" Relationship="Self.FK_SellerNotes_ReferenceData" FromRole="SellerNotes" ToRole="ReferenceData" />
+    <NavigationProperty Name="NoteStatu" Relationship="Self.FK_SellerNotes_NoteStatus" FromRole="SellerNotes" ToRole="NoteStatus" />
     <NavigationProperty Name="SellerNotes1" Relationship="Self.FK_SellerNotes_SellerNotes" FromRole="SellerNotes" ToRole="SellerNotes1" />
     <NavigationProperty Name="SellerNote1" Relationship="Self.FK_SellerNotes_SellerNotes" FromRole="SellerNotes1" ToRole="SellerNotes" />
     <NavigationProperty Name="Type" Relationship="Self.FK_SellerNotes_Types" FromRole="SellerNotes" ToRole="Types" />
@@ -340,11 +347,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SellerNotes_ReferenceData">
-    <End Role="ReferenceData" Type="Self.ReferenceData" Multiplicity="1" />
+  <Association Name="FK_SellerNotes_NoteStatus">
+    <End Role="NoteStatus" Type="Self.NoteStatu" Multiplicity="1" />
     <End Role="SellerNotes" Type="Self.SellerNote" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ReferenceData">
+      <Principal Role="NoteStatus">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="SellerNotes">
@@ -500,6 +507,7 @@
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="Countries" EntityType="Self.Country" />
     <EntitySet Name="Downloads" EntityType="Self.Download" />
+    <EntitySet Name="NoteStatus" EntityType="Self.NoteStatu" />
     <EntitySet Name="ReferenceDatas" EntityType="Self.ReferenceData" />
     <EntitySet Name="SellerNotes" EntityType="Self.SellerNote" />
     <EntitySet Name="SellerNotesAttachements" EntityType="Self.SellerNotesAttachement" />
@@ -538,8 +546,8 @@
       <End Role="Downloads" EntitySet="Downloads" />
       <End Role="SellerNotesReviews" EntitySet="SellerNotesReviews" />
     </AssociationSet>
-    <AssociationSet Name="FK_SellerNotes_ReferenceData" Association="Self.FK_SellerNotes_ReferenceData">
-      <End Role="ReferenceData" EntitySet="ReferenceDatas" />
+    <AssociationSet Name="FK_SellerNotes_NoteStatus" Association="Self.FK_SellerNotes_NoteStatus">
+      <End Role="NoteStatus" EntitySet="NoteStatus" />
       <End Role="SellerNotes" EntitySet="SellerNotes" />
     </AssociationSet>
     <AssociationSet Name="FK_UserProfile_ReferenceData" Association="Self.FK_UserProfile_ReferenceData">

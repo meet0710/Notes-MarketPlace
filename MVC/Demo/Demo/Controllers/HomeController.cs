@@ -13,14 +13,15 @@ namespace Demo.Controllers
 	public class HomeController : Controller
 	{
 		private NotesEntities _Context;
-		public ActionResult Index()
-		{
-			return View();
-		}
 
 		public HomeController()
 		{
 			_Context = new NotesEntities();
+		}
+
+		public ActionResult Index()
+		{
+			return View();
 		}
 
 		[HttpGet]
@@ -36,7 +37,7 @@ namespace Demo.Controllers
 			ViewBag.UniversityList = universitylist;
 			ViewBag.CountryList = countrylist;
 
-			var search = (from s in _Context.SellerNotes
+			var search = (from s in _Context.SellerNotes where s.Status == 4
 						  let avgratings = (from Review in _Context.SellerNotesReviews
 											where Review.NoteID == s.ID
 											group Review by Review.NoteID into grp
@@ -63,6 +64,7 @@ namespace Demo.Controllers
 			return View(search);
         }
 
+		[HttpGet]
 		public ActionResult NoteDetails(int id)
         {
 			List<SellerNote> Notes = _Context.SellerNotes.ToList();
@@ -84,7 +86,7 @@ namespace Demo.Controllers
 													FirstName = u.FirstName,
 													LastName = u.LastName,
 													ProfilePicture = up.ProfilePicture,
-                                                })
+                                                }).ToList()
 
 						   let avgratings = (from Review in _Context.SellerNotesReviews
 											 where Review.NoteID == s.ID
@@ -109,29 +111,46 @@ namespace Demo.Controllers
 								note = s,
 								country = c,
 								category = cat,
-								//review = r,
-								//user = u,
+                               //review = r,
+                               //user = u,
 
-								IndRating = ratingandreview.Select(a=>a.IndRating).FirstOrDefault(),
-								Review = ratingandreview.Select(a=>a.Review).FirstOrDefault(),
-							    FirstName = ratingandreview.Select(a => a.FirstName).FirstOrDefault(),
-							    LastName = ratingandreview.Select(a => a.LastName).FirstOrDefault(),
-								ProfilePicture = ratingandreview.Select(a=>a.ProfilePicture).FirstOrDefault(),
+                               IndRating = ratingandreview.Select(a=>a.IndRating).FirstOrDefault(),
+                               Review = ratingandreview.Select(a=>a.Review).FirstOrDefault(),
+                            //      FirstName = ratingandreview.Select(a => a.FirstName).FirstOrDefault(),
+                             //     LastName = ratingandreview.Select(a => a.LastName).FirstOrDefault(),
+                             //  ProfilePicture = ratingandreview.Select(a=>a.ProfilePicture).FirstOrDefault(),
 
-
+                               rr = ratingandreview,
 
 							   Total = avgratings.Select(a => a.Total).FirstOrDefault(),
 							    Rating = avgratings.Select(a => a.Rating).FirstOrDefault(),
 							    TotalSpam = totalspam.Select(a => a.TotalSpam).FirstOrDefault()
 
-						   }).ToList();
+						   }).FirstOrDefault();
 			return View(details);
         }
+
+		
 
 		[HttpGet]
 		public ActionResult ContactUs()
 		{
-			return View();
+			if(User.Identity.IsAuthenticated)
+            {
+				var currentuser = Convert.ToInt32(Session["UserId"]);
+				var result = _Context.Users.Where(m => m.ID == currentuser).FirstOrDefault();
+				ContactUs user = new ContactUs
+				{
+					Fullname = result.FirstName + result.LastName,
+					EmailID = result.EmailID
+				};
+				return View(user);
+            }
+            else
+            {
+				return View();
+			}
+				
 		}
 
 		[HttpPost]
@@ -166,5 +185,10 @@ namespace Demo.Controllers
 
 			return RedirectToAction("ContactUs", "Home");
 		}
+
+		public ActionResult FAQ()
+        {
+			return View();
+        }
 	}
 }

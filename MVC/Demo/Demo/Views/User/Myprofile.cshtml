@@ -1,40 +1,37 @@
 ﻿
-@{
-	Layout = null;
-}
-
+@model Demo.Models.MyProfile
 <!DOCTYPE html>
 
 <html>
 <head>
 
-	<!-- Important meta tags -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!--Favicon-->
-	<link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
 
-	<!--Title-->
-	<title> Notes - MarketPlace</title>
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
 
-	<!--Google Fonts-->
+    <!--Google Fonts-->
 
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans
-             :wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-	<!--Bootstrap CSS-->
-	<link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
 
-	<!--Fontawesome-->
-	<link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
 
-	<!--Custom CSS-->
-	<link rel="stylesheet" href="~/Content/css/style.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
 
-	<!--Responsive CSS-->
-	<link rel="stylesheet" href="~/Content/css/responsiveindex.css">
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/Content/css/responsiveindex.css">
 
 </head>
 
@@ -52,7 +49,9 @@
 						<span id="mobile-nav-open-btn">&#9776;</span>
 
 						<!--Logo-->
-						<a href="index.html" class="navbar-brand"><img src="~/Content/home/logo.png"></a>
+                        <a href="@Url.Action("Index","Home")" class="navbar-brand-img">
+                            <img src="~/Content/img/logo.png" alt="logo" />
+                        </a>
 					</div>
 
 					<div class="container">
@@ -60,9 +59,9 @@
                             <ul class="nav navbar-nav pull-right ">
                                 <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
                                 <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                <li><a href="html/FAQ.html">FAQ</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
                                 <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
-                                @if (User.Identity.IsAuthenticated)
+                               @*@if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="dropdown">
                                         <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
@@ -80,7 +79,7 @@
                                 else
                                 {
                                     <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
-                                }
+                                }*@
                             </ul>
 						</div>
 					</div>
@@ -94,9 +93,9 @@
                             <ul class="nav">
                                 <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
                                 <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                <li><a href="@Url.Action()">FAQ</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
                                 <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
-                                @if (User.Identity.IsAuthenticated)
+                                @*@if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="dropdown">
                                         <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
@@ -114,7 +113,7 @@
                                 else
                                 {
                                     <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
-                                }
+                                }*@
                             </ul>
 						</div>
 					</div>
@@ -143,43 +142,47 @@
 	<!--Home Ends-->
 
 	<div id="user-profile">
-		<form class="container" method="post">
+		<form class="container" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-md-12">
 					<h3>Basic Profile Details</h3>
 					<div class="row">
 						<div class="col-md-6">
 							<p>First Name <sup>&#8727;</sup></p>
-							<div class="form-group">
-								<input type="text" class="form-control" id="firstname" placeholder="Enter your first name" name="FirstName" required>
-							</div>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="firstname" placeholder="Enter your first name" name="FirstName" required>*@
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your first name" } })
+                            </div>
 						</div>
 						<div class="col-md-6">
 							<p>Last Name <sup>&#8727;</sup></p>
-							<div class="form-group">
-								<input type="text" class="form-control" id="lastname" placeholder="Enter your last name" name="LastName" required>
-							</div>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="lastname" placeholder="Enter your last name" name="LastName" required>*@
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your Last name" } })
+                            </div>
 						</div>
 
 						<div class="col-md-6">
 							<p>Email <sup>&#8727;</sup></p>
-							<div class="form-group">
-								<input type="text" class="form-control" id="email" placeholder="Enter your email address" name="EmailID" required>
-							</div>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="email" placeholder="Enter your email address" name="EmailID" required>*@
+                                @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your email address" } })
+                            </div>
 						</div>
 						<div class="col-md-6">
 							<p>Date of Birth</p>
-							<div class="form-group">
-								<input type="date" class="form-control" id="dob" placeholder="Enter your date of birth" name="DOB">
-							</div>
+                            <div class="form-group">
+                                @*<input type="date" class="form-control" id="dob" placeholder="Enter your date of birth" name="DOB">*@
+                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your date of birth",@type = "date" } })
+                            </div>
 						</div>
 						<div class="col-md-6">
 							<p>Gender</p>
 							<div class="form-group">
 								<select class="form-control" id="gender" name="Gender">
 									<option value="2">Male</option>
-									<option value="3">Female</option>
-									<option value="4">Others</option>
+									<option value="1006">Female</option>
+									<option value="1007">Others</option>
 								</select>
 							</div>
 						</div>
@@ -194,14 +197,16 @@
             <option value="92">+92</option>
             <option value="01">+01</option>
         </select>*@
-                                        @Html.DropDownList("CountryCode", new SelectList(ViewBag.CountryList, "ID", "CountryCode"), new { @class = "form-control" })
+                                        @*@Html.DropDownList("CountryCode", new SelectList(ViewBag.CountryList, "ID", "CountryCode"), new { @class = "form-control" })*@
+										@Html.DropDownListFor(model =>model.CountryCode, new SelectList(ViewBag.CountryList, "CountryCode", "CountryCode"), new { @class = "form-control" })
                                     </div>
 								</div>
 								<div class="col-md-9">
 									<div class="form-group">
-										<div class="form-group">
-											<input type="text" class="form-control" id="phone" placeholder="Enter your Phone no" name="PhoneNo">
-										</div>
+                                        <div class="form-group">
+                                            @*<input type="text" class="form-control" id="phone" placeholder="Enter your Phone no" name="PhoneNo">*@
+                                            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your Phone no" } })
+                                        </div>
 									</div>
 								</div>
 							</div>
@@ -211,6 +216,7 @@
 
 							<div class="form-group custom-drop-file text-center">
 								<input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="ProfilePicture">
+								@*@Html.EditorFor(model=>model.ProfilePicture, new { htmlAttributes = new { @class = "form-control", placeholder = "Upload a picture",@type="file" } })*@
 								<img src="~/Content/img/images/upload-file.png" alt="icon">
 								<p>Upload Picture</p>
 
@@ -224,33 +230,38 @@
 						<div class="row">
 							<div class="col-md-6">
 								<p>Address Line 1 <sup>&#8727;</sup></p>
-								<div class="form-group">
-									<input type="text" class="form-control" id="add1" placeholder="Enter your address" name="AddLine1" required>
-								</div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control" id="add1" placeholder="Enter your address" name="AddLine1" required>*@
+                                    @Html.EditorFor(model => model.AddLine1, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your address" } })
+                                </div>
 							</div>
 							<div class="col-md-6">
 								<p>Address Line 2</p>
-								<div class="form-group">
-									<input type="text" class="form-control" id="add2" placeholder="Enter your address" name="AddLine2">
-								</div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control" id="add2" placeholder="Enter your address" name="AddLine2">*@
+                                    @Html.EditorFor(model => model.AddLine2, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your address" } })
+                                </div>
 							</div>
 							<div class="col-md-6">
 								<p>City <sup>&#8727;</sup></p>
-								<div class="form-group">
-									<input type="text" class="form-control" id="city" placeholder="Enter your city" name="City" required>
-								</div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control" id="city" placeholder="Enter your city" name="City" required>*@
+                                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your city" } })
+                                </div>
 							</div>
 							<div class="col-md-6">
 								<p>State <sup>&#8727;</sup></p>
-								<div class="form-group">
-									<input type="text" class="form-control" id="state" placeholder="Enter your State" name="State" required>
-								</div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control" id="state" placeholder="Enter your State" name="State" required>*@
+                                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your State" } })
+                                </div>
 							</div>
 							<div class="col-md-6">
 								<p>ZipCode <sup>&#8727;</sup></p>
-								<div class="form-group">
-									<input type="text" class="form-control" id="zipcode" placeholder="Enter your zipcode" name="Zipcode" required>
-								</div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control" id="zipcode" placeholder="Enter your zipcode" name="Zipcode" required>*@
+                                    @Html.EditorFor(model => model.Zipcode, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your email address" } })
+                                </div>
 							</div>
 							<div class="col-md-6">
 								<p>Country <sup>&#8727;</sup></p>
@@ -262,7 +273,8 @@
             <option value="Canada">Canada</option>
         </select>*@
 
-                                    @Html.DropDownList("Country", new SelectList(ViewBag.CountryList, "ID", "Name"), "Select Country", new { @class = "form-control" })
+                                    @*@Html.DropDownList("Country", new SelectList(ViewBag.CountryList, "ID", "Name"), "Select Country", new { @class = "form-control" })*@
+									@Html.DropDownListFor(model => model.Country, new SelectList(ViewBag.CountryList, "Name", "Name"), new { @class = "form-control" })
                                 </div>
 							</div>
 						</div>
@@ -274,15 +286,17 @@
 						<div class="row">
 							<div class="col-md-6">
 								<p>University</p>
-								<div class="form-group">
-									<input type="text" class="form-control" id="university" placeholder="Enter your university" name="University">
-								</div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control" id="university" placeholder="Enter your university" name="University">*@
+                                    @Html.EditorFor(model => model.University, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your university" } })
+                                </div>
 							</div>
 							<div class="col-md-6">
 								<p>College</p>
-								<div class="form-group">
-									<input type="text" class="form-control" id="add1" placeholder="Enter your college" name="College">
-								</div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control" id="add1" placeholder="Enter your college" name="College">*@
+                                    @Html.EditorFor(model => model.College, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your college" } })
+                                </div>
 							</div>
 						</div>
 						<button class="btn btn-general btn-yellow" type="submit" title="Submit" role="button" formaction="Myprofile">Submit</button>

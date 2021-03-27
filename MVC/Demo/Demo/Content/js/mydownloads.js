@@ -30,9 +30,9 @@ window.onclick = function(event) {
 }
 */
 
-var modal = document.getElementById("myModal");
-function openmodal() {
-	
+
+function openmodal(x) {
+    var modal = document.getElementById(x);
 	modal.style.display = "block";
 	
 	window.onclick = function(event) {
@@ -42,14 +42,28 @@ function openmodal() {
 }
 }
 
-function closemodal() {
-	var modal = document.getElementById("myModal");
+function closemodal(y) {
+	var modal = document.getElementById(y);
 	 modal.style.display = "none";
 }
 
 
 
+function openmodal1(z) {
+    var modal1 = document.getElementById(z);
+    modal1.style.display = "block";
 
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal1.style.display = "none";
+        }
+    }
+}
+
+function closemodal1(a) {
+    var modal1 = document.getElementById(a);
+    modal1.style.display = "none";
+}
 
 
 /* ===========================
@@ -57,23 +71,18 @@ function closemodal() {
 ============================ */
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+$(function () {
+    $(".dropdown").click(function () {
+        $(this).find(".dropdown-content").toggleClass("show");
+    })
+})
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+$(document).on("click", function (event) {
+    var $trigger = $(".dropdown");
+    if ($trigger !== event.target && !$trigger.has(event.target).length) {
+        $(".dropdown-content").removeClass("show");
     }
-  }
-}
+});
 
 
 
@@ -229,4 +238,34 @@ $(function() {
         });
 
     });
+});
+
+
+/*  =====================================
+    Table sorter
+    ===================================== */
+
+$(function () {
+
+    //initialize table sorter and sort on descending 1st column
+    $('.tablesorter').each(function () {
+
+        //disable sort on action column
+        $(".tablesorter thead tr th:last-child").data("sorter", false);
+
+        //get default sort type
+        var sortType = $(this).attr('data-sort-on-col-and-order').split(',');
+        var sortArr = sortType.map(Number);
+
+        //sort on default sort type
+        $(this).tablesorter({
+
+            sortList: [sortArr],
+
+            dateFormat: "ddmmyyyy"
+
+        });
+
+    });
+
 });

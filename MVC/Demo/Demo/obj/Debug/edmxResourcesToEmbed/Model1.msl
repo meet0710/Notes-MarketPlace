@@ -51,6 +51,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="NoteStatus">
+      <EntityTypeMapping TypeName="NotesModel.NoteStatu">
+        <MappingFragment StoreEntitySet="NoteStatus">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ReferenceDatas">
       <EntityTypeMapping TypeName="NotesModel.ReferenceData">
         <MappingFragment StoreEntitySet="ReferenceData">

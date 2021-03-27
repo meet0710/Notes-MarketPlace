@@ -114,3 +114,22 @@ $(document).on("click", function(event){
             $(".dropdown-content").removeClass("show");
         }            
     });
+
+
+/*Modal for Unpublish Notes*/
+
+function openmodal1(x) {
+    var mymodal = document.getElementById(x);
+    mymodal.style.display = "block";
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            mymodal.style.display = "none";
+        }
+    }
+}
+
+function closemodal1(y) {
+    var mymodal1 = document.getElementById(y);
+    mymodal1.style.display = "none";
+}

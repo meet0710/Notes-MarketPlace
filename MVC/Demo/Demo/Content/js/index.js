@@ -30,7 +30,7 @@ $(function () {
             $("nav").addClass("white-nav-top");
 
             //Show Dark logo
-            $(".navbar-brand img").attr("src", "~/Content/home/logo.png");
+            $(".navbar-brand img").attr("src", "/Content/img/home/logo.png");
 
             
 
@@ -40,7 +40,7 @@ $(function () {
             $("nav").removeClass("white-nav-top");
 
             //Show Logo
-            $(".navbar-brand img").attr("src", "~/Content/img/pre-login/top-logo.png");
+            $(".navbar-brand img").attr("src", "/Content/img/pre-login/top-logo.png");
 
         }
 

@@ -1,4 +1,5 @@
-﻿<html>
+﻿@model IEnumerable<Demo.Models.AdminDashboard> 
+<html>
 <head>
 
     <!-- Important meta tags -->
@@ -9,7 +10,7 @@
     <!--Favicon-->
     <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
 
-    <!--Title-->
+    <!--Title-->s
     <title> Notes - MarketPlace</title>
 
     <!--Google Fonts-->
@@ -45,7 +46,7 @@
                         <span id="mobile-nav-open-btn">&#9776;</span>
 
                         <!--Logo-->
-                        <a href="index.html" class="navbar-brand"><img src="~/Content/home/logo.png"></a>
+                        <a href="index.html" class="navbar-brand-img"><img src="~/Content/img/home/logo.png"></a>
                     </div>
 
                     <div class="container">
@@ -137,10 +138,16 @@
             <div id="stats">
                 <div class="container">
                     <h4>Dashboard</h4>
+                    <div class="table-responsive">
+                        @{ int j = 0;}
                     <table class="table">
                         <tr>
+                            @foreach (var item in Model)
+                            {
+                                if(j<=0)
+                                { 
                             <td class="text-center">
-                                <h5>20</h5>
+                                <h5>@item.notesinreview</h5>
                                 <p>Number of Notes in Review for publish</p>
                             </td>
                             <td class="text-center">
@@ -151,15 +158,19 @@
                                 </p>
                             </td>
                             <td class="text-center">
-                                <h5>223</h5>
+                                <h5>@item.newregistration</h5>
                                 <p>
                                     Number of New Registrations<br>
                                     (Last 7 Days)
                                 </p>
                             </td>
+                                }
+                                ++j;
+                            }
                         </tr>
                     </table>
-
+                    
+                    </div>
                 </div>
             </div>
 
@@ -215,6 +226,69 @@
                             </tr>
                         </thead>
                         <tbody data-tr-per-page="5">
+                            @{ int i = 0;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center"><span>@(++i)</span></td>
+                                    <td><span>@item.Note.Title</span></td>
+                                    <td>@item.category.Name</td>
+                                    <td class="text-center">10 KB</td>
+                                    @if (item.Note.IsPaid == true)
+                                    {
+                                        <td>Paid</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Free</td>
+                                    }
+                                    <td>$@item.Note.SellingPrice</td>
+                                    <td>@item.user.FirstName @item.user.LastName</td>
+                                    @{DateTime da = DateTime.Parse(item.Note.CreatedDate.ToString());}
+                                    <td>@da</td>
+                                    <td class="text-center">@item.Total</td>
+                                    <td class="dropdown">
+                                        <img src="~/Content/img/images/dots.png" class="dropbtn">
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action("DownloadSoldNotes", "User", new { noteid = item.Note.ID })">Download Notes</a>
+                                            <a href="@Url.Action("NoteDetails", "Home", new { id = item.Note.ID })">View More Details</a>
+                                            @{string str = "mymodal" + item.Note.ID;}
+                                            <a onclick=openmodal1("@str")>Unpublish</a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <div id=@str class="modal">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <span class="close" onclick=closemodal1("@str")>&times;</span>
+
+                                            <h4>@item.Note.Title</h4>
+
+
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <form method="post">
+
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="noteid" value="@item.Note.ID" />
+    
+                                                <div class="comments">
+                                                    <p>Remarks</p>
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" id="message" name="remarks" placeholder="Comments..."></textarea>
+                                                    </div>
+
+                                                    <button type="submit" id="btnSubmit" class="btn btn-primary btn-sm" formaction="Unpublish">Submit</button>
+                                                    <button type="button" class="btn btn-primary btn-sm" onclick=closemodal1("@str")>Cancel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
                             <tr>
                                 <td class="text-center">1</td>
                                 <td><span>Data Science</span></td>

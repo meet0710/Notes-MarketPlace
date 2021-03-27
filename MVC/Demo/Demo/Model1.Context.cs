@@ -28,6 +28,7 @@ namespace Demo
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Download> Downloads { get; set; }
+        public virtual DbSet<NoteStatu> NoteStatus { get; set; }
         public virtual DbSet<ReferenceData> ReferenceDatas { get; set; }
         public virtual DbSet<SellerNote> SellerNotes { get; set; }
         public virtual DbSet<SellerNotesAttachement> SellerNotesAttachements { get; set; }

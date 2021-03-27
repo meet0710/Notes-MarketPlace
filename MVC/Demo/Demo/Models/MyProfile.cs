@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,15 +14,16 @@ namespace Demo.Models
 
 		public string EmailID { get; set; }
 
+		
 		public DateTime DOB { get; set; }
 
 		public string Gender { get; set; }
 
 		public string CountryCode { get; set; }
 
-		public string PhoneNo { get; set; }
+        public string PhoneNo { get; set; }
 
-		public string ProfilePicture { get; set; }
+        public HttpPostedFileBase ProfilePicture { get; set; }
 
 		public string AddLine1 { get; set; }
 

@@ -7,33 +7,33 @@
 
 <head>
 
-	<!-- Important meta tags -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!--Favicon-->
-	<link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
 
-	<!--Title-->
-	<title> Notes - MarketPlace</title>
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
 
-	<!--Google Fonts-->
+    <!--Google Fonts-->
 
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans
-             :wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-	<!--Bootstrap CSS-->
-	<link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
 
-	<!--Fontawesome-->
-	<link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
 
-	<!--Custom CSS-->
-	<link rel="stylesheet" href="~/Content/css/style.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
 
-	<!--Responsive CSS-->
-	<link rel="stylesheet" href="~/Content/css/responsiveindex.css">
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/Content/css/responsiveindex.css">
 
 </head>
 
@@ -51,7 +51,9 @@
 						<span id="mobile-nav-open-btn">&#9776;</span>
 
 						<!--Logo-->
-						<a href="index.html" class="navbar-brand"><img src="~/Content/home/logo.png"></a>
+                        <a href="@Url.Action("Index","Home")" class="navbar-brand-img">
+                            <img src="~/Content/img/logo.png" alt="logo" />
+                        </a>
 					</div>
 
 					<div class="container">
@@ -59,19 +61,19 @@
                             <ul class="nav navbar-nav pull-right ">
                                 <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
                                 <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                <li><a href="html/FAQ.html">FAQ</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
                                 <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="dropdown">
                                         <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
                                         <div class="dropdown-content">
-                                            <a href="@Url.Action()">My Profile</a>
-                                            <a href="@Url.Action()">My Downloads</a>
-                                            <a href="@Url.Action()">My Sold Notes</a>
-                                            <a href="@Url.Action()">My Rejected Notes</a>
-                                            <a href="@Url.Action()">Change Password</a>
-                                            <a href="@Url.Action()">Logout</a>
+                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
                                         </div>
                                     </li>
                                     <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
@@ -93,19 +95,19 @@
                             <ul class="nav">
                                 <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
                                 <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                <li><a href="@Url.Action()">FAQ</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
                                 <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="dropdown">
                                         <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
                                         <div class="dropdown-content">
-                                            <a href="@Url.Action()">My Profile</a>
-                                            <a href="@Url.Action()">My Downloads</a>
-                                            <a href="@Url.Action()">My Sold Notes</a>
-                                            <a href="@Url.Action()">My Rejected Notes</a>
-                                            <a href="@Url.Action()">Change Password</a>
-                                            <a href="@Url.Action()">Logout</a>
+                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
                                         </div>
                                     </li>
                                     <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
@@ -142,154 +144,182 @@
 	<!--Home Ends-->
 
 	<div id="addnotes">
-		<form class="container" method="post">
+		<form class="container" method="post" enctype="multipart/form-data">
 			
 			@Html.AntiForgeryToken()
 
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<h3>Basic Note Details</h3>
-					<div class="row">
-						<div class="col-md-6">
-							<p>Title <sup>&#8727;</sup></p>
-							<div class="form-group">
-								<input type="text" class="form-control" id="title" placeholder="Enter your notes title" name="Title" required>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<p>Category <sup>&#8727;</sup></p>
-							<div class="form-group">
-								@*<select class="form-control" id="category" name="Category" required>
-									<option >Select Category</option>
-									<option value="1">Science</option>
-									<option value="3">Commerce</option>
-									<option value="4">Social</option>
-									<option value="5">IT</option>
-									<option value="6">Lorem</option>
-								</select>*@
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h3>Basic Note Details</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Title <sup>&#8727;</sup></p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="title" placeholder="Enter your notes title" name="Title" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Category <sup>&#8727;</sup></p>
+                            <div class="form-group">
+                                @*<select class="form-control" id="category" name="Category" required>
+                            <option >Select Category</option>
+                            <option value="1">Science</option>
+                            <option value="3">Commerce</option>
+                            <option value="4">Social</option>
+                            <option value="5">IT</option>
+                            <option value="6">Lorem</option>
+                        </select>*@
 
-								@Html.DropDownList("Category",new SelectList(ViewBag.CategoryList, "ID", "Name"),"Select Category",new { @class = "form-control" })
-							</div>
-						</div>
+                                @Html.DropDownList("Category", new SelectList(ViewBag.CategoryList, "ID", "Name"), "Select Category", new { @class = "form-control" })
+                            </div>
+                        </div>
 
-						<div class="col-md-6">
-							<p>Display Picture</p>
-							<div class="form-group custom-drop-file text-center">
-								<input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="NotesPicture">
-								<img src="~/Content/img/images/upload-file.png" alt="icon">
-								<p>Upload a Picture</p>
+                        <div class="col-md-6">
+                            <p>Display Picture</p>
+                            <div class="form-group custom-drop-file text-center">
+                                <input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="NotesPicture">
+                                <img src="~/Content/img/images/upload-file.png" alt="icon">
+                                <p>Upload a Picture</p>
 
-							</div>
-						</div>
+                            </div>
+                        </div>
 
-			
-						<div class="col-md-6">
-							<p>Upload Notes <sup>&#8727;</sup></p>
-							<div class="form-group custom-drop-file text-center">
-								<input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="Notespdf" required>
-								<img src="~/Content/img/images/upload-note.png" alt="icon">
-								<p>Upload your notes</p>
 
-							</div>
-						</div>
-						
-						<div class="col-md-6">
-							<p>Type</p>
+                        <div class="col-md-6">
+                            <p>Upload Notes <sup>&#8727;</sup></p>
+                            <div class="form-group custom-drop-file text-center">
+                                <input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="Notespdf" required>
+                                <img src="~/Content/img/images/upload-note.png" alt="icon">
+                                <p>Upload your notes</p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Type</p>
                             <div class="form-group">
                                 @*<select class="form-control" id="type" name="Type">
-            <option value="1">Free</option>
-            <option value="2">Paid</option>
-        </select>*@
-                                @Html.DropDownList("Type", new SelectList(ViewBag.TypeList, "ID", "Name"), "Select Type", new { @class = "form-control" })
+                            <option value="1">Free</option>
+                            <option value="2">Paid</option>
+                        </select>*@
+                                @Html.DropDownList("NoteType", new SelectList(ViewBag.TypeList, "ID", "Name"), "Select Type", new { @class = "form-control" })
                             </div>
-						</div>
-						
-						<div class="col-md-6">
-							<p>Number of Pages</p>
-							<div class="form-group">
-								<input type="text" class="form-control" id="email" placeholder="Enter number of pages" name="Pages">
-							</div>
-						</div>
-						
-						<div class="col-md-12">
-							<p>Description <sup>&#8727;</sup></p>
-							<div class="form-group">
-								<textarea class="form-control" id="message" placeholder="Enter your description" name="Description"></textarea>
-							</div>
-						</div>
-					</div>
-				</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Number of Pages</p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email" placeholder="Enter number of pages" name="Pages">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <p>Description <sup>&#8727;</sup></p>
+                            <div class="form-group">
+                                <textarea class="form-control" id="message" placeholder="Enter your description" name="Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-				<div class="col-md-12">
-					<h3>Institutuion Information</h3>
-					<div class="row">
-						<div class="col-md-6">
-							<p>Country</p>
+                <div class="col-md-12">
+                    <h3>Institutuion Information</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Country</p>
                             <div class="form-group">
                                 @*<select class="form-control" id="country" name="Country">
-            <option disabled>Select Country</option>
-            <option value="1">India</option>
-            <option value="2">USA</option>
-            <option value="3">China</option>
-            <option value="4">Canada</option>
-        </select>*@
+                            <option disabled>Select Country</option>
+                            <option value="1">India</option>
+                            <option value="2">USA</option>
+                            <option value="3">China</option>
+                            <option value="4">Canada</option>
+                        </select>*@
 
                                 @Html.DropDownList("Country", new SelectList(ViewBag.CountryList, "ID", "Name"), "Select Country", new { @class = "form-control" })
                             </div>
-						</div>
-						<div class="col-md-6">
-							<p>Instituion Name</p>
-							<div class="form-group">
-								<input type="text" class="form-control" id="institutionname" placeholder="Enter your institution name" name="InstitutionName">
-							</div>
-						</div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Instituion Name</p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="institutionname" placeholder="Enter your institution name" name="InstitutionName">
+                            </div>
+                        </div>
 
-					</div>
-				</div>
+                    </div>
+                </div>
 
+                <div class="col-md-12">
+                    <h3>Course Details</h3>
+                    <div class="row">
 
-				<div class="col-md-12">
-					<h3>Selling Information</h3>
-					<div class="row">
-						
-						<div class="col-md-6">
-							<p>Sell For <sup>&#8727;</sup></p>
-							<label class="radio-inline">
-								<input type="radio" name="Ispaid" value="false" checked>Free
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="Ispaid" value="true">Paid
-							</label>
+                        <div class="col-md-6">
+                            <p>Course Name</p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="coursename" placeholder="Enter your course name" name="CourseName">
+                            </div>
+                        </div>
 
-							<p>Sell Price <sup>&#8727;</sup></p>
-							<div class="form-group">
-								<input type="text" class="form-control" id="institutionname" placeholder="Enter your price" name="SellingPrice" required>
-							</div>
+                        <div class="col-md-6">
+                            <p>Course Code</p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="coursecode" placeholder="Enter your course code" name="CourseCode">
+                            </div>
+                        </div>
 
+                        <div class="col-md-6">
+                            <p>Professor/Lecturer</p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="coursecode" placeholder="Enter your professor nsme" name="ProfessorName">
+                            </div>
+                        </div>
 
-						</div>
-						
-						<div class="col-md-6">
-							<p>Note Preview</p>
-							<div class="form-group custom-drop-file text-center">
-								<input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="NotesPreview">
-								<img src="~/Content/img/images/upload-file.png" alt="icon">
-								<p>Upload a file</p>
-
-							</div>
-						</div>
-
-					</div>
-					<div class="btn-toolbar">
-						<button type="submit" id="btnSubmit" class="btn btn-primary btn-sm" formaction="Save" value="Save">Save</button>
-						<button type="submit" id="btnCancel" class="btn btn-primary btn-sm" formaction="Publish" value="Publish">Publish</button>
-					</div>
-
-				</div>
+                    </div>
+                </div>
 
 
-			</div>
+                <div class="col-md-12">
+                    <h3>Selling Information</h3>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <p>Sell For <sup>&#8727;</sup></p>
+                            <label class="radio-inline">
+                                <input type="radio" name="Ispaid" value="false" checked>Free
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="Ispaid" value="true">Paid
+                            </label>
+
+                            <p>Sell Price <sup>&#8727;</sup></p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="institutionname" placeholder="Enter your price" name="SellingPrice" required>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Note Preview</p>
+                            <div class="form-group custom-drop-file text-center">
+                                <input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="NotesPreview">
+                                <img src="~/Content/img/images/upload-file.png" alt="icon">
+                                <p>Upload a file</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="btn-toolbar">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary btn-sm" formaction="Save" value="Save">Save</button>
+                        <button type="submit" id="btnCancel" class="btn btn-primary btn-sm" formaction="Publish" value="Publish">Publish</button>
+                    </div>
+
+                </div>
+
+
+            </div>
 
 
 

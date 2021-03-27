@@ -1,0 +1,301 @@
+﻿@model IEnumerable<Demo.Models.AdminSpamReport>
+<html>
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
+
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
+
+    <!--Google Fonts-->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/Content/css/admin-style.css">
+
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/Content/css/responsiveindex.css">
+
+</head>
+
+<body>
+
+    <!--Header-->
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="site-nav-wrapper">
+
+                    <div class="navbar-header">
+
+                        <!--Mobile menu Open Button-->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+
+                        <!--Logo-->
+                        <a href="index.html" class="navbar-brand"><img src="~/Content/home/logo.png"></a>
+                    </div>
+
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right ">
+                                <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+                                <li class="dropdown">
+
+                                    <a href="#sell">Notes</a>
+                                    <div class="dropdown-content">
+                                        <a href="admin-notesunderreview.html">Notes Under Review</a>
+                                        <a href="admin-publishednotes.html">Published Notes</a>
+                                        <a href="admin-downloadednotes.html">Downloaded Notes</a>
+                                        <a href="admin-rejectednotes.html">Rejected Notes</a>
+                                    </div>
+                                </li>
+                                <li><a href="admin-memberspage.html">Members</a></li>
+                                <li class="dropdown">
+                                    <a href="#contact">Reports</a>
+                                    <div class="dropdown-content">
+                                        <a href="admin-spamreports.html">Spam Reports</a>
+                                    </div>
+                                </li>
+                                <li><a href="admin-managesystem.html">Settings</a></li>
+                                <li class="dropdown">
+                                    <a href="#profile" class="photo"><img src="~/Content/img/images/reviewer-1.png" class="img-circle dropbtn"></a>
+
+                                    <div class="dropdown-content">
+                                        <a href="admin-myprofile.html">Update Profile</a>
+                                        <a href="finalchangepassword.html">Change Password</a>
+                                        <a href="admin-login.html">Logout</a>
+                                    </div>
+                                </li>
+                                <li><a href="admin-login.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <!--Mobile Menu-->
+                    <div id="mobile-nav">
+                        <!--Mobile Menu Close Button-->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li class="dropdown">
+                                    <a href="#profile" class="photo"><img src="~/Content/img/images/reviewer-1.png" class="img-circle dropbtn"></a>
+
+                                    <div class="dropdown-content">
+                                        <a href="admin-myprofile.html">Update Profile</a>
+                                        <a href="finalchangepassword.html">Change Password</a>
+                                        <a href="admin-login.html">Logout</a>
+                                    </div>
+                                </li>
+                                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                                <li class="dropdown">
+
+                                    <a href="#sell">Notes <i class="fa fa-caret-down"></i></a>
+                                    <div class="dropdown-content">
+                                        <a href="admin-notesunderreview.html">Notes Under Review</a>
+                                        <a href="admin-publishednotes.html">Published Notes</a>
+                                        <a href="admin-downloadednotes.html">Downloaded Notes</a>
+                                        <a href="admin-rejectednotes.html">Rejected Notes</a>
+                                    </div>
+                                </li>
+                                <li><a href="admin-memberspage.html">Members</a></li>
+                                <li class="dropdown">
+                                    <a href="#contact">Reports <i class="fa fa-caret-down"></i></a>
+                                    <div class="dropdown-content">
+                                        <a href="admin-spamreports.html">Spam Reports</a>
+                                    </div>
+                                </li>
+                                <li><a href="admin-managesystem.html">Settings</a></li>
+                                <li><a href="admin-login.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Header ends-->
+    <!--Table-->
+    <section id="adminspam">
+        <div class="container">
+            <div class="row search">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h4>Spam Reports</h4>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-inline searchform">
+                        <div class="form-group mx-sm-3 mb-2">
+
+                            <input type="text" class="form-control" id="search" placeholder="Search">
+                        </div>
+                        <button type="submit" data-table-id="#tableData" data-search-input="#search" class="btn btn-primary mb-2 searchandfilter search-in-table">Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table" id="tableData">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Sr No.</th>
+                            <th scope="col">Reported By</th>
+                            <th scope="col">Note Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Date Edited</th>
+                            <th scope="col">Remark</th>
+                            <th scope="col" class="text-center">Action</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody data-tr-per-page="5">
+                        @{ int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center"><span>@(++i)</span></td>
+                                <td>@item.user.FirstName @item.user.LastName</td>
+                                <td><span>@item.Note.Title</span></td>
+                                <td>@item.Category.Name</td>
+                                <td>09-10-2020, 10:10</td>
+                                <td>@item.spamreport.Remarks</td>
+                                <td class="text-center"><a href="@Url.Action("DeleteSpamReport","Admin",new { id = item.spamreport.ID})"><img src="~/Content/img/images/delete.png"></a></td>
+                                <td class="dropdown">
+                                    <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                    <div id="myDropdown" class="dropdown-content"><a href="@Url.Action("DownloadSoldNotes","User",new { noteid= item.Note.ID})">Download Notes</a><a href="@Url.Action("NoteDetails","Home",new { id = item.Note.ID})">View More Details</a></div>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td class="text-center"><span>1</span></td>
+                            <td>Khayati Patel</td>
+                            <td><span>Software Development</span></td>
+                            <td>IT</td>
+                            <td>09-10-2020, 10:10</td>
+                            <td>Lorem ipsum is simply dummy text</td>
+                            <td class="text-center"><img src="~/Content/img/images/delete.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Notes</a><a href="#">View More Details</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>2</span></td>
+                            <td>Rahul Shah</td>
+                            <td><span>Computer Basic</span></td>
+                            <td>Computer</td>
+                            <td>10-10-2020, 11:25</td>
+                            <td>Lorem ipsum is simply dummy text</td>
+                            <td class="text-center"><img src="~/Content/img/images/delete.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Notes</a><a href="#">View More Details</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>3</span></td>
+                            <td>Suman Trivedi</td>
+                            <td><span>Human Body</span></td>
+                            <td>Science</td>
+                            <td>11-10-2020, 01:00</td>
+                            <td>Lorem ipsum is simply dummy text</td>
+                            <td class="text-center"><img src="~/Content/img/images/delete.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Notes</a><a href="#">View More Details</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>4</span></td>
+                            <td>Raj Malhotra</td>
+                            <td><span>world war 2</span></td>
+                            <td>History</td>
+                            <td>12-10-2020, 10:10</td>
+                            <td>Lorem ipsum is simply dummy text</td>
+                            <td class="text-center"><img src="~/Content/img/images/delete.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Notes</a><a href="#">View More Details</a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"><span>5</span></td>
+                            <td>Niya Patel</td>
+                            <td><span>Accounting</span></td>
+                            <td>Account</td>
+                            <td>13-10-2020, 11:25</td>
+                            <td>Lorem ipsum is simply dummy text</td>
+                            <td class="text-center"><img src="~/Content/img/images/delete.png"></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content"><a href="#">Download Notes</a><a href="#">View More Details</a></div>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <span class="pagination-control" pagination-data="#tableData tbody" max-page-shown="20">
+
+                <nav aria-label="Page navigation example" class="text-center">
+                    <ul class="pagination" style="display: flex; justify-content: center">
+                        <li class="page-item" start-page="1">
+                            <a class="page-link previous" aria-label="Previous">
+                                <img src="~/Content/img/images/left-arrow.png" class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="page-item" end-page="1">
+                            <a class="page-link next" aria-label="Next">
+                                <img src="~/Content/img/images/right-arrow.png" class="img-fluid">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </span>
+
+        </div>
+    </section>
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p>Version:1.1.24</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <p>Copyright &#169; Tatvasoft All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--JS-->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.js"></script>
+
+    <script src="~/Content/js/admin-script.js"></script>
+</body>
+</html>

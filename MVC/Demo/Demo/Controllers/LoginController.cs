@@ -33,9 +33,12 @@ namespace Demo.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            
-            var obj = _Context.Users.Where(m => m.EmailID == user.EmailID && m.Password == user.Password).FirstOrDefault();
 
+            var result1 = _Context.Users.Where(m => m.EmailID == user.EmailID).FirstOrDefault();
+
+            if (result1 != null)
+            { 
+            var obj = _Context.Users.Where(m => m.EmailID == result1.EmailID && m.Password == user.Password).FirstOrDefault();
             if (obj != null)
             {
                 if (obj.isActive == true)
@@ -44,28 +47,38 @@ namespace Demo.Controllers
                     {
                         var result = _Context.UserProfiles.Where(m => m.UserID == obj.ID).FirstOrDefault();
                         Session["UserId"] = obj.ID;
-                        
+
                         FormsAuthentication.SetAuthCookie(obj.ID.ToString(), false);
                         if (result == null)
                         {
-                             return RedirectToAction("Myprofile", "User");
+                                if (obj.RoleID == 1)
+                                {
+                                    return RedirectToAction("Myprofile", "User");
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index", "Admin");
+                                }
                         }
                         else
                         {
-                            Session["UserProfile"] = result.ProfilePicture;
+                                if (result.ProfilePicture == null)
+                                {
+                                    Session["UserProfile"] = "~/Members/SystemConfig/defaultmember.png";
+                                    }
+                                else
+                                {
+                                    Session["UserProfile"] = result.ProfilePicture;
+                                }
                             if (obj.RoleID == 1)
                             {
-                                return RedirectToAction("Index", "Home");
+                                return RedirectToAction("SearchNotes", "Home");
                             }
 
                             else
                             {
                                 return RedirectToAction("Index", "Admin");
                             }
-                            
-                            
-                            
-                            
                         }
                         /* return RedirectToAction("Index", "Home");*/
                     }
@@ -74,7 +87,13 @@ namespace Demo.Controllers
             }
             else
             {
-                ViewBag.Message = "Email or Password is Incorrect";
+                ViewBag.Message = "Password is Incorrect";
+                return View();
+            }
+        }
+            else
+            {
+                ViewBag.Message = "Email doesn't exist";
                 return View();
             }
         }

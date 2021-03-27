@@ -1,4 +1,5 @@
-﻿<html>
+﻿@model Demo.Models.UserRegistration
+<html>
 <head>
 
     <!-- Important meta tags -->
@@ -14,8 +15,8 @@
 
     <!--Google Fonts-->
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans
-             :wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
@@ -41,38 +42,51 @@
                 <form method="post">
 
                     @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
 
                     <div id="details">
                         <h1 class="text-center">Create an Account</h1>
                         <p class="text-center">Enter your details to signup</p>
-                        <div class="text-center success" style="color: green; margin-bottom: 45px;"> @Html.Raw(@ViewBag.Success)</div>
-
-
+                        <div class="text-center" style="color: green;"> @Html.Raw(@ViewBag.Success)</div>
+                        <div class="text-center" style="color:red;">@ViewBag.Fail</div>
+                        <div id="uppermargin">
                         <p>First name <sup>&#8727;</sup></p>
+                        @Html.ValidationMessageFor(model => model.Firstname, null, new { @class = "text-danger" })
                         <div class="form-group">
                             <input type="text" class="form-control" id="fname" placeholder="Enter your first name" name="Firstname" required>
+
                         </div>
 
                         <p>Last name <sup>&#8727;</sup></p>
+                        @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "text-danger" })
                         <div class="form-group">
                             <input type="text" class="form-control" id="lname" placeholder="Enter your last name" name="LastName" required>
+
                         </div>
 
                         <p>Email <sup>&#8727;</sup></p>
+                        @Html.ValidationMessageFor(model => model.EmailID, null, new { @class = "text-danger" })
                         <div class="form-group">
                             <input type="text" class="form-control" id="email" placeholder="Enter your email address" name="EmailID" required>
+
                         </div>
 
                         <p>Password</p>
+                        @Html.ValidationMessageFor(model => model.EmailID,null, new { @class = "text-danger" })
                         <div class="form-group" id="password">
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter your password">
+                            @*<input type="password" class="form-control" id="pwd" placeholder="Enter your password" name="Password">*@
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "pwd", @placeholder = "Enter your password" } })
+                            
                             <img class="eye" src="~/Content/img/images/eye.png" onclick="showpassword()">
 
                         </div>
 
                         <p>Confirm Password</p>
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { @class = "text-danger" })
                         <div class="form-group" id="repassword">
-                            <input type="password" class="form-control" id="repwd" placeholder="Re-enter your password">
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "repwd", @placeholder = "Re-enter your password" } })
+
+                            @*<input type="password" class="form-control" id="repwd" placeholder="Re-enter your password" name="ConfirmPassword">*@
                             <img class="eye" src="~/Content/img/images/eye.png" onclick="showconfirmpassword()">
                         </div>
 
@@ -80,6 +94,7 @@
                             <button class="btn btn-general btn-yellow" title="Submit" type="submit" role="button">sign up</button>
                         </div>
                         <p class="text-center">Already have an account? <a href="@Url.Action("Index","Login")">Login</a></p>
+                            </div>
                     </div>
                 </form>
 
@@ -87,6 +102,8 @@
         </div>
     </div>
     <script src="~/Content/js/script.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
 

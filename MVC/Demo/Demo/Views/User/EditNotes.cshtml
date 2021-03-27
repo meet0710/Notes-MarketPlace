@@ -1,0 +1,367 @@
+﻿
+@model Demo.Models.AddNoteDetails
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
+
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
+
+    <!--Google Fonts-->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/Content/css/responsiveindex.css">
+
+</head>
+
+<body>
+
+    <!--Header-->
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="site-nav-wrapper">
+
+                    <div class="navbar-header">
+
+                        <!--Mobile menu Open Button-->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+
+                        <!--Logo-->
+                        <a href="@Url.Action("Index","Home")" class="navbar-brand-img">
+                            <img src="~/Content/img/logo.png" alt="logo" />
+                        </a>
+                    </div>
+
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right ">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <!--Mobile Menu-->
+                    <div id="mobile-nav">
+                        <!--Mobile Menu Close Button-->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Header ends-->
+    <!--Home-->
+    <section id="home">
+        <div id="home">
+            <!-- Background Video -->
+            <img src="~/Content/img/Add-notes/Add-notes/banner-with-overlay.jpg" id="home-bg-video" alt="Home">
+
+
+            <div id="home-content">
+
+                <h3>Add Notes</h3>
+
+
+            </div>
+        </div>
+
+    </section>
+    <!--Home Ends-->
+
+    <div id="addnotes">
+        <form class="container" method="post" enctype="multipart/form-data">
+
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h3>Basic Note Details</h3>
+                    <input type="hidden" value="@Model.noteid" name="noteid" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Title <sup>&#8727;</sup></p>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="title" placeholder="Enter your notes title" name="Title" required>*@
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your notes title name" } })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Category <sup>&#8727;</sup></p>
+                            <div class="form-group">
+                                @*<select class="form-control" id="category" name="Category" required>
+                                        <option >Select Category</option>
+                                        <option value="1">Science</option>
+                                        <option value="3">Commerce</option>
+                                        <option value="4">Social</option>
+                                        <option value="5">IT</option>
+                                        <option value="6">Lorem</option>
+                                    </select>*@
+
+                                @Html.DropDownListFor(model => model.Category, new SelectList(ViewBag.CategoryList, "ID", "Name"), "Select Category", new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Display Picture</p>
+                            <div class="form-group custom-drop-file text-center">
+                                <input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="NotesPicture">
+                                <img src="~/Content/img/images/upload-file.png" alt="icon">
+                                <p>Upload a Picture</p>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <p>Upload Notes <sup>&#8727;</sup></p>
+                            <div class="form-group custom-drop-file text-center">
+                                <input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="Notespdf" required>
+                                <img src="~/Content/img/images/upload-note.png" alt="icon">
+                                <p>Upload your notes</p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Type</p>
+                            <div class="form-group">
+                                @*<select class="form-control" id="type" name="Type">
+                                        <option value="1">Free</option>
+                                        <option value="2">Paid</option>
+                                    </select>*@
+                                @Html.DropDownListFor(model => model.NoteType, new SelectList(ViewBag.TypeList, "ID", "Name"), "Select Type", new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Number of Pages</p>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="email" placeholder="Enter number of pages" name="Pages">*@
+                                @Html.EditorFor(model => model.Pages, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter number of pages" } })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <p>Description <sup>&#8727;</sup></p>
+                            <div class="form-group">
+                                @*<textarea class="form-control" id="message" placeholder="Enter your description" name="Description"></textarea>*@
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your description" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <h3>Institutuion Information</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Country</p>
+                            <div class="form-group">
+                                @*<select class="form-control" id="country" name="Country">
+                                        <option disabled>Select Country</option>
+                                        <option value="1">India</option>
+                                        <option value="2">USA</option>
+                                        <option value="3">China</option>
+                                        <option value="4">Canada</option>
+                                    </select>*@
+
+                                @Html.DropDownListFor(model => model.Country, new SelectList(ViewBag.CountryList, "ID", "Name"), "Select Country", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Instituion Name</p>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="institutionname" placeholder="Enter your institution name" name="InstitutionName">*@
+                                @Html.EditorFor(model => model.InstitutionName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your institution name" } })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <h3>Course Details</h3>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <p>Course Name</p>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="coursename" placeholder="Enter your course name" name="CourseName">*@
+                                @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your Course name" } })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Course Code</p>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="coursecode" placeholder="Enter your course code" name="CourseCode">*@
+                                @Html.EditorFor(model => model.CourseCode, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your course code" } })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Professor/Lecturer</p>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="coursecode" placeholder="Enter your professor nsme" name="ProfessorName">*@
+                                @Html.EditorFor(model => model.ProfessorName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your professor name" } })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <h3>Selling Information</h3>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <p>Sell For <sup>&#8727;</sup></p>
+                            <label class="radio-inline">
+                                <input type="radio" name="Ispaid" value="false" checked>Free
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="Ispaid" value="true">Paid
+                            </label>
+
+                            <p>Sell Price <sup>&#8727;</sup></p>
+                            <div class="form-group">
+                                @*<input type="text" class="form-control" id="institutionname" placeholder="Enter your price" name="SellingPrice" required>*@
+                                @Html.EditorFor(model => model.SellingPrice, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your price" } })
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Note Preview</p>
+                            <div class="form-group custom-drop-file text-center">
+                                <input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="NotesPreview">
+                                <img src="~/Content/img/images/upload-file.png" alt="icon">
+                                <p>Upload a file</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="btn-toolbar">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary btn-sm" formaction="EditNotesSave" value="EditNotesSave">Save</button>
+                        <button type="submit" id="btnSubmit" class="btn btn-primary btn-sm" formaction="EditNotesPublish" value="EditNotesPublish">Publish</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+        </form>
+    </div>
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p>Copyright &#169; Tatvasoft All rights reserved.</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <ul class="social-list">
+                        <li><a href="#"><img src="~/Content/img/home/facebook.png" alt="fb"></a></li>
+                        <li><a href="#"><img src="~/Content/img/home/twitter.png"></a></li>
+                        <li><a href="#"><img src="~/Content/img/home/linkedin.png"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--JS-->
+    <!--JQUERY JS-->
+    <script src="~/Content/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <!--Custom JS-->
+    <script src="~/Content/js/script.js"></script>
+
+</body>
+</html>
+

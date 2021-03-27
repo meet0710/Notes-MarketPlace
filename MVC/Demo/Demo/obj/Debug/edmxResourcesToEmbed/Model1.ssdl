@@ -37,15 +37,22 @@
     <Property Name="isSellerHasAllowedDownload" Type="bit" Nullable="false" />
     <Property Name="AttachmentPath" Type="varchar(max)" />
     <Property Name="IsAttachmentDownloaded" Type="bit" Nullable="false" />
-    <Property Name="AttachmentDownloadedDate" Type="datetime" />
+    <Property Name="AttachmentDownloadedDate" Type="varchar(max)" />
     <Property Name="isPaid" Type="bit" Nullable="false" />
     <Property Name="PurchasedPrice" Type="decimal" Precision="18" Scale="0" />
     <Property Name="NoteTitle" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="NoteCategory" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="varchar(max)" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="NoteStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="ReferenceData">
     <Key>
@@ -276,11 +283,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SellerNotes_ReferenceData">
-    <End Role="ReferenceData" Type="Self.ReferenceData" Multiplicity="1" />
+  <Association Name="FK_SellerNotes_NoteStatus">
+    <End Role="NoteStatus" Type="Self.NoteStatus" Multiplicity="1" />
     <End Role="SellerNotes" Type="Self.SellerNotes" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ReferenceData">
+      <Principal Role="NoteStatus">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="SellerNotes">
@@ -466,6 +473,7 @@ warning 6035: The relationship 'FK_UserProfile_Countries1' has columns that are 
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Downloads" EntityType="Self.Downloads" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoteStatus" EntityType="Self.NoteStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ReferenceData" EntityType="Self.ReferenceData" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SellerNotes" EntityType="Self.SellerNotes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SellerNotesAttachements" EntityType="Self.SellerNotesAttachements" Schema="dbo" store:Type="Tables" />
@@ -496,8 +504,8 @@ warning 6035: The relationship 'FK_UserProfile_Countries1' has columns that are 
       <End Role="Countries" EntitySet="Countries" />
       <End Role="SellerNotes" EntitySet="SellerNotes" />
     </AssociationSet>
-    <AssociationSet Name="FK_SellerNotes_ReferenceData" Association="Self.FK_SellerNotes_ReferenceData">
-      <End Role="ReferenceData" EntitySet="ReferenceData" />
+    <AssociationSet Name="FK_SellerNotes_NoteStatus" Association="Self.FK_SellerNotes_NoteStatus">
+      <End Role="NoteStatus" EntitySet="NoteStatus" />
       <End Role="SellerNotes" EntitySet="SellerNotes" />
     </AssociationSet>
     <AssociationSet Name="FK_SellerNotes_SellerNotes" Association="Self.FK_SellerNotes_SellerNotes">
