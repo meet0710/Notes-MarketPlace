@@ -23,7 +23,6 @@ namespace Demo
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public bool isActive { get; set; }
-    
-        public virtual SellerNote SellerNote { get; set; }
+        public Nullable<int> Filesize { get; set; }
     }
 }

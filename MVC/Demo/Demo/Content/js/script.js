@@ -275,13 +275,112 @@ $(function () {
 
         $('#notelist div').each(function () {
             if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-                $(this).hide();
+                $(this).closest('.notelisting').hide();
             }
             else {
-                $(this).show();
+                $(this).closest('.notelisting').show();
                 count++;
             }
         })
+    });
+
+});
+
+$(function () {
+    $(".filtertype").on("change", function () {
+        var filter = $(this).val(),
+            count = 0;
+        $('.notelisting').each(function () {
+            if ($(this).text().toLocaleUpperCase().indexOf(filter.toUpperCase()) != -1) {
+                $(this).show();
+            }
+            else
+                $(this).hide();
+        })
+        
+    });
+
+});
+
+$(function () {
+    $(".filtercategory").on("change", function () {
+        var filter = $(this).val(),
+            count = 0;
+        $('.notelisting').each(function () {
+            if ($(this).text().toLocaleUpperCase().indexOf(filter.toUpperCase()) != -1) {
+                $(this).show();
+            }
+            else
+                $(this).hide();
+        })
+
+    });
+
+});
+
+$(function () {
+    $(".filteruniversity").on("change", function () {
+        var filter = $(this).val(),
+            count = 0;
+        $('.notelisting').each(function () {
+            if ($(this).text().toLocaleUpperCase().indexOf(filter.toUpperCase()) != -1) {
+                $(this).show();
+            }
+            else
+                $(this).hide();
+        })
+
+    });
+
+});
+
+$(function () {
+    $(".filtercourse").on("change", function () {
+        var filter = $(this).val(),
+            count = 0;
+        $('.notelisting').each(function () {
+            if ($(this).text().toLocaleUpperCase().indexOf(filter.toUpperCase()) != -1) {
+                $(this).show();
+            }
+            else
+                $(this).hide();
+        })
+
+    });
+
+});
+
+$(function () {
+    $(".filtercountry").on("change", function () {
+        var filter = $(this).val(),
+            count = 0;
+        $('.notelisting').each(function () {
+            if ($(this).text().toLocaleUpperCase().indexOf(filter.toUpperCase()) != -1) {
+                $(this).show();
+            }
+            else
+                $(this).hide();
+        })
+
+    });
+
+});
+
+$(function () {
+    $(".filterrating").on("change", function () {
+        var filter = $(this).val(),
+            count = 0;
+        $('.notelisting').each(function () {
+            $('.averagerating').each(function () {
+                if ($(this).text().toLocaleUpperCase().indexOf(filter.toUpperCase()) != -1) {
+                    $(this).closest('.notelisting').show();
+                }
+                else
+                    $(this).closest('.notelisting').hide();
+            })
+            
+        })
+
     });
 
 });

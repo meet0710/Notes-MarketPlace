@@ -38,7 +38,9 @@ namespace Demo.Controllers
 			ViewBag.CountryList = countrylist;
 
 			var search = (from s in _Context.SellerNotes where s.Status == 4
-						  
+						  join cat in _Context.Categories on s.Category equals cat.ID
+						  join typ in _Context.Types on s.NoteType equals typ.ID
+						  join country in _Context.Countries on s.Country equals country.ID
 						  let avgratings = (from Review in _Context.SellerNotesReviews
 											where Review.NoteID == s.ID
 											group Review by Review.NoteID into grp
@@ -66,6 +68,9 @@ namespace Demo.Controllers
 						  select new SearchNote
 						  {
 							  Note = s,
+							  types = typ,
+							  category = cat,
+							  country = country,
 							  Total = avgratings.Select(a=>a.Total).FirstOrDefault(),
 							  Rating = avgratings.Select(a=>a.Rating).FirstOrDefault(),
 							  TotalSpam = totalspam.Select(a=>a.TotalSpam).FirstOrDefault(),

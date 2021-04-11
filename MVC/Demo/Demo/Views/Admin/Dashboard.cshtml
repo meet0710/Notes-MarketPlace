@@ -251,7 +251,7 @@
                                     <td class="text-center"><span>@(++i)</span></td>
                                     <td><a href="@Url.Action("NoteDetails","Home", new { id = item.Note.ID })"><span>@item.Note.Title</span></a></td>
                                     <td>@item.category.Name</td>
-                                    <td class="text-center">10 KB</td>
+                                    <td class="text-center">@item.noteattachment.Filesize KB</td>
                                     @if (item.Note.IsPaid == true)
                                     {
                                         <td>Paid</td>
@@ -262,7 +262,7 @@
                                     }
                                     <td>$@item.Note.SellingPrice</td>
                                     <td>@item.user.FirstName @item.user.LastName</td>
-                                    @{DateTime da = DateTime.Parse(item.Note.CreatedDate.ToString());
+                                    @{DateTime da = DateTime.Parse(item.Note.PublishedDate.ToString());
                                         string date = da.ToString("dd-MM-yyyy, HH:mm");}
                                     <td>@date</td>
                                     <td class="text-center"><a href="@Url.Action("AdminDownloads","Admin",new { noteid = item.Note.ID})"><span>@item.Total</span></a></td>

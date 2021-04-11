@@ -116,6 +116,7 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="Filesize" Type="int" />
         </EntityType>
         <EntityType Name="SellerNotesReportedIssues">
           <Key>
@@ -348,18 +349,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SellerNotesAttachements_SellerNotes">
-          <End Role="SellerNotes" Type="Self.SellerNotes" Multiplicity="1" />
-          <End Role="SellerNotesAttachements" Type="Self.SellerNotesAttachements" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SellerNotes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SellerNotesAttachements">
-              <PropertyRef Name="NoteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SellerNotesReportedIssues_Downloads">
           <End Role="Downloads" Type="Self.Downloads" Multiplicity="1" />
           <End Role="SellerNotesReportedIssues" Type="Self.SellerNotesReportedIssues" Multiplicity="*" />
@@ -529,10 +518,6 @@ warning 6035: The relationship 'FK_UserProfile_Countries1' has columns that are 
             <End Role="Users" EntitySet="Users" />
             <End Role="SellerNotes" EntitySet="SellerNotes" />
           </AssociationSet>
-          <AssociationSet Name="FK_SellerNotesAttachements_SellerNotes" Association="Self.FK_SellerNotesAttachements_SellerNotes">
-            <End Role="SellerNotes" EntitySet="SellerNotes" />
-            <End Role="SellerNotesAttachements" EntitySet="SellerNotesAttachements" />
-          </AssociationSet>
           <AssociationSet Name="FK_SellerNotesReportedIssues_Downloads" Association="Self.FK_SellerNotesReportedIssues_Downloads">
             <End Role="Downloads" EntitySet="Downloads" />
             <End Role="SellerNotesReportedIssues" EntitySet="SellerNotesReportedIssues" />
@@ -690,7 +675,6 @@ warning 6035: The relationship 'FK_UserProfile_Countries1' has columns that are 
           <NavigationProperty Name="Type" Relationship="Self.FK_SellerNotes_Types" FromRole="SellerNotes" ToRole="Types" />
           <NavigationProperty Name="User" Relationship="Self.FK_SellerNotes_Users" FromRole="SellerNotes" ToRole="Users" />
           <NavigationProperty Name="User1" Relationship="Self.FK_SellerNotes_Users1" FromRole="SellerNotes" ToRole="Users" />
-          <NavigationProperty Name="SellerNotesAttachements" Relationship="Self.FK_SellerNotesAttachements_SellerNotes" FromRole="SellerNotes" ToRole="SellerNotesAttachements" />
           <NavigationProperty Name="SellerNotesReportedIssues" Relationship="Self.FK_SellerNotesReportedIssues_SellerNotes" FromRole="SellerNotes" ToRole="SellerNotesReportedIssues" />
           <NavigationProperty Name="SellerNotesReviews" Relationship="Self.FK_SellerNotesReviews_SellerNotes" FromRole="SellerNotes" ToRole="SellerNotesReviews" />
         </EntityType>
@@ -707,7 +691,7 @@ warning 6035: The relationship 'FK_UserProfile_Countries1' has columns that are 
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="SellerNote" Relationship="Self.FK_SellerNotesAttachements_SellerNotes" FromRole="SellerNotesAttachements" ToRole="SellerNotes" />
+          <Property Name="Filesize" Type="Int32" />
         </EntityType>
         <EntityType Name="SellerNotesReportedIssue">
           <Key>
@@ -994,18 +978,6 @@ warning 6035: The relationship 'FK_UserProfile_Countries1' has columns that are 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SellerNotesAttachements_SellerNotes">
-          <End Role="SellerNotes" Type="Self.SellerNote" Multiplicity="1" />
-          <End Role="SellerNotesAttachements" Type="Self.SellerNotesAttachement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SellerNotes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SellerNotesAttachements">
-              <PropertyRef Name="NoteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SellerNotesReportedIssues_SellerNotes">
           <End Role="SellerNotes" Type="Self.SellerNote" Multiplicity="1" />
           <End Role="SellerNotesReportedIssues" Type="Self.SellerNotesReportedIssue" Multiplicity="*" />
@@ -1144,10 +1116,6 @@ warning 6035: The relationship 'FK_UserProfile_Countries1' has columns that are 
           <AssociationSet Name="FK_SellerNotes_Users1" Association="Self.FK_SellerNotes_Users1">
             <End Role="Users" EntitySet="Users" />
             <End Role="SellerNotes" EntitySet="SellerNotes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SellerNotesAttachements_SellerNotes" Association="Self.FK_SellerNotesAttachements_SellerNotes">
-            <End Role="SellerNotes" EntitySet="SellerNotes" />
-            <End Role="SellerNotesAttachements" EntitySet="SellerNotesAttachements" />
           </AssociationSet>
           <AssociationSet Name="FK_SellerNotesReportedIssues_SellerNotes" Association="Self.FK_SellerNotesReportedIssues_SellerNotes">
             <End Role="SellerNotes" EntitySet="SellerNotes" />
@@ -1296,6 +1264,7 @@ warning 6035: The relationship 'FK_UserProfile_Countries1' has columns that are 
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Filesize" ColumnName="Filesize" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

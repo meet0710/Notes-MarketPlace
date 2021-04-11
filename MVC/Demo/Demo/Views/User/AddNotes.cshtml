@@ -194,8 +194,10 @@
                                 <input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="Notespdf" required>
                                 <img src="~/Content/img/images/upload-note.png" alt="icon">
                                 <p>Upload your notes</p>
-
-                            </div>
+                                @Html.ValidationMessageFor(model => model.Notespdf, null, new { @class = "text-danger" })
+                            
+                                </div>
+                            
                         </div>
 
                         <div class="col-md-6">
@@ -213,6 +215,7 @@
                             <p>Number of Pages</p>
                             <div class="form-group">
                                 @Html.EditorFor(model => model.Pages, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter number of pages" } })
+                                @Html.ValidationMessageFor(model=>model.Pages,null, new { @class = "text-danger"})
                             </div>
                         </div>
 

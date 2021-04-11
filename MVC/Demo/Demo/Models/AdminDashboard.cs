@@ -11,6 +11,7 @@ namespace Demo.Models
         public Category category { get; set; }
         public User user { get; set; }
         public User approver { get; set; }
+        public SellerNotesAttachement noteattachment { get; set; }
         public int Total { get; set; }
         public int noteid { get; set; }
         public string remarks { get; set; }

@@ -117,6 +117,7 @@
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="Filesize" ColumnName="Filesize" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

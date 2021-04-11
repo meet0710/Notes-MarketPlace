@@ -172,7 +172,7 @@
                                             <option>Free</option>
                                             <option>Paid</option>
                                         </select>*@
-                                        @Html.DropDownList("Type", new SelectList(ViewBag.TypeList, "ID", "Name"),"Select Type", new { @class = "form-control" })
+                                        @Html.DropDownList("Type", new SelectList(ViewBag.TypeList, "Name", "Name"),"Select Type", new { @class = "form-control filtertype" })
 
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
             <option>Social</option>
             <option>Lorem</option>
         </select>*@
-                                        @Html.DropDownList("Category", new SelectList(ViewBag.CategoryList, "ID", "Name"), "Select Category", new { @class = "form-control" })
+                                        @Html.DropDownList("Category", new SelectList(ViewBag.CategoryList, "Name", "Name"), "Select Category", new { @class = "form-control filtercategory" })
                                     </div>
                                 </div>
 
@@ -199,7 +199,7 @@
             <option>Nirma University</option>
             <option>GTU</option>
         </select>*@
-                                        @Html.DropDownList("University", new SelectList(ViewBag.UniversityList, "UniversityName", "UniversityName"), "Select University", new { @class = "form-control" })
+                                        @Html.DropDownList("University", new SelectList(ViewBag.UniversityList, "UniversityName", "UniversityName"), "Select University", new { @class = "form-control filteruniversity" })
                                     </div>
                                 </div>
 
@@ -212,7 +212,7 @@
             <option>Economics</option>
         </select>*@
 
-                                        @Html.DropDownList("University", new SelectList(ViewBag.UniversityList, "Course", "Course"), "Select Course", new { @class = "form-control" })
+                                        @Html.DropDownList("Course", new SelectList(ViewBag.UniversityList, "Course", "Course"), "Select Course", new { @class = "form-control filtercourse" })
 
                                     </div>
                                 </div>
@@ -226,13 +226,13 @@
             <option>Canada</option>
         </select>*@
 
-                                        @Html.DropDownList("University", new SelectList(ViewBag.CountryList, "ID", "Name"), "Select Country", new { @class = "form-control" })
+                                        @Html.DropDownList("Country", new SelectList(ViewBag.CountryList, "Name", "Name"), "Select Country", new { @class = "form-control filtercountry" })
                                     </div>
                                 </div>
 
                                 <div class="col-md-2 col-sm-4 col-xs-12 hw">
                                     <div class="form-group">
-                                        <select class="form-control" id="selectrating">
+                                        <select class="form-control filterrating" id="selectrating">
                                             <option>Select rating</option>
                                             <option>5</option>
                                             <option>4</option>
@@ -264,8 +264,19 @@
                         <div id="notelist">
                         @foreach (var item in Model)
                         {
-                            <div class="col-md-4 col-sm-12 col-xs-12" onclick="location.href='@Url.Action("NoteDetails", "Home", new { id = item.Note.ID })'">
-                                
+                            <div class="col-md-4 col-sm-12 col-xs-12 notelisting" onclick="location.href='@Url.Action("NoteDetails", "Home", new { id = item.Note.ID })'">
+                                @*<input type="hidden" name="notetype" value=@item.types.Name />
+        <input type="hidden" name="notecategory" value=@item.category.Name />
+        <input type="hidden" name="noteuniversity" value=@item.Note.UniversityName />
+        <input type="hidden" name="notecourse" value=@item.Note.Course />
+        <input type="hidden" name="notecountry" value=@item.country.Name />
+        <input type="hidden" name="noterating" value="" />*@
+                                <p style="display:none;">@item.types.Name</p>
+                                <p style="display:none;">@item.category.Name</p>
+                                <p style="display:none;">@item.Note.UniversityName</p>
+                                <p style="display:none;">@item.Note.Course</p>
+                                <p style="display:none;">@item.country.Name</p>
+                                <p style="display:none;" class="averagerating">@item.Rating</p>
                                 <div class="note-preview">
                                     <img src="@Url.Content(item.Note.DisplayPicture)" class="img-responsive">
                                     <div class="notedetail">
@@ -275,7 +286,7 @@
                                         <ul>
                                             <li><img src="~/Content/img/images/university.png" />@item.Note.UniversityName</li>
                                             <li><img src="~/Content/img/images/pages.png">@item.Note.NumberofPages Pages</li>
-                                            @{ DateTime da = DateTime.Parse(item.Note.CreatedDate.ToString());
+                                            @{ DateTime da = DateTime.Parse(item.Note.PublishedDate.ToString());
                                                 string date = da.ToString("ddd,MMM dd yyyy");}
                                             <li><img src="~/Content/img/images/calendar.png">@date</li>
                                             <li><img src="~/Content/img/images/flag.png"><span>@item.TotalSpam users marked this note as inappropriate</span></li>
@@ -288,11 +299,11 @@
                                         {
                                             <img src="~/Content/img/images/star-white.png" style="width: 20px; height: 20px;">
                                         }
-                                        
+
                                         <span>@item.Total reviews</span>
                                     </div>
                                 </div>
-                                    
+
                             </div>
                         }
                         @*<div class="col-md-4 col-sm-12 col-xs-12">

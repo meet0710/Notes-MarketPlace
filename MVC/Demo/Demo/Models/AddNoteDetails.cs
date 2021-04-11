@@ -21,6 +21,7 @@ namespace Demo.Models
 
 		public string NoteType { get; set; }
 
+		[Range (0,int.MaxValue,ErrorMessage ="Please enter valid number")]
 		public string Pages { get; set; }
 
 		[Required(ErrorMessage = "This Field is Required")]

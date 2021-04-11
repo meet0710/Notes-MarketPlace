@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9b92b9caa8a6459f84c754644f6e9434" Name="Diagram1">
+      <Diagram DiagramId="6b8cbc49939945e8a11fb89b37ef74e8" Name="Diagram1">
         <EntityTypeShape EntityType="NotesModel.Category" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesModel.Country" Width="1.5" PointX="6" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesModel.Download" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesModel.NoteStatu" Width="1.5" PointX="6" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesModel.ReferenceData" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NotesModel.SellerNote" Width="1.5" PointX="8.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NotesModel.SellerNotesAttachement" Width="1.5" PointX="10.5" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NotesModel.SellerNotesReportedIssue" Width="1.5" PointX="13.5" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NotesModel.SellerNotesReview" Width="1.5" PointX="10.5" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="NotesModel.SystemConfiguration" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesModel.SellerNote" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesModel.SellerNotesAttachement" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesModel.SellerNotesReportedIssue" Width="1.5" PointX="10.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesModel.SellerNotesReview" Width="1.5" PointX="13.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesModel.SystemConfiguration" Width="1.5" PointX="2.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesModel.Type" Width="1.5" PointX="6" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesModel.UserProfile" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesModel.UserRole" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
@@ -32,7 +32,6 @@
         <AssociationConnector Association="NotesModel.FK_SellerNotes_Types" ManuallyRouted="false" />
         <AssociationConnector Association="NotesModel.FK_SellerNotes_Users" ManuallyRouted="false" />
         <AssociationConnector Association="NotesModel.FK_SellerNotes_Users1" ManuallyRouted="false" />
-        <AssociationConnector Association="NotesModel.FK_SellerNotesAttachements_SellerNotes" ManuallyRouted="false" />
         <AssociationConnector Association="NotesModel.FK_SellerNotesReportedIssues_SellerNotes" ManuallyRouted="false" />
         <AssociationConnector Association="NotesModel.FK_SellerNotesReviews_SellerNotes" ManuallyRouted="false" />
         <AssociationConnector Association="NotesModel.FK_SellerNotesReportedIssues_Users" ManuallyRouted="false" />

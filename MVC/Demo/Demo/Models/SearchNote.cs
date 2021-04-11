@@ -13,6 +13,9 @@ namespace Demo.Models
 		public int Total { get; set; }
 		public int TotalSpam { get; set; }
 		public int totalnotes { get; set; }
+		public Category category { get; set; }
+		public Type types { get; set; }
+		public Country country { get; set; }
 		
 	}
 }

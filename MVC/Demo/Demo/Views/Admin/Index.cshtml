@@ -251,7 +251,7 @@
                                     <td class="text-center"><span>@(++i)</span></td>
                                     <td><a href="@Url.Action("NoteDetails","Home", new { id = item.Note.ID })"><span>@item.Note.Title</span></a></td>
                                     <td>@item.category.Name</td>
-                                    <td class="text-center">10 KB</td>
+                                    <td class="text-center">@item.noteattachment.Filesize KB</td>
                                     @if (item.Note.IsPaid == true)
                                     {
                                         <td>Paid</td>

@@ -18,7 +18,6 @@ namespace Demo
         public SellerNote()
         {
             this.Downloads = new HashSet<Download>();
-            this.SellerNotesAttachements = new HashSet<SellerNotesAttachement>();
             this.SellerNotesReportedIssues = new HashSet<SellerNotesReportedIssue>();
             this.SellerNotesReviews = new HashSet<SellerNotesReview>();
         }
@@ -59,8 +58,6 @@ namespace Demo
         public virtual Type Type { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SellerNotesAttachement> SellerNotesAttachements { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SellerNotesReportedIssue> SellerNotesReportedIssues { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

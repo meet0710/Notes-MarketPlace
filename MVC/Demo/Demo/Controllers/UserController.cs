@@ -218,6 +218,7 @@ namespace Demo.Controllers
                 result.NotesPreview = PreviewPDFpath;
                 result.DisplayPicture = Imagepath;
                 result1.FilePath = PDFPath;
+                result1.Filesize = note.Notespdf.ContentLength / 1024;
                 result1.FileName = Path.GetFileNameWithoutExtension(note.NotesPreview.FileName) + Path.GetExtension(note.Notespdf.FileName);
                 result.ModifiedDate = DateTime.Now;
                 result.ModifiedBy = Convert.ToInt32(Session["UserId"]);
@@ -308,6 +309,7 @@ namespace Demo.Controllers
                 result.NotesPreview = PreviewPDFpath;
                 result.DisplayPicture = Imagepath;
                 result1.FilePath = PDFPath;
+                result1.Filesize = note.Notespdf.ContentLength / 1024;
                 result1.FileName = Path.GetFileNameWithoutExtension(note.NotesPreview.FileName) + Path.GetExtension(note.Notespdf.FileName);
                 result.ModifiedDate = DateTime.Now;
                 result.ModifiedBy = Convert.ToInt32(Session["UserId"]);
@@ -386,7 +388,7 @@ namespace Demo.Controllers
             String Userid = Session["Userid"].ToString() + "/";
             String Noteid = (from D in _Context.SellerNotes orderby D.ID descending select D.ID).FirstOrDefault().ToString() + "/";
             String Name = Path.GetFileNameWithoutExtension(note.Notespdf.FileName) + Path.GetExtension(note.Notespdf.FileName);
-            
+
 
 
             string path = Path.Combine(Server.MapPath("~/Members/" + Session["UserId"].ToString()), Noteid);
@@ -437,7 +439,7 @@ namespace Demo.Controllers
 
 
 
-            
+
             String PDFPath = member + Userid + Noteid + Name;
 
             var lastid = (from S in _Context.SellerNotes orderby S.ID descending select S.ID).FirstOrDefault();
@@ -453,6 +455,7 @@ namespace Demo.Controllers
                 FileName = Name,
                 FilePath = PDFPath,
                 CreatedDate = DateTime.Now,
+                Filesize = note.Notespdf.ContentLength / 1024,
                 isActive = true
             });
 
@@ -460,7 +463,8 @@ namespace Demo.Controllers
             _Context.Dispose();
 
             return RedirectToAction("AddNotes", "User");
-
+            //int filesize = note.Notespdf.ContentLength / 1024;
+            //return Content(filesize.ToString());
         }
 
 
@@ -573,6 +577,7 @@ namespace Demo.Controllers
                 FileName = Name,
                 FilePath = PDFPath,
                 CreatedDate = DateTime.Now,
+                Filesize = note.Notespdf.ContentLength / 1024,
                 isActive = true
             });
 

@@ -30,6 +30,7 @@ namespace Demo.Controllers
                              where s.Status == 4
                              join category in _Context.Categories on s.Category equals category.ID
                              join user in _Context.Users on s.SellerID equals user.ID
+                             join attachment in _Context.SellerNotesAttachements on s.ID equals attachment.NoteID
                              let avgratings = (from downloads in _Context.Downloads
                                                where downloads.NoteID == s.ID
                                                group downloads by downloads.NoteID into grp
@@ -66,6 +67,7 @@ namespace Demo.Controllers
                              select new AdminDashboard
                              {
                                  Note = s,
+                                 noteattachment = attachment,
                                  Total = avgratings.Select(a => a.Total).FirstOrDefault(),
                                  category = category,
                                  user = user,
@@ -87,6 +89,7 @@ namespace Demo.Controllers
                              where s.Status == 4
                              join category in _Context.Categories on s.Category equals category.ID
                              join user in _Context.Users on s.SellerID equals user.ID
+                             join attachment in _Context.SellerNotesAttachements on s.ID equals attachment.NoteID
                              let avgratings = (from downloads in _Context.Downloads
                                                where downloads.NoteID == s.ID
                                                group downloads by downloads.NoteID into grp
@@ -97,8 +100,8 @@ namespace Demo.Controllers
                                                })
 
                              let inreview = (from note in _Context.SellerNotes
-                                             where (note.Status == 3 || note.Status == 2)
-                                             group note by note.ID into grp
+                                             where (note.Status == 2 || note.Status == 3)
+                                             group note by note.Status into grp
                                              select new InReview
                                              {
                                                  InreviewNotes = grp.Count()
@@ -123,6 +126,7 @@ namespace Demo.Controllers
                              select new AdminDashboard
                              {
                                  Note = s,
+                                 noteattachment = attachment,
                                  Total = avgratings.Select(a => a.Total).FirstOrDefault(),
                                  category = category,
                                  user = user,
@@ -717,7 +721,7 @@ namespace Demo.Controllers
             result.AdminRemarks = null;
             result.ActionedBY = currentuser;
             result.ModifiedBy = currentuser;
-            result.ModifiedDate = DateTime.Now;
+            result.PublishedDate = DateTime.Now;
             _Context.SaveChanges();
             return RedirectToAction("AdminNotesUnderReview", "Admin");
         }

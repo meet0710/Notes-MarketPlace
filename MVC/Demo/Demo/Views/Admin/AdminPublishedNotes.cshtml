@@ -221,7 +221,7 @@
                                 <td>$@item.Note.SellingPrice</td>
                                 <td>@item.user.FirstName @item.user.LastName</td>
                                 <td><a href="@Url.Action("AdminMemberDetails", "Admin", new { memberid = item.user.ID })"><img src="~/Content/img/Dashboard/Dashboard/eye.png"></a></td>
-                                @{DateTime da = DateTime.Parse(item.Note.ModifiedDate.ToString());
+                                @{DateTime da = DateTime.Parse(item.Note.PublishedDate.ToString());
                                     string date = da.ToString("dd-MM-yyyy, HH:mm");}
                                 <td>@date</td>
                                 <td>@item.approver.FirstName @item.approver.LastName</td>
