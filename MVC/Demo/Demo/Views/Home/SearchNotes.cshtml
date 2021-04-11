@@ -69,10 +69,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -103,10 +103,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -159,7 +159,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group hello">
-                                <input type="text" class="form-control" placeholder="Search" id="search">
+                                <input type="text" class="form-control" placeholder="Search" id="searchnotes">
                             </div>
                         </div>
 
@@ -249,13 +249,23 @@
             </div>
 
             <div class="container">
-                <h3>Total 18 notes</h3>
+                @{ int k = 0;}
+                @foreach(var item in Model)
+                {
+                    if(k<1)
+                    {
+                        <h3>Total @item.totalnotes notes</h3>
+                    }
+                    ++k;
+                }
+                @*<h3>Total 18 notes</h3>*@
                 <div class="container">
                     <div class="row" id="results-row" data-tr-per-page="9">
+                        <div id="notelist">
                         @foreach (var item in Model)
                         {
-                            <div class="col-md-4 col-sm-12 col-xs-12">
-                                <a href="@Url.Action("NoteDetails","Home",new { id= item.Note.ID })">
+                            <div class="col-md-4 col-sm-12 col-xs-12" onclick="location.href='@Url.Action("NoteDetails", "Home", new { id = item.Note.ID })'">
+                                
                                 <div class="note-preview">
                                     <img src="@Url.Content(item.Note.DisplayPicture)" class="img-responsive">
                                     <div class="notedetail">
@@ -265,7 +275,9 @@
                                         <ul>
                                             <li><img src="~/Content/img/images/university.png" />@item.Note.UniversityName</li>
                                             <li><img src="~/Content/img/images/pages.png">@item.Note.NumberofPages Pages</li>
-                                            <li><img src="~/Content/img/images/calendar.png">Thu,Nov 26 2020
+                                            @{ DateTime da = DateTime.Parse(item.Note.CreatedDate.ToString());
+                                                string date = da.ToString("ddd,MMM dd yyyy");}
+                                            <li><img src="~/Content/img/images/calendar.png">@date</li>
                                             <li><img src="~/Content/img/images/flag.png"><span>@item.TotalSpam users marked this note as inappropriate</span></li>
                                         </ul>
                                         @for (int i = 1; i <= item.Rating; i++)
@@ -280,7 +292,7 @@
                                         <span>@item.Total reviews</span>
                                     </div>
                                 </div>
-                                    </a>
+                                    
                             </div>
                         }
                         @*<div class="col-md-4 col-sm-12 col-xs-12">
@@ -504,6 +516,7 @@
                                 </div>
                             </div>
                         </div>*@
+                        </div>
                     </div>
                 </div>
 

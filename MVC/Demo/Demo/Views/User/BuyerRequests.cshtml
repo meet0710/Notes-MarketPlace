@@ -69,10 +69,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -103,10 +103,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -177,7 +177,10 @@
                                 <td>Free</td>
                                 }
                                 <td>@item.note.SellingPrice</td>
-                                <td>@item.download.CreatedDate</td>
+                                @{ DateTime da = DateTime.Parse(item.download.CreatedDate.ToString());
+                                    string dat = da.ToString("dd MMM yyyy, HH:mm:ss");
+                                }
+                                <td>@dat</td>
                                 <td><a href="@Url.Action("NoteDetails", "Home", new { id = item.note.ID})"><img src="~/Content/img/pre-login/eye.png"></a></td>
                                 <td class="dropdown">
                                     <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
@@ -186,7 +189,7 @@
                             </tr>
                         }
 
-                        <tr>
+                        @*<tr>
                             <td class="text-center"><span>1</span></td>
                             <td>Data Science</td>
                             <td>Science</td>
@@ -344,7 +347,7 @@
                                 <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
                                 <div id="myDropdown" class="dropdown-content"><a href="#">Allow Download</a></div>
                             </td>
-                        </tr>
+                        </tr>*@
                     </tbody>
                 </table>
             </div>

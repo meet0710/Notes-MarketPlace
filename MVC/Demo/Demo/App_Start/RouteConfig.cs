@@ -30,6 +30,25 @@ namespace Demo
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
 			);
+
+			
+			routes.MapRoute(
+				name: "Default3",
+				url: "{controller}/{action}/{id}",
+				defaults: new { controller = "Admin", action = "AdminNotesUnderReview", id = UrlParameter.Optional }
+			);
+
+			routes.MapRoute(
+				name: "Default4",
+				url: "{controller}/{action}/{id}",
+				defaults: new { controller = "Admin", action = "AdminPublishedNotes", id = UrlParameter.Optional }
+			);
+
+			routes.MapRoute(
+				name: "Default5",
+				url: "{controller}/{action}/{id}",
+				defaults: new { controller = "Admin", action = "AdminDownloads", id = UrlParameter.Optional }
+			);
 		}
 	}
 }

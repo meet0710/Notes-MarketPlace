@@ -32,10 +32,96 @@
 
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="site-nav-wrapper">
 
-	<div>
-		@RenderBody()
-	</div>
+                    <div class="navbar-header">
+
+                        <!--Mobile menu Open Button-->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+
+                        <!--Logo-->
+                        <a href="@Url.Action("Index","Home")" class="navbar-brand-img">
+                            <img src="~/Content/img/logo.png" alt="logo" />
+                        </a>
+                    </div>
+
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right ">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <!--Mobile Menu-->
+                    <div id="mobile-nav">
+                        <!--Mobile Menu Close Button-->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+
+                            <ul class="nav">
+                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="dropdown">
+                                        <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action("Myprofie","User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Login")" class="login">Login</a></li>
+                                }
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div>
+        @RenderBody()
+    </div>
 
 
 </body>

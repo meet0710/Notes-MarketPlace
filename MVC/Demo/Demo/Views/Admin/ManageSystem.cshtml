@@ -1,0 +1,280 @@
+﻿@model Demo.Models.managesystem
+<html>
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/images/favicon.ico">
+
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
+
+    <!--Google Fonts-->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/Content/css/admin-style.css">
+
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/Content/css/responsiveindex.css">
+
+</head>
+
+<body>
+
+    <!--Header-->
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="site-nav-wrapper">
+
+                    <div class="navbar-header">
+
+                        <!--Mobile menu Open Button-->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+
+                        <!--Logo-->
+                        <a href="@Url.Action("Dashboard","Admin")" class="navbar-brand-img"><img src="~/Content/home/logo.png"></a>
+                    </div>
+
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right ">
+                                <li><a href="@Url.Action("Dashboard","Admin")" class="active">Dashboard</a></li>
+                                <li class="dropdown">
+
+                                    <a>Notes</a>
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("AdminNotesUnderReview","Admin")">Notes Under Review</a>
+                                        <a href="@Url.Action("AdminPublishedNotes","Admin")">Published Notes</a>
+                                        <a href="@Url.Action("AdminDownloads","Admin")">Downloaded Notes</a>
+                                        <a href="@Url.Action("AdminRejectedNotes","Admin")">Rejected Notes</a>
+                                    </div>
+                                </li>
+                                <li><a href="@Url.Action("AdminMembers","Admin")">Members</a></li>
+                                <li class="dropdown">
+                                    <a>Reports</a>
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("AdminSpamReports","Admin")">Spam Reports</a>
+                                    </div>
+                                </li>
+                                <li class="dropdown">
+                                    <a>Settings</a>
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("ManageSystem","Admin")">Manage System Configuration</a>
+                                        <a href="@Url.Action("ManageAdmin","Admin")">Manage Administrator</a>
+                                        <a href="@Url.Action("ManageCategory","Admin")">Manage Category</a>
+                                        <a href="@Url.Action("ManageType","Admin")">Manage Type</a>
+                                        <a href="@Url.Action("ManageCountry","Admin")">Manage Countries</a>
+                                    </div>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle dropbtn"></a>
+
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("AdminProfile","Admin")">Update Profile</a>
+                                        <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                        <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
+                                    </div>
+                                </li>
+                                <li><a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <!--Mobile Menu-->
+                    <div id="mobile-nav">
+                        <!--Mobile Menu Close Button-->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li class="dropdown">
+                                    <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle dropbtn"></a>
+
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("AdminProfile","Admin")">Update Profile</a>
+                                        <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                        <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
+                                    </div>
+                                </li>
+                                <li><a href="@Url.Action("Dashboard","Admin")">Dashboard</a></li>
+                                <li class="dropdown">
+
+                                    <a>Notes <i class="fa fa-caret-down"></i></a>
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("AdminNotesUnderReview","Admin")">Notes Under Review</a>
+                                        <a href="@Url.Action("AdminPublishedNotes","Admin")">Published Notes</a>
+                                        <a href="@Url.Action("AdminDownloads","Admin")">Downloaded Notes</a>
+                                        <a href="@Url.Action("AdminRejectedNotes","Admin")">Rejected Notes</a>
+                                    </div>
+                                </li>
+                                <li><a href="@Url.Action("AdminMembers","Admin")">Members</a></li>
+                                <li class="dropdown">
+                                    <a>Reports <i class="fa fa-caret-down"></i></a>
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("AdminSpamReports","Admin")">Spam Reports</a>
+                                    </div>
+                                </li>
+                                <li class="dropdown">
+                                    <a>Settings <i class="fa fa-caret-down"></i></a>
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("ManageSystem","Admin")">Manage System Configuration</a>
+                                        <a href="@Url.Action("ManageAdmin","Admin")">Manage Administrator</a>
+                                        <a href="@Url.Action("ManageCategory","Admin")">Manage Category</a>
+                                        <a href="@Url.Action("ManageType","Admin")">Manage Type</a>
+                                        <a href="@Url.Action("ManageCountry","Admin")">Manage Countries</a>
+                                    </div>
+                                </li>
+                                <li><a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Header ends-->
+
+
+    <div id="adminmanagesystem">
+        <form class="container" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Manage System Configuration</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <p>Support email address</p>
+                    <div class="form-group">
+                        @*<input type="text" class="form-control" id="supportemail" placeholder="Enter support email address" name="supportemail">*@
+                        @Html.EditorFor(model => model.supportemail, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter support email address" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <p>Support phone number</p>
+                    <div class="form-group">
+                        @*<input type="text" class="form-control" id="supportphonenumber" placeholder="Enter support phone number" name="supportphoneno">*@
+                        @Html.EditorFor(model => model.supportphoneno, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter support phone number" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <p>Email Address(es) (for various events system will send notifications to the users)</p>
+                    <div class="form-group">
+                        @*<input type="text" class="form-control" id="email" placeholder="Enter your email address" name="email">*@
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your email address" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <p>Facebook URL</p>
+                    <div class="form-group">
+                        @*<input type="text" class="form-control" id="fburl" placeholder="Enter facebook url" name="fburl">*@
+                        @Html.EditorFor(model => model.fburl, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Facebook URL" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <p>Twitter URL</p>
+                    <div class="form-group">
+                        @*<input type="text" class="form-control" id="twitterurl" placeholder="Enter twiiter url" name="twitterurl">*@
+                        @Html.EditorFor(model => model.twitterurl, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter twitter url" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <p>Linkedin URL</p>
+                    <div class="form-group">
+                        @*<input type="text" class="form-control" id="fburl" placeholder="Enter linkedin url" name="linkedinurl">*@
+                        @Html.EditorFor(model => model.linkedinurl, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Linkedin url" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <p>Default image for notes (if seller do not upload)</p>
+                    <div class="form-group custom-drop-file text-center">
+                        <input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="defaultnote">
+                        <img src="~/Content/img/images/upload-file.png" alt="icon">
+                        <p>Upload a Picture</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <p>Default profile picture (if seller do not upload)</p>
+                    <div class="form-group custom-drop-file text-center">
+                        <input type="file" class="form-control" id="img-upload" placeholder="Upload a picture" name="defaultprofile">
+                        <img src="~/Content/img/images/upload-file.png" alt="icon">
+                        <p>Upload a Picture</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <button class="btn btn-general btn-yellow" title="Submit" role="button" type="submit">Submit</button>
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p>Version:1.1.24</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <p>Copyright &#169; Tatvasoft All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--JS-->
+    <!--JQUERY JS-->
+    <script src="~/Content/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <!--Custom JS-->
+    <script src="~/Content/js/admin-script.js"></script>
+
+</body>
+</html>

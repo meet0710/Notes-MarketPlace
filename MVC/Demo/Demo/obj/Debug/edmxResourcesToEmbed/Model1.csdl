@@ -39,12 +39,12 @@
     <Property Name="isSellerHasAllowedDownload" Type="Boolean" Nullable="false" />
     <Property Name="AttachmentPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="IsAttachmentDownloaded" Type="Boolean" Nullable="false" />
-    <Property Name="AttachmentDownloadedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AttachmentDownloadedDate" Type="DateTime" Precision="3" />
     <Property Name="isPaid" Type="Boolean" Nullable="false" />
     <Property Name="PurchasedPrice" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="NoteTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NoteCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CreatedDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="Int32" />
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="ModifiedBy" Type="Int32" />

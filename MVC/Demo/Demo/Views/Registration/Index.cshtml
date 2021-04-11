@@ -72,7 +72,7 @@
                         </div>
 
                         <p>Password</p>
-                        @Html.ValidationMessageFor(model => model.EmailID,null, new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Password,null, new { @class = "text-danger" })
                         <div class="form-group" id="password">
                             @*<input type="password" class="form-control" id="pwd" placeholder="Enter your password" name="Password">*@
                             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "pwd", @placeholder = "Enter your password" } })

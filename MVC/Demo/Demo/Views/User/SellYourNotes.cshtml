@@ -70,10 +70,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -104,10 +104,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -156,12 +156,12 @@
                                                 <h5>My earning</h5>
                                             </td>
                                             <td class="text-center" style="border:none; vertical-align: middle;">
-                                                <h5>@item.Notessold</h5>
+                                                <a href="@Url.Action("MySoldNotes","User")"><h5>@item.Notessold</h5></a>
                                                 <p>No. Notes Sold</p>
                                             </td>
                                             <td class="text-center" style="border: none; vertical-align: middle">
 
-                                                <h5>$ @item.TotalMoney</h5>
+                                                <a href="@Url.Action("MySoldNotes","User")"><h5>$ @item.TotalMoney</h5></a>
                                                 <p>Money Earned</p>
                                             </td>
 
@@ -171,16 +171,16 @@
                                 </td>
 
                                 <td class="text-center length" style="vertical-align: middle">
-                                    <h5>@item.Downloads</h5>
+                                    <a href="@Url.Action("MyDownloads","User")"><h5>@item.Downloads</h5></a>
                                     <p>My Download</p>
                                 </td>
                                 <td class="text-center length" style="vertical-align: middle">
-                                    <h5>@item.RejectedNotes</h5>
+                                    <a href="@Url.Action("MyRejectedNotes","User")"><h5>@item.RejectedNotes</h5></a>
                                     <p>My Rejected Notes</p>
                                 </td>
 
                                 <td class="text-center length" style="vertical-align: middle">
-                                    <h5>@item.Buyerrequests</h5>
+                                    <a href="@Url.Action("BuyerRequests","User")"><h5>@item.Buyerrequests</h5></a>
                                     <p>Buyer requests</p>
                                 </td>
                             }
@@ -354,7 +354,18 @@
                             if (item.Note.Status == 4)
                             {
                                 <tr>
-                                    <td>09-10-2020</td>
+                                    @{ if (item.Note.ModifiedDate != null)
+                                        {
+                                            DateTime da = DateTime.Parse(item.Note.ModifiedDate.ToString());
+                                            string date = da.ToString("dd-MM-yyyy");
+                                            <td>@date</td>
+                                        }
+                                        else
+                                        {
+                                            <td>NA</td>
+                                            }
+
+                                        }
                                     <td>@item.Note.Title</td>
                                     <td>@item.category.Name</td>
                                     @if(item.Note.IsPaid == true)
@@ -371,7 +382,7 @@
                                 </tr>
                             }
                         }
-                        <tr>
+                        @*<tr>
                             <td>09-10-2020</td>
                             <td>Data Science</td>
                             <td>Science</td>
@@ -419,7 +430,7 @@
                             <td>$0</td>
                             <td class="text-center"><img src="~/Content/img/pre-login/eye.png"></td>
                             <td></td>
-                        </tr>
+                        </tr>*@
 
 
                     </tbody>

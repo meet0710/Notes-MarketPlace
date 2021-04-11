@@ -170,6 +170,7 @@
     <Compile Include="Models\AdminDownload.cs" />
     <Compile Include="Models\AdminMember.cs" />
     <Compile Include="Models\AdminNotesUnderReview.cs" />
+    <Compile Include="Models\AdminProfile.cs" />
     <Compile Include="Models\AdminRejected.cs" />
     <Compile Include="Models\AdminSpamReport.cs" />
     <Compile Include="Models\AvgRatings.cs" />
@@ -181,8 +182,15 @@
     <Compile Include="Models\DownloadedNotes.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\ForgetPasswordModel.cs" />
+    <Compile Include="Models\managesystem.cs" />
+    <Compile Include="Models\notedownload.cs" />
+    <Compile Include="Models\notesearning.cs" />
     <Compile Include="Models\InReview.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ManageAdmin.cs" />
+    <Compile Include="Models\ManageCategory.cs" />
+    <Compile Include="Models\ManageCountry.cs" />
+    <Compile Include="Models\ManageType.cs" />
     <Compile Include="Models\MemberDetails.cs" />
     <Compile Include="Models\membernotes.cs" />
     <Compile Include="Models\MyDownloadReviews.cs" />
@@ -191,6 +199,7 @@
     <Compile Include="Models\MyProfile.cs" />
     <Compile Include="Models\MyRejected.cs" />
     <Compile Include="Models\MyRejectedNotes.cs" />
+    <Compile Include="Models\NewDownloads.cs" />
     <Compile Include="Models\NewRegistration.cs" />
     <Compile Include="Models\NoteDetail.cs" />
     <Compile Include="Models\PublishedNotes.cs" />
@@ -199,6 +208,7 @@
     <Compile Include="Models\SellYourNotes.cs" />
     <Compile Include="Models\SpamNote.cs" />
     <Compile Include="Models\TotalEarning.cs" />
+    <Compile Include="Models\Totalnotes.cs" />
     <Compile Include="Models\UserRegistration.cs" />
     <Compile Include="NoteStatu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -394,6 +404,7 @@
     <Content Include="Mail_Template\ForgetPassword.html" />
     <Content Include="Mail_Template\PublishNotes.html" />
     <Content Include="Mail_Template\SpamReport.html" />
+    <Content Include="Mail_Template\Unpublishnotes.html" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -482,6 +493,17 @@
     <Content Include="Views\Admin\AdminMembers.cshtml" />
     <Content Include="Views\Admin\AdminMemberDetails.cshtml" />
     <Content Include="Views\Admin\AdminNotesUnderReview.cshtml" />
+    <Content Include="Views\Admin\ManageAdmin.cshtml" />
+    <Content Include="Views\Admin\ManageCategory.cshtml" />
+    <Content Include="Views\Admin\ManageCountry.cshtml" />
+    <Content Include="Views\Admin\ManageType.cshtml" />
+    <Content Include="Views\Admin\EditCategory.cshtml" />
+    <Content Include="Views\Admin\EditCountry.cshtml" />
+    <Content Include="Views\Admin\EditType.cshtml" />
+    <Content Include="Views\Admin\EditAdmin.cshtml" />
+    <Content Include="Views\Admin\AdminProfile.cshtml" />
+    <Content Include="Views\Admin\ManageSystem.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

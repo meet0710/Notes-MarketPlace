@@ -12,5 +12,6 @@ namespace Demo.Models
         public Category category { get; set; }
         public User buyer { get; set; }
         public User seller { get; set; }
+
     }
 }

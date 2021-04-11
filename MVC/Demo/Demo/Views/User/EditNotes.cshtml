@@ -73,10 +73,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -107,10 +107,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -158,21 +158,23 @@
                             <div class="form-group">
                                 @*<input type="text" class="form-control" id="title" placeholder="Enter your notes title" name="Title" required>*@
                                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your notes title name" } })
+                                @Html.ValidationMessageFor(model => model.Title, null, new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-6">
                             <p>Category <sup>&#8727;</sup></p>
                             <div class="form-group">
                                 @*<select class="form-control" id="category" name="Category" required>
-                                        <option >Select Category</option>
-                                        <option value="1">Science</option>
-                                        <option value="3">Commerce</option>
-                                        <option value="4">Social</option>
-                                        <option value="5">IT</option>
-                                        <option value="6">Lorem</option>
-                                    </select>*@
+            <option >Select Category</option>
+            <option value="1">Science</option>
+            <option value="3">Commerce</option>
+            <option value="4">Social</option>
+            <option value="5">IT</option>
+            <option value="6">Lorem</option>
+        </select>*@
 
                                 @Html.DropDownListFor(model => model.Category, new SelectList(ViewBag.CategoryList, "ID", "Name"), "Select Category", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Category, null, new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -221,6 +223,7 @@
                             <div class="form-group">
                                 @*<textarea class="form-control" id="message" placeholder="Enter your description" name="Description"></textarea>*@
                                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your description" } })
+                                @Html.ValidationMessageFor(model => model.Description, null, new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -304,6 +307,7 @@
                             <div class="form-group">
                                 @*<input type="text" class="form-control" id="institutionname" placeholder="Enter your price" name="SellingPrice" required>*@
                                 @Html.EditorFor(model => model.SellingPrice, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your price" } })
+                                @Html.ValidationMessageFor(model => model.SellingPrice, null, new { @class = "text-danger" })
                             </div>
 
 
@@ -361,7 +365,8 @@
 
     <!--Custom JS-->
     <script src="~/Content/js/script.js"></script>
-
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
 

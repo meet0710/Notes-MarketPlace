@@ -677,6 +677,10 @@ ul.navbar-nav > li >a:focus {
 	margin-bottom: 60px;
 }
 
+#adminmanageadmin .search {
+	margin-bottom: 15px;
+}
+
 
 #adminmanageadmin .form-control {
 	max-width: 322px;
@@ -718,6 +722,9 @@ ul.navbar-nav > li >a:focus {
 	margin-bottom: 60px;
 }
 
+#adminmanagecategory .search {
+	margin-bottom: 15px;
+}
 
 #adminmanagecategory .form-control {
 	max-width: 322px;
@@ -758,7 +765,9 @@ ul.navbar-nav > li >a:focus {
 	margin-bottom: 60px;
 }
 
-
+#adminmanagecountry .search {
+	margin-bottom:15px;
+}
 
 #adminmanagecountry .form-control {
 	max-width: 322px;
@@ -867,7 +876,9 @@ ul.navbar-nav > li >a:focus {
 	margin-bottom: 60px;
 }
 
-
+#adminmanagetype .search {
+	margin-bottom: 15px;
+}
 
 #adminmanagetype .form-control {
 	max-width: 322px;
@@ -984,7 +995,9 @@ ul.navbar-nav > li >a:focus {
 	margin-bottom: 60px;
 }
 
-
+#memberspage .search {
+	margin-bottom: 15px;
+}
 
 
 #memberspage .form-control {
@@ -1376,6 +1389,10 @@ ul.navbar-nav > li >a:focus {
 #adminspam {
 	margin-top: 60px;
 	margin-bottom: 60px;
+}
+
+#adminspam .search {
+	margin-bottom: 15px;
 }
 
 

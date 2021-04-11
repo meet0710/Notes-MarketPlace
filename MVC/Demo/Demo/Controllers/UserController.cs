@@ -87,13 +87,13 @@ namespace Demo.Controllers
         [HttpGet]
         public ActionResult AddNotes()
         {
-            var categoryList = _Context.Categories.ToList();
+            var categoryList = _Context.Categories.Where(m=>m.isActive == true).ToList();
             ViewBag.CategoryList = categoryList;
 
-            var typeList = _Context.Types.ToList();
+            var typeList = _Context.Types.Where(m => m.isActive == true).ToList();
             ViewBag.TypeList = typeList;
 
-            var countryList = _Context.Countries.ToList();
+            var countryList = _Context.Countries.Where(m => m.isActive == true).ToList();
             ViewBag.CountryList = countryList;
             return View();
         }
@@ -101,13 +101,13 @@ namespace Demo.Controllers
         [HttpGet]
         public ActionResult EditNotes(int noteid)
         {
-            var categoryList = _Context.Categories.ToList();
+            var categoryList = _Context.Categories.Where(m => m.isActive == true).ToList();
             ViewBag.CategoryList = categoryList;
 
-            var typeList = _Context.Types.ToList();
+            var typeList = _Context.Types.Where(m => m.isActive == true).ToList();
             ViewBag.TypeList = typeList;
 
-            var countryList = _Context.Countries.ToList();
+            var countryList = _Context.Countries.Where(m => m.isActive == true).ToList();
             ViewBag.CountryList = countryList;
 
             var note = _Context.SellerNotes.Where(m => m.ID == noteid).FirstOrDefault();
@@ -129,7 +129,8 @@ namespace Demo.Controllers
                 ProfessorName = note.Professor,
                 SellingPrice = note.SellingPrice.ToString(),
                 noteid = noteid.ToString(),
-                Ispaid = note.IsPaid.ToString()
+                Ispaid = note.IsPaid.ToString(),
+                
             };
 
 
@@ -147,8 +148,10 @@ namespace Demo.Controllers
             String Userid = Session["Userid"].ToString() + "/";
             String Noteid = noteid + "/";
             String Name = Path.GetFileNameWithoutExtension(note.Notespdf.FileName) + Path.GetExtension(note.Notespdf.FileName);
-            string Image = Path.GetFileNameWithoutExtension(note.NotesPicture.FileName) + Path.GetExtension(note.NotesPicture.FileName);
-            string Previewpdfpath = Path.GetFileNameWithoutExtension(note.NotesPreview.FileName) + Path.GetExtension(note.NotesPreview.FileName);
+            
+
+            string Imagepath;
+            string PreviewPDFpath;
 
             string path = Path.Combine(Server.MapPath("~/Members/" + Session["UserId"].ToString()), Noteid);
             if (!Directory.Exists(path))
@@ -163,6 +166,12 @@ namespace Demo.Controllers
                 filename = filename + extension;
                 string finalpath = Path.Combine(path, filename);
                 note.NotesPicture.SaveAs(finalpath);
+                Imagepath = member + Userid + Noteid + filename;
+            }
+            else
+            {
+                var np = _Context.SystemConfigurations.Where(m => m.Key == "NotesPicture").FirstOrDefault();
+                Imagepath = np.Value;
             }
 
             if (note.Notespdf != null)
@@ -181,12 +190,15 @@ namespace Demo.Controllers
                 filename = filename + extension;
                 string finalpath = Path.Combine(path, filename);
                 note.NotesPreview.SaveAs(finalpath);
+                PreviewPDFpath = member + Userid + Noteid + filename;
+            }
+            else
+            {
+                PreviewPDFpath = null;
             }
 
 
 
-            String Imagepath = member + Userid + Noteid + Image;
-            String PreviewPDFpath = member + Userid + Noteid + Previewpdfpath;
             String PDFPath = member + Userid + Noteid + Name;
 
             if (note!=null)
@@ -208,6 +220,7 @@ namespace Demo.Controllers
                 result1.FilePath = PDFPath;
                 result1.FileName = Path.GetFileNameWithoutExtension(note.NotesPreview.FileName) + Path.GetExtension(note.Notespdf.FileName);
                 result.ModifiedDate = DateTime.Now;
+                result.ModifiedBy = Convert.ToInt32(Session["UserId"]);
             }
             _Context.SaveChanges();
             return RedirectToAction("SellYourNotes", "User");
@@ -224,10 +237,14 @@ namespace Demo.Controllers
             String Userid = Session["Userid"].ToString() + "/";
             String Noteid = noteid + "/";
             String Name = Path.GetFileNameWithoutExtension(note.Notespdf.FileName) + Path.GetExtension(note.Notespdf.FileName);
-            string Image = Path.GetFileNameWithoutExtension(note.NotesPicture.FileName) + Path.GetExtension(note.NotesPicture.FileName);
+            
             string Previewpdfpath = Path.GetFileNameWithoutExtension(note.NotesPreview.FileName) + Path.GetExtension(note.NotesPreview.FileName);
 
             string path = Path.Combine(Server.MapPath("~/Members/" + Session["UserId"].ToString()), Noteid);
+
+            string Imagepath;
+            String PreviewPDFpath;
+
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -240,6 +257,12 @@ namespace Demo.Controllers
                 filename = filename + extension;
                 string finalpath = Path.Combine(path, filename);
                 note.NotesPicture.SaveAs(finalpath);
+                Imagepath = member + Userid + Noteid + filename;
+            }
+            else
+            {
+                var np = _Context.SystemConfigurations.Where(m => m.Key == "NotesPicture").FirstOrDefault();
+                Imagepath = np.Value;
             }
 
             if (note.Notespdf != null)
@@ -258,12 +281,13 @@ namespace Demo.Controllers
                 filename = filename + extension;
                 string finalpath = Path.Combine(path, filename);
                 note.NotesPreview.SaveAs(finalpath);
+                PreviewPDFpath = member + Userid + Noteid + filename;
+            }
+            else
+            {
+                PreviewPDFpath = null;
             }
 
-
-
-            String Imagepath = member + Userid + Noteid + Image;
-            String PreviewPDFpath = member + Userid + Noteid + Previewpdfpath;
             String PDFPath = member + Userid + Noteid + Name;
 
             if (note != null)
@@ -286,32 +310,35 @@ namespace Demo.Controllers
                 result1.FilePath = PDFPath;
                 result1.FileName = Path.GetFileNameWithoutExtension(note.NotesPreview.FileName) + Path.GetExtension(note.Notespdf.FileName);
                 result.ModifiedDate = DateTime.Now;
+                result.ModifiedBy = Convert.ToInt32(Session["UserId"]);
             }
             _Context.SaveChanges();
 
             var currentuser = Convert.ToInt32(Session["UserId"]);
-            var emailto = _Context.Users.Where(m => m.RoleID == 3).FirstOrDefault();
+            //var emailto = _Context.Users.Where(m => m.RoleID == 3).FirstOrDefault();
+            var admins = (from admin in _Context.Users where admin.RoleID == 2 || admin.RoleID == 3 select admin);
             var emailfrom = _Context.Users.Where(m => m.ID == currentuser).FirstOrDefault();
-
-            string body = string.Empty;
-            using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/PublishNotes.html")))
+            foreach (var emailto in admins)
             {
-                body = reader.ReadToEnd();
+                string body = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/PublishNotes.html")))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                body = body.Replace("{SellerName}", emailfrom.FirstName);
+                body = body.Replace("{NoteTitle}", note.Title);
+
+                try
+                {
+                    bool IsSendEmail = SendEmail.EmailSend(emailto.EmailID, emailfrom.FirstName + " sent his Notes for Review", body, true);
+                }
+
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
-
-            body = body.Replace("{SellerName}", emailfrom.FirstName);
-            body = body.Replace("{NoteTitle}", note.Title);
-
-            try
-            {
-                bool IsSendEmail = SendEmail.EmailSend(emailto.EmailID, emailfrom.FirstName + " sent his Notes for Review", body, true);
-            }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
-
             return RedirectToAction("SellYourNotes", "User");
         }
 
@@ -349,6 +376,7 @@ namespace Demo.Controllers
                 SellingPrice = Convert.ToDecimal(note.SellingPrice),
                 //NotesPreview = note.NotesPreview,
                 isActive = true,
+                CreatedBy = Convert.ToInt32(Session["UserId"])
             });
             _Context.SaveChanges();
 
@@ -358,11 +386,12 @@ namespace Demo.Controllers
             String Userid = Session["Userid"].ToString() + "/";
             String Noteid = (from D in _Context.SellerNotes orderby D.ID descending select D.ID).FirstOrDefault().ToString() + "/";
             String Name = Path.GetFileNameWithoutExtension(note.Notespdf.FileName) + Path.GetExtension(note.Notespdf.FileName);
-            string Image = Path.GetFileNameWithoutExtension(note.NotesPicture.FileName) + Path.GetExtension(note.NotesPicture.FileName);
-            string Previewpdfpath = Path.GetFileNameWithoutExtension(note.NotesPreview.FileName) + Path.GetExtension(note.NotesPreview.FileName);
+            
 
 
             string path = Path.Combine(Server.MapPath("~/Members/" + Session["UserId"].ToString()), Noteid);
+            string Imagepath;
+            string PreviewPDFpath;
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -375,6 +404,12 @@ namespace Demo.Controllers
                 filename = filename + extension;
                 string finalpath = Path.Combine(path, filename);
                 note.NotesPicture.SaveAs(finalpath);
+                Imagepath = member + Userid + Noteid + filename;
+            }
+            else
+            {
+                var np = _Context.SystemConfigurations.Where(m => m.Key == "NotesPicture").FirstOrDefault();
+                Imagepath = np.Value;
             }
 
             if (note.Notespdf != null)
@@ -393,12 +428,16 @@ namespace Demo.Controllers
                 filename = filename + extension;
                 string finalpath = Path.Combine(path, filename);
                 note.NotesPreview.SaveAs(finalpath);
+                PreviewPDFpath = member + Userid + Noteid + filename;
+            }
+            else
+            {
+                PreviewPDFpath = null;
             }
 
 
 
-            String Imagepath = member + Userid + Noteid + Image;
-            String PreviewPDFpath = member + Userid + Noteid + Previewpdfpath;
+            
             String PDFPath = member + Userid + Noteid + Name;
 
             var lastid = (from S in _Context.SellerNotes orderby S.ID descending select S.ID).FirstOrDefault();
@@ -456,6 +495,7 @@ namespace Demo.Controllers
                 SellingPrice = Convert.ToDecimal(note.SellingPrice),
                 //NotesPreview = note.NotesPreview,
                 isActive = true,
+                CreatedBy =  Convert.ToInt32(Session["UserId"])
             });
             _Context.SaveChanges();
 
@@ -466,11 +506,12 @@ namespace Demo.Controllers
             String Noteid = (from D in _Context.SellerNotes orderby D.ID descending select D.ID).FirstOrDefault().ToString() + "/";
 
             String Name = Path.GetFileNameWithoutExtension(note.Notespdf.FileName) + Path.GetExtension(note.Notespdf.FileName);
-            string Image = Path.GetFileNameWithoutExtension(note.NotesPicture.FileName) + Path.GetExtension(note.NotesPicture.FileName);
-            string Previewpdfpath = Path.GetFileNameWithoutExtension(note.NotesPreview.FileName) + Path.GetExtension(note.NotesPreview.FileName);
+            
 
 
             string path = Path.Combine(Server.MapPath("~/Members/" + Session["UserId"].ToString()), Noteid);
+            string Imagepath;
+            string PreviewPDFpath;
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -483,6 +524,12 @@ namespace Demo.Controllers
                 filename = filename + extension;
                 string finalpath = Path.Combine(path, filename);
                 note.NotesPicture.SaveAs(finalpath);
+                Imagepath = member + Userid + Noteid + filename;
+            }
+            else
+            {
+                var np = _Context.SystemConfigurations.Where(m => m.Key == "NotesPicture").FirstOrDefault();
+                Imagepath = np.Value;
             }
 
             if (note.Notespdf != null)
@@ -501,12 +548,16 @@ namespace Demo.Controllers
                 filename = filename + extension;
                 string finalpath = Path.Combine(path, filename);
                 note.NotesPreview.SaveAs(finalpath);
+                PreviewPDFpath = member + Userid + Noteid + filename;
+            }
+            else
+            {
+                PreviewPDFpath = null;
             }
 
 
 
-            String Imagepath = member + Userid + Noteid + Image;
-            String PreviewPDFpath = member + Userid + Noteid + Previewpdfpath;
+            
             String PDFPath = member + Userid + Noteid + Name;
 
             var lastid = (from S in _Context.SellerNotes orderby S.ID descending select S.ID).FirstOrDefault();
@@ -529,28 +580,30 @@ namespace Demo.Controllers
             //_Context.Dispose();
 
             var currentuser = Convert.ToInt32(Session["UserId"]);
-            var emailto = _Context.Users.Where(m => m.RoleID == 3).FirstOrDefault();
+            //var emailto = _Context.Users.Where(m => m.RoleID == 3).FirstOrDefault();
+            var admins = (from admin in _Context.Users where admin.RoleID == 2 || admin.RoleID == 3 select admin);
             var emailfrom = _Context.Users.Where(m => m.ID == currentuser).FirstOrDefault();
-
-            string body = string.Empty;
-            using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/PublishNotes.html")))
+            foreach (var emailto in admins)
             {
-                body = reader.ReadToEnd();
+                string body = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/PublishNotes.html")))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                body = body.Replace("{SellerName}", emailfrom.FirstName);
+                body = body.Replace("{NoteTitle}", note.Title);
+
+                try
+                {
+                    bool IsSendEmail = SendEmail.EmailSend(emailto.EmailID, emailfrom.FirstName + " sent his Notes for Review", body, true);
+                }
+
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
-
-            body = body.Replace("{SellerName}", emailfrom.FirstName);
-            body = body.Replace("{NoteTitle}", note.Title);
-
-            try
-            {
-                bool IsSendEmail = SendEmail.EmailSend(emailto.EmailID, emailfrom.FirstName + " sent his Notes for Review", body, true);
-            }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
-
             _Context.Dispose();
             return RedirectToAction("AddNotes", "User");
         }
@@ -559,7 +612,7 @@ namespace Demo.Controllers
         [HttpGet]
         public ActionResult Myprofile()
         {
-            var countryList = _Context.Countries.ToList();
+            var countryList = _Context.Countries.Where(m => m.isActive == true).ToList();
 
             ViewBag.CountryList = countryList;
 
@@ -619,21 +672,23 @@ namespace Demo.Controllers
                         Directory.CreateDirectory(path);
                     }
 
+                    string profilepicture;
 
+                    if (user.ProfilePicture != null)
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(user.ProfilePicture.FileName);
+                        string extension = Path.GetExtension(user.ProfilePicture.FileName);
+                        filename = "DP_" + DateTime.Now.ToString("ddMMyyyy") + extension;
+                        string finalpath = Path.Combine(path, filename);
+                        user.ProfilePicture.SaveAs(finalpath);
+                        profilepicture = "~/Members/" + result3 + "/" + filename;
+                    }
+                    else
+                    {
+                        var pp = _Context.SystemConfigurations.Where(m => m.Key == "ProfilePicture").FirstOrDefault();
+                        profilepicture = pp.Value;
+                    }
 
-                    string filename = Path.GetFileNameWithoutExtension(user.ProfilePicture.FileName);
-                    string extension = Path.GetExtension(user.ProfilePicture.FileName);
-                    filename = "DP_" + DateTime.Now.ToString("ddMMyyyy") + extension;
-                    string finalpath = Path.Combine(path, filename);
-                    user.ProfilePicture.SaveAs(finalpath);
-
-
-
-
-
-
-
-                    String profilepicture = "~/Members/" + result3 + "/" + filename;
                     result1.Add(new UserProfile
                     {
                         UserID = Convert.ToInt32(Session["UserId"]),
@@ -651,6 +706,7 @@ namespace Demo.Controllers
                         University = user.University,
                         College = user.College,
                         CreatedDate = DateTime.Now,
+                        CreatedBy = Convert.ToInt32(Session["UserId"])
                     });
 
                     var result2 = _Context.Users.Where(m => m.ID == result3).FirstOrDefault();
@@ -704,16 +760,22 @@ namespace Demo.Controllers
                         Directory.CreateDirectory(path);
                     }
 
+                    string profilepicture;
 
-
-                    string filename = Path.GetFileNameWithoutExtension(user.ProfilePicture.FileName);
-                    string extension = Path.GetExtension(user.ProfilePicture.FileName);
-                    filename = "DP_" + DateTime.Now.ToString("ddMMyyyy") + extension;
-                    string finalpath = Path.Combine(path, filename);
-                    user.ProfilePicture.SaveAs(finalpath);
-
-
-                    String profilepicture = "~/Members/" + currentuser + "/" + filename;
+                    if (user.ProfilePicture != null)
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(user.ProfilePicture.FileName);
+                        string extension = Path.GetExtension(user.ProfilePicture.FileName);
+                        filename = "DP_" + DateTime.Now.ToString("ddMMyyyy") + extension;
+                        string finalpath = Path.Combine(path, filename);
+                        user.ProfilePicture.SaveAs(finalpath);
+                        profilepicture = "~/Members/" + currentuser + "/" + filename;
+                    }
+                    else
+                    {
+                        var pp = _Context.SystemConfigurations.Where(m => m.Key == "ProfilePicture").FirstOrDefault();
+                        profilepicture = pp.Value;
+                    }
 
                     user1.FirstName = user.FirstName;
                     user1.LastName = user.LastName;
@@ -731,6 +793,8 @@ namespace Demo.Controllers
                     userprofile.Country = user.Country;
                     userprofile.University = user.University;
                     userprofile.College = user.College;
+                    user1.ModifiedBy = Convert.ToInt32(Session["UserId"]);
+                    user1.ModifiedDate = DateTime.Now;
 
                     _Context.SaveChanges();
                     _Context.Dispose();
@@ -816,13 +880,13 @@ namespace Demo.Controllers
         [HttpGet]
         public ActionResult CloneNotes(int noteid)
         {
-            var categoryList = _Context.Categories.ToList();
+            var categoryList = _Context.Categories.Where(m => m.isActive == true).ToList();
             ViewBag.CategoryList = categoryList;
 
-            var typeList = _Context.Types.ToList();
+            var typeList = _Context.Types.Where(m => m.isActive == true).ToList();
             ViewBag.TypeList = typeList;
 
-            var countryList = _Context.Countries.ToList();
+            var countryList = _Context.Countries.Where(m => m.isActive == true).ToList();
             ViewBag.CountryList = countryList;
 
             var note = _Context.SellerNotes.Where(m => m.ID == noteid).FirstOrDefault();
@@ -914,25 +978,27 @@ namespace Demo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddReview(MyDownloadReviews ratingsandreviews)
         {
-            //if(!ModelState.IsValid)
-            //{
-            //    return View("SellYourNotes", "User");
-            //}
+            if (!ModelState.IsValid)
+            {
+                return View("SellYourNotes", "User");
+            }
 
-            //var result = _Context.Set<SellerNotesReview>();
-            //var currentuser = Convert.ToInt32(Session["UserId"]);
-            //result.Add(new SellerNotesReview
-            //{
-            //    NoteID = ratingsandreviews.NoteID,
-            //    ReviewedByID = currentuser,
-            //    AgainstDownloadsID = ratingsandreviews.AgainstDownloadsID,
-            //    Ratings = ratingsandreviews.ratings,
-            //    Comments = ratingsandreviews.reviews,
-            //    isActive = true
-            //});
-            //_Context.SaveChanges(); 
-            //return RedirectToAction("MyDownloads","User");
-            return Content(ratingsandreviews.NoteID.ToString());
+            var result = _Context.Set<SellerNotesReview>();
+            var currentuser = Convert.ToInt32(Session["UserId"]);
+            result.Add(new SellerNotesReview
+            {
+                NoteID = ratingsandreviews.NoteID,
+                ReviewedByID = currentuser,
+                AgainstDownloadsID = ratingsandreviews.AgainstDownloadsID,
+                Ratings = ratingsandreviews.ratings,
+                Comments = ratingsandreviews.reviews,
+                isActive = true,
+                CreatedBy = currentuser,
+                CreatedDate = DateTime.Now
+            });
+            _Context.SaveChanges();
+            return RedirectToAction("MyDownloads", "User");
+
         }
 
         [Authorize]
@@ -953,6 +1019,8 @@ namespace Demo.Controllers
                 ReportedByID = currentuser,
                 AgainstDownloadID = report.AgainstDownloadID,
                 Remarks = report.remarks,
+                CreatedBy = currentuser,
+                CreatedDate = DateTime.Now
             });
             _Context.SaveChanges();
 
@@ -960,25 +1028,29 @@ namespace Demo.Controllers
             var membername = _Context.Users.Where(m => m.ID == currentuser).FirstOrDefault();
             var sellerid = _Context.Downloads.Where(m => m.NoteID == report.NoteID).FirstOrDefault();
             var sellername = _Context.Users.Where(m => m.ID == sellerid.SellerID).FirstOrDefault();
-            var admin = _Context.Users.Where(m => m.RoleID == 3).FirstOrDefault();
-            string body = string.Empty;
-            using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/SpamReport.html")))
+            //var admin = _Context.Users.Where(m => m.RoleID == 3).FirstOrDefault();
+            var admins = (from admin in _Context.Users where admin.RoleID == 2 || admin.RoleID == 3 select admin);
+            foreach (var emailto in admins)
             {
-                body = reader.ReadToEnd();
-            }
+                string body = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/SpamReport.html")))
+                {
+                    body = reader.ReadToEnd();
+                }
 
-            body = body.Replace("{MemberName}",membername.FirstName + membername.LastName );
-            body = body.Replace("{SellerName}",sellername.FirstName + sellername.LastName );
-            body = body.Replace("{NoteTitle}", sellerid.NoteTitle);
+                body = body.Replace("{MemberName}", membername.FirstName + membername.LastName);
+                body = body.Replace("{SellerName}", sellername.FirstName + sellername.LastName);
+                body = body.Replace("{NoteTitle}", sellerid.NoteTitle);
 
-            try
-            {
-                bool IsSendEmail = SendEmail.EmailSend(admin.EmailID, membername.FirstName+ " " + membername.LastName + " Reported an issue for " + sellerid.NoteTitle, body, true);
-            }
+                try
+                {
+                    bool IsSendEmail = SendEmail.EmailSend(emailto.EmailID, membername.FirstName + " " + membername.LastName + " Reported an issue for " + sellerid.NoteTitle, body, true);
+                }
 
-            catch (Exception e)
-            {
-                throw e;
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
             return RedirectToAction("MyDownloads", "User");
         }
@@ -990,7 +1062,7 @@ namespace Demo.Controllers
             var myfile = _Context.SellerNotesAttachements.Where(m => m.NoteID == noteid).FirstOrDefault();
             var result = _Context.Downloads.Where(m => m.NoteID == noteid && m.DownloaderID == currentuser).FirstOrDefault();
             result.isSellerHasAllowedDownload = true;
-            result.AttachmentDownloadedDate = DateTime.Now.ToString("dd MMM yyyy, HH:mm:ss");
+            result.AttachmentDownloadedDate = DateTime.Now;
             _Context.SaveChanges();
             return File(myfile.FilePath, "text/plain", myfile.FileName);
         }
@@ -1040,7 +1112,7 @@ namespace Demo.Controllers
                 NoteTitle = result.Title,
                 NoteCategory = category.Name,
                 AttachmentPath = attachmentpath,
-                CreatedDate = DateTime.Now.ToString("dd MMM yyyy, HH:mm:ss")
+                CreatedDate = DateTime.Now
 
             }) ;
             _Context.SaveChanges();

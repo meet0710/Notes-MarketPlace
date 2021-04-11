@@ -11,5 +11,7 @@ namespace Demo.Models
 
 		public string Password { get; set; }
 
+		public bool remember { get; set; }
+
 	}
 }

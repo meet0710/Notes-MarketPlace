@@ -11,5 +11,6 @@ namespace Demo.Models
         public UserProfile up { get; set; }
         public List<membernotes> Note { get; set; }
         public List<DownloadedNotes> downloads { get; set; }
+        public List<notesearning> earning { get; set; }
     }
 }

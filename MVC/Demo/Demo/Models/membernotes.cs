@@ -11,5 +11,9 @@ namespace Demo.Models
         public string NoteTitle { get; set; }
         public string  category { get; set; }
         public string status { get; set; }
+        public int downloads { get; set; }
+        public int earning { get; set; }
+        public DateTime AddedDate { get; set; }
+        public DateTime PublishedDate { get; set; }
     }
 }

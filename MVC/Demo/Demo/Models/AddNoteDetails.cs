@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,8 +9,10 @@ namespace Demo.Models
 	public class AddNoteDetails
 	{
 
+		[Required(ErrorMessage = "This Field is Required")]
 		public string Title { get; set; }
 
+		[Required(ErrorMessage = "This Field is Required")]
 		public string Category { get; set; }
 
 		public HttpPostedFileBase NotesPicture { get; set; }
@@ -20,6 +23,7 @@ namespace Demo.Models
 
 		public string Pages { get; set; }
 
+		[Required(ErrorMessage = "This Field is Required")]
 		public string Description { get; set; }
 
 		public string Country { get; set; }
@@ -28,6 +32,7 @@ namespace Demo.Models
 
 		public string Ispaid { get; set; }
 
+		[Required(ErrorMessage = "This Field is Required")]
 		public string SellingPrice { get; set; }
 
 		public HttpPostedFileBase NotesPreview { get; set; }

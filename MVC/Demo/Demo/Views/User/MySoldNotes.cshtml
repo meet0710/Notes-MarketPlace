@@ -69,10 +69,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -103,10 +103,10 @@
                                             <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
                                             <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
                                             <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -157,31 +157,41 @@
                         @{ int i = 0;}
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td class="text-center"><span>@(++i)</span></td>
-                                <td><a href="@Url.Action("NoteDetails","Home",new { id = item.download.NoteID})"><span>@item.download.NoteTitle</span></a></td>
-                                <td>@item.download.NoteCategory</td>
-                                <td>@item.user.EmailID</td>
-                                @if (item.download.isPaid == true)
+                        <tr>
+                            <td class="text-center"><span>@(++i)</span></td>
+                            <td><a href="@Url.Action("NoteDetails", "Home", new { id = item.download.NoteID })"><span>@item.download.NoteTitle</span></a></td>
+                            <td>@item.download.NoteCategory</td>
+                            <td>@item.user.EmailID</td>
+                            @if (item.download.isPaid == true)
+                            {
+                                <td>Paid</td>
+                            }
+                            else
+                            {
+                                <td>Free</td>
+                            }
+                            <td>$@item.download.PurchasedPrice</td>
+                            @{ if (item.download.AttachmentDownloadedDate != null)
                                 {
-                                    <td>Paid</td>
+                                    DateTime da = DateTime.Parse(item.download.AttachmentDownloadedDate.ToString());
+                                    string dat = da.ToString("dd MMM yyyy, HH:mm:ss");
+                                    <td>@dat</td>
                                 }
                                 else
                                 {
-                                    <td>Free</td>
+                                    <td>NA</td>
                                 }
-                                <td>@item.download.PurchasedPrice</td>
-                                <td>@item.download.AttachmentDownloadedDate</td>
-                                <td><a href="@Url.Action("NoteDetails","Home",new { id = item.download.NoteID})"><img src="~/Content/img/pre-login/eye.png"></a></td>
-                                <td class="dropdown">
-                                    <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
-                                    <div id="myDropdown" class="dropdown-content">
-                                        <a href="@Url.Action("DownloadSoldNotes","User",new { noteid = item.download.NoteID})">Download Notes</a>
-                                    </div>
-                                </td>
-                            </tr>
+                            }
+                            <td><a href="@Url.Action("NoteDetails","Home",new { id = item.download.NoteID})"><img src="~/Content/img/pre-login/eye.png"></a></td>
+                            <td class="dropdown">
+                                <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                <div id="myDropdown" class="dropdown-content">
+                                    <a href="@Url.Action("DownloadSoldNotes","User",new { noteid = item.download.NoteID})">Download Notes</a>
+                                </div>
+                            </td>
+                        </tr>
                         }
-                        <tr>
+                        @*<tr>
                             <td class="text-center"><span>1</span></td>
                             <td>Data Science</td>
                             <td>Science</td>
@@ -329,7 +339,7 @@
                                 <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
                                 <div id="myDropdown" class="dropdown-content"><a href="#">Download Note</a></div>
                             </td>
-                        </tr>
+                        </tr>*@
                     </tbody>
                 </table>
             </div>

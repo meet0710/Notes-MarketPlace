@@ -1375,7 +1375,7 @@ margin-bottom: 40px;
     position: relative;
 }
 
-#downloads .rating > label {
+#downloads .rating > .radio-btn {
     float: right;
     display: inline;
     padding-left: 30px;
@@ -1386,16 +1386,16 @@ margin-bottom: 40px;
     color: #000;
 }
 
-#downloads .rating > label:hover,
-#downloads .rating > label:hover ~ label,
-#downloads .rating > input.radio-btn:checked ~ label {
+#downloads .rating > .radio-btn:hover,
+#downloads .rating > input.radio-btn:hover ~ input.radio-btn,
+#downloads .rating > input.radio-btn:checked ~ input.radio-btn {
     color: transparent;
 }
 
-#downloads .rating > label:hover:before,
-#downloads .rating > label:hover ~ label:before,
-#downloads .rating > input.radio-btn:checked ~ label:before,
-#downloads .rating > input.radio-btn:checked ~ label:before {
+#downloads .rating > input.radio-btn:hover:before,
+#downloads .rating > input.radio-btn:hover ~ input.radio-btn:before,
+#downloads .rating > input.radio-btn:checked ~ input.radio-btn:before,
+#downloads .rating > input.radio-btn:checked ~ input.radio-btn:before {
     content: url("../img/images/star.png");
     position: absolute;
    

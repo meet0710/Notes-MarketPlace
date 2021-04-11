@@ -48,31 +48,31 @@
                         <span id="mobile-nav-open-btn">&#9776;</span>
 
                         <!--Logo-->
-                        <a href="@Url.Action("Index","Home")" class="navbar-brand-img">
+                        <a href="@Url.Action("Index", "Home")" class="navbar-brand-img">
                             <img src="~/Content/img/logo.png" alt="logo" /></a>
                     </div>
 
                     <div class="container">
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav pull-right ">
-                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
-                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
-                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                <li><a href="@Url.Action("SearchNotes", "Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes", "User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQ", "Home")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs", "Home")">Contact Us</a></li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="dropdown">
                                         <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
                                         <div class="dropdown-content">
-                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
-                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
-                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
-                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
-                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Myprofile", "User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads", "User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes", "User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes", "User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword", "User")">Change Password</a>
+                                            <a href="@Url.Action("Logout", "User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -89,24 +89,24 @@
                         <span id="mobile-nav-close-btn">&times;</span>
                         <div id="mobile-nav-content">
                             <ul class="nav">
-                                <li><a href="@Url.Action("SearchNotes","Home")">Search Notes</a></li>
-                                <li><a href="@Url.Action("SellYourNotes","User")">Sell Your Notes</a></li>
-                                <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
-                                <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
+                                <li><a href="@Url.Action("SearchNotes", "Home")">Search Notes</a></li>
+                                <li><a href="@Url.Action("SellYourNotes", "User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQ", "Home")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs", "Home")">Contact Us</a></li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="dropdown">
                                         <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
                                         <div class="dropdown-content">
-                                            <a href="@Url.Action("Myprofile","User")">My Profile</a>
-                                            <a href="@Url.Action("MyDownloads","User")">My Downloads</a>
-                                            <a href="@Url.Action("MySoldNotes","User")">My Sold Notes</a>
-                                            <a href="@Url.Action("MyRejectedNotes","User")">My Rejected Notes</a>
-                                            <a href="@Url.Action("ChangePassword","User")">Change Password</a>
-                                            <a href="@Url.Action("Logout","User")">Logout</a>
+                                            <a href="@Url.Action("Myprofile", "User")">My Profile</a>
+                                            <a href="@Url.Action("MyDownloads", "User")">My Downloads</a>
+                                            <a href="@Url.Action("MySoldNotes", "User")">My Sold Notes</a>
+                                            <a href="@Url.Action("MyRejectedNotes", "User")">My Rejected Notes</a>
+                                            <a href="@Url.Action("ChangePassword", "User")">Change Password</a>
+                                            <a href="@Url.Action("Logout", "User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                         </div>
                                     </li>
-                                    <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                                 }
                                 else
                                 {
@@ -148,15 +148,27 @@
                             <br>
                             <p>@Model.note.Description</p>
                             <br>
-                            @if( Model.note.IsPaid == true)
-        {
-            <button class="btn btn-general btn-yellow" title="Download"  onclick="location.href='@Url.Action("Download", "User", new { noteid = Model.note.ID })'">Download/&#36;@Model.note.SellingPrice</button>
-        }
-        else
-        {
-        <button class="btn btn-general btn-yellow" title="Download" onclick="location.href='@Url.Action("Download", "User", new { noteid = Model.note.ID })'">Download/&#36;@Model.note.SellingPrice</button>
-        }
-                            
+                            @if (Model.note.IsPaid == true)
+                            {
+                                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                                {
+                                    <button class="btn btn-general btn-yellow" title="Download" onclick="location.href='@Url.Action("DownloadSoldNotes", "User", new { noteid = Model.note.ID })'">Download/&#36;@Model.note.SellingPrice</button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-general btn-yellow" title="Download" onclick="location.href='@Url.Action("Download", "User", new { noteid = Model.note.ID })'">Download/&#36;@Model.note.SellingPrice</button>
+                                }
+                            }
+                            else
+     if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                            {
+                                <button class="btn btn-general btn-yellow" title="Download" onclick="location.href='@Url.Action("DownloadSoldNotes", "User", new { noteid = Model.note.ID })'">Download/&#36;@Model.note.SellingPrice</button>
+                            }
+                            else
+                            {
+                            <button class="btn btn-general btn-yellow" title="Download" onclick="location.href='@Url.Action("Download", "User", new { noteid = Model.note.ID })'">Download/&#36;@Model.note.SellingPrice</button>
+                            }
+
 
                         </div>
                     </div>
@@ -169,22 +181,29 @@
                     <p class="text-left">course Code<span>@Model.note.CourseCode</span></p>
                     <p class="text-left">Professor<span>@Model.note.Professor</span></p>
                     <p class="text-left">Number of Pages<span>@Model.note.NumberofPages</span></p>
-                    <p class="text-left">Approved Date<span>@Model.note.PublishedDate</span></p>
+                    @{ if (Model.note.ModifiedDate != null)
+                        {
+                            DateTime da = DateTime.Parse(Model.note.ModifiedDate.ToString());
+                            string date = da.ToString("dd-MM-yyyy");
+                            <p class="text-left">Approved Date<span>@date</span></p>
+                        }
+                    }
+                   
                     <p class="text-left">
                         Rating<span>
-                         @for (int i = 1; i <= Model.Rating; i++)
-                              {
-                                    <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
-                              }
-                         @for (int j = 5; j > Model.Rating; j--)
-                              {
-                                    <img src="~/Content/img/images/star-white.png" style="width: 20px; height: 20px;">
-                              }
-                              @Model.Total Reviews
-                              </span>
+                            @for (int i = 1; i <= Model.Rating; i++)
+                            {
+                                <img src="~/Content/img/images/star.png" style="width: 20px; height: 20px;">
+                            }
+                            @for (int j = 5; j > Model.Rating; j--)
+                            {
+                                <img src="~/Content/img/images/star-white.png" style="width: 20px; height: 20px;">
+                            }
+                            @Model.Total Reviews
+                        </span>
                     </p>
                     <p class="text-left report">@Model.TotalSpam users marked this note as inappropriate</p>
-                    
+
                 </div>
             </div>
             <div class="row">
@@ -220,7 +239,7 @@
                                                 @if (User.IsInRole("SuperAdmin"))
                                                 {
                                                     <span>
-                                                        <a href="@Url.Action()"><img src="~/Content/img/images/delete.png" style="float: right"></a>
+                                                        <a href="@Url.Action("DeleteReview","Admin",new { id = item.noteid})"><img src="~/Content/img/images/delete.png" style="float: right"></a>
                                                     </span>
                                                 }
                                                 </h5>

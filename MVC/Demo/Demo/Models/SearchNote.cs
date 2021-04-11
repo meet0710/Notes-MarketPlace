@@ -12,6 +12,7 @@ namespace Demo.Models
 		public double Rating { get; set; }
 		public int Total { get; set; }
 		public int TotalSpam { get; set; }
+		public int totalnotes { get; set; }
 		
 	}
 }

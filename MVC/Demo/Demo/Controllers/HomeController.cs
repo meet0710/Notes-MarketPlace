@@ -38,6 +38,7 @@ namespace Demo.Controllers
 			ViewBag.CountryList = countrylist;
 
 			var search = (from s in _Context.SellerNotes where s.Status == 4
+						  
 						  let avgratings = (from Review in _Context.SellerNotesReviews
 											where Review.NoteID == s.ID
 											group Review by Review.NoteID into grp
@@ -54,12 +55,21 @@ namespace Demo.Controllers
 											   TotalSpam = grp.Count()
 										   })
 
+						 let totalnotes = (from sn in _Context.SellerNotes
+										   where sn.Status ==4
+										   group sn by sn.Status into grp
+										   select new Totalnotes
+                                           {
+											   totalnotes = grp.Count()
+                                           })
+
 						  select new SearchNote
 						  {
 							  Note = s,
 							  Total = avgratings.Select(a=>a.Total).FirstOrDefault(),
 							  Rating = avgratings.Select(a=>a.Rating).FirstOrDefault(),
-							  TotalSpam = totalspam.Select(a=>a.TotalSpam).FirstOrDefault()
+							  TotalSpam = totalspam.Select(a=>a.TotalSpam).FirstOrDefault(),
+							  totalnotes = totalnotes.Select(a=>a.totalnotes).FirstOrDefault()
 						  }).ToList();
 			return View(search);
         }
@@ -78,7 +88,7 @@ namespace Demo.Controllers
 						  join cat in category on s.Category equals cat.ID
 						   let ratingandreview =(from r in _Context.SellerNotesReviews where r.NoteID == id
 												join u in _Context.Users on r.ReviewedByID equals u.ID
-												join up in _Context.UserProfiles on r.ReviewedByID equals up.ID
+												join up in _Context.UserProfiles on r.ReviewedByID equals up.UserID
 												select new RatingandReview
                                                 {
 													IndRating = r.Ratings,
@@ -86,6 +96,7 @@ namespace Demo.Controllers
 													FirstName = u.FirstName,
 													LastName = u.LastName,
 													ProfilePicture = up.ProfilePicture,
+													noteid = r.ID
                                                 }).ToList()
 
 						   let avgratings = (from Review in _Context.SellerNotesReviews
@@ -162,25 +173,29 @@ namespace Demo.Controllers
 				return RedirectToAction("ContactUs", "Home");
 			}
 
-			var emailto = _Context.Users.Where(m => m.RoleID == 3).FirstOrDefault();
+			var email = (from admin in _Context.Users where admin.RoleID == 2 || admin.RoleID == 3 select admin);
+			//var emailto = _Context.Users.Where(m => m.RoleID == 3).FirstOrDefault();
 
-			string body = string.Empty;
-			using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/ContactUs.html")))
+			foreach (var emailto in email)
 			{
-				body = reader.ReadToEnd();
-			}
+				string body = string.Empty;
+				using (StreamReader reader = new StreamReader(Server.MapPath("~/Mail_Template/ContactUs.html")))
+				{
+					body = reader.ReadToEnd();
+				}
 
-			body = body.Replace("{Description}", user.Comments);
-			body = body.Replace("{Name}", user.Fullname);
+				body = body.Replace("{Description}", user.Comments);
+				body = body.Replace("{Name}", user.Fullname);
 
-			try
-			{
-				bool IsSendEmail = SendEmail.EmailSend(emailto.EmailID, user.Fullname + "- Query", body, true);
-			}
+				try
+				{
+					bool IsSendEmail = SendEmail.EmailSend(emailto.EmailID, user.Fullname + "- Query", body, true);
+				}
 
-			catch (Exception e)
-			{
-				throw e;
+				catch (Exception e)
+				{
+					throw e;
+				}
 			}
 
 			return RedirectToAction("ContactUs", "Home");

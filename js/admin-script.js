@@ -167,3 +167,31 @@ $(function() {
 
     });
 });
+
+
+
+$(function() {
+	$(".sellername").on("change",function () {
+	searchterm = $(this).val();
+	$('#tableData tbody tr').each(function () {
+		var sel = $(this);
+		var txt = sel.find('td:eq(5)').text();
+		if(searchterm != 'all')
+			{
+				if(txt.indexOf(searchterm) === -1)
+					{
+						$(this).hide();
+					}
+				else 
+					{
+						$(this).show()
+					}
+					}
+			
+		else
+			{
+				$('#tableData tbody tr').show();
+			}
+	});
+						});
+});

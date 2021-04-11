@@ -47,41 +47,50 @@
                         <span id="mobile-nav-open-btn">&#9776;</span>
 
                         <!--Logo-->
-                        <a href="index.html" class="navbar-brand-img"><img src="~/Content/home/logo.png"></a>
+                        <a href="@Url.Action("Dashboard","Admin")" class="navbar-brand-img"><img src="~/Content/home/logo.png"></a>
                     </div>
 
                     <div class="container">
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav pull-right ">
-                                <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+                                <li><a href="@Url.Action("Dashboard","Admin")" class="active">Dashboard</a></li>
                                 <li class="dropdown">
 
-                                    <a href="#sell" class="dropbtn">Notes</a>
+                                    <a>Notes</a>
                                     <div class="dropdown-content">
-                                        <a href="admin-notesunderreview.html">Notes Under Review</a>
-                                        <a href="admin-publishednotes.html">Published Notes</a>
-                                        <a href="admin-downloadednotes.html">Downloaded Notes</a>
-                                        <a href="admin-rejectednotes.html">Rejected Notes</a>
+                                        <a href="@Url.Action("AdminNotesUnderReview","Admin")">Notes Under Review</a>
+                                        <a href="@Url.Action("AdminPublishedNotes","Admin")">Published Notes</a>
+                                        <a href="@Url.Action("AdminDownloads","Admin")">Downloaded Notes</a>
+                                        <a href="@Url.Action("AdminRejectedNotes","Admin")">Rejected Notes</a>
                                     </div>
                                 </li>
-                                <li><a href="admin-memberspage.html">Members</a></li>
+                                <li><a href="@Url.Action("AdminMembers","Admin")">Members</a></li>
                                 <li class="dropdown">
-                                    <a href="#contact" class="dropbtn">Reports</a>
+                                    <a>Reports</a>
                                     <div class="dropdown-content">
-                                        <a href="admin-spamreports.html">Spam Reports</a>
+                                        <a href="@Url.Action("AdminSpamReports","Admin")">Spam Reports</a>
                                     </div>
                                 </li>
-                                <li><a href="admin-managesystem.html">Settings</a></li>
                                 <li class="dropdown">
-                                    <a href="#profile" class="photo"><img src="~/Content/img/images/reviewer-1.png" class="img-circle dropbtn"></a>
+                                    <a>Settings</a>
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("ManageSystem","Admin")">Manage System Configuration</a>
+                                        <a href="@Url.Action("ManageAdmin","Admin")">Manage Administrator</a>
+                                        <a href="@Url.Action("ManageCategory","Admin")">Manage Category</a>
+                                        <a href="@Url.Action("ManageType","Admin")">Manage Type</a>
+                                        <a href="@Url.Action("ManageCountry","Admin")">Manage Countries</a>
+                                    </div>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle dropbtn"></a>
 
                                     <div class="dropdown-content">
-                                        <a href="admin-myprofile.html">Update Profile</a>
-                                        <a href="finalchangepassword.html">Change Password</a>
-                                        <a href="admin-login.html">Logout</a>
+                                        <a href="@Url.Action("AdminProfile","Admin")">Update Profile</a>
+                                        <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                        <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                     </div>
                                 </li>
-                                <li><a href="admin-login.html">Logout</a></li>
+                                <li><a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -94,34 +103,43 @@
                         <div id="mobile-nav-content">
                             <ul class="nav">
                                 <li class="dropdown">
-                                    <a href="#profile" class="photo"><img src="~/Content/img/images/reviewer-1.png" class="img-circle dropbtn"></a>
+                                    <a class="photo"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle dropbtn"></a>
 
                                     <div class="dropdown-content">
-                                        <a href="admin-myprofile.html">Update Profile</a>
-                                        <a href="finalchangepassword.html">Change Password</a>
-                                        <a href="admin-login.html">Logout</a>
+                                        <a href="@Url.Action("AdminProfile","Admin")">Update Profile</a>
+                                        <a href="@Url.Action("ChangePassword","User")">Change Password</a>
+                                        <a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a>
                                     </div>
                                 </li>
-                                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                                <li><a href="@Url.Action("Dashboard","Admin")">Dashboard</a></li>
                                 <li class="dropdown">
 
-                                    <a href="#sell">Notes <i class="fa fa-caret-down"></i></a>
+                                    <a>Notes <i class="fa fa-caret-down"></i></a>
                                     <div class="dropdown-content">
-                                        <a href="admin-notesunderreview.html">Notes Under Review</a>
-                                        <a href="admin-publishednotes.html">Published Notes</a>
-                                        <a href="admin-downloadednotes.html">Downloaded Notes</a>
-                                        <a href="admin-rejectednotes.html">Rejected Notes</a>
+                                        <a href="@Url.Action("AdminNotesUnderReview","Admin")">Notes Under Review</a>
+                                        <a href="@Url.Action("AdminPublishedNotes","Admin")">Published Notes</a>
+                                        <a href="@Url.Action("AdminDownloads","Admin")">Downloaded Notes</a>
+                                        <a href="@Url.Action("AdminRejectedNotes","Admin")">Rejected Notes</a>
                                     </div>
                                 </li>
-                                <li><a href="admin-memberspage.html">Members</a></li>
+                                <li><a href="@Url.Action("AdminMembers","Admin")">Members</a></li>
                                 <li class="dropdown">
-                                    <a href="#contact">Reports <i class="fa fa-caret-down"></i></a>
+                                    <a>Reports <i class="fa fa-caret-down"></i></a>
                                     <div class="dropdown-content">
-                                        <a href="admin-spamreports.html">Spam Reports</a>
+                                        <a href="@Url.Action("AdminSpamReports","Admin")">Spam Reports</a>
                                     </div>
                                 </li>
-                                <li><a href="admin-managesystem.html">Settings</a></li>
-                                <li><a href="admin-login.html">Logout</a></li>
+                                <li class="dropdown">
+                                    <a>Settings <i class="fa fa-caret-down"></i></a>
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("ManageSystem","Admin")">Manage System Configuration</a>
+                                        <a href="@Url.Action("ManageAdmin","Admin")">Manage Administrator</a>
+                                        <a href="@Url.Action("ManageCategory","Admin")">Manage Category</a>
+                                        <a href="@Url.Action("ManageType","Admin")">Manage Type</a>
+                                        <a href="@Url.Action("ManageCountry","Admin")">Manage Countries</a>
+                                    </div>
+                                </li>
+                                <li><a href="@Url.Action("Logout","User")" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -146,33 +164,37 @@
 
                         <div class="form-group">
                             <p>Note</p>
-                            <select class="form-control" id="note">
-                                <option>Select note</option>
-                                <option>AI</option>
-                                <option>Computer Basic</option>
-                                <option>Accounts</option>
-                            </select>
+                            @*<select class="form-control" id="note">
+            <option>Select note</option>
+            <option>AI</option>
+            <option>Computer Basic</option>
+            <option>Accounts</option>
+        </select>*@
+                            @Html.DropDownList("Note", new SelectList(ViewBag.notelist, "Title", "Title"), "Select Notes", new { @class = "form-control downloadsnotelist" })
                         </div>
                         <div class="form-group">
                             <p>Seller</p>
-                            <select class="form-control" id="seller">
+                            @* <select class="form-control" id="seller">
                                 <option>Select Seller</option>
-                                <option>Khayati</option>
-                                <option>Rahul</option>
-                                <option>Raj</option>
-                                <option>Niya</option>
-                            </select>
+        <option>Khayati</option>
+        <option>Rahul</option>
+        <option>Raj</option>
+        <option>Niya</option>
+                               </select>*@
+                            @Html.DropDownList("Seller", new SelectList(ViewBag.sellerandbuyer, "FirstName", "FirstName"), "Select Seller", new { @class = "form-control downloadssellerlist" })
+
                         </div>
 
                         <div class="form-group">
                             <p>Buyer</p>
-                            <select class="form-control" id="seller">
-                                <option>Select Buyer</option>
-                                <option>Khayati</option>
-                                <option>Rahul</option>
-                                <option>Raj</option>
-                                <option>Niya</option>
-                            </select>
+                            @*<select class="form-control" id="seller">
+            <option>Select Buyer</option>
+            <option>Khayati</option>
+            <option>Rahul</option>
+            <option>Raj</option>
+            <option>Niya</option>
+        </select>*@
+                            @Html.DropDownList("Buyer", new SelectList(ViewBag.sellerandbuyer, "FirstName", "FirstName"), "Select Buyer", new { @class = "form-control downloadsbuyerlist" })
                         </div>
                     </form>
                 </div>
@@ -193,7 +215,7 @@
             </div>
 
             <div class="table-responsive">
-                <table class="table" id="tableData">
+                <table class="table tablesorter" id="tableData" data-sort-on-col-and-order="9,1">
                     <thead>
                         <tr>
                             <th scope="col" class="text-center">Sr No.</th>
@@ -218,10 +240,10 @@
                                 <td><a href="@Url.Action("NoteDetails","Home",new { id = item.download.NoteID})"><span>@item.note.Title</span></a></td>
                                 <td>@item.download.NoteCategory</td>
                                 <td>@item.buyer.FirstName  @item.buyer.LastName</td>
-                                <td><img src="~/Content/img/Dashboard/Dashboard/eye.png"></td>
+                                <td><a href="@Url.Action("AdminMemberDetails","Admin",new { memberid = item.buyer.ID})"><img src="~/Content/img/Dashboard/Dashboard/eye.png"></a></td>
                                 <td>@item.seller.FirstName @item.seller.LastName</td>
-                                <td><img src="~/Content/img/Dashboard/Dashboard/eye.png"></td>
-                                @if(item.download.isPaid == true)
+                                <td><a href="@Url.Action("AdminMemberDetails","Admin",new { memberid = item.seller.ID})"><img src="~/Content/img/Dashboard/Dashboard/eye.png"></a></td>
+                                @if (item.download.isPaid == true)
                                 {
                                     <td>Paid</td>
                                 }
@@ -230,14 +252,16 @@
                                     <td>Free</td>
                                 }
                                 <td>$@item.download.PurchasedPrice</td>
-                                <td class="text-center">25-11-2020, 11:08</td>
+                                @{ DateTime da = DateTime.Parse(item.download.CreatedDate.ToString());
+                                    string date = da.ToString("dd-MM-yyyy, HH:mm");}
+                                <td class="text-center">@date</td>
                                 <td class="dropdown">
                                     <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
                                     <div class="dropdown-content"><a href="@Url.Action("DownloadSoldNotes","User",new { noteid = item.download.NoteID})">Download Notes</a><a href="@Url.Action("NoteDetails","Home",new { id = item.download.NoteID })" id="ratingandreview">View More Details</a></div>
                                 </td>
                             </tr>
                         }
-                        <tr>
+                        @*<tr>
                             <td class="text-center"><span>1</span></td>
                             <td><span>Software Development</span></td>
                             <td>IT</td>
@@ -320,7 +344,7 @@
                                 <img src="~/Content/img/images/dots.png" class="dropbtn" onclick="myFunction()">
                                 <div id="myDropdown" class="dropdown-content"><a href="#">Download Notes</a><a href="#" id="ratingandreview">View More Details</a></div>
                             </td>
-                        </tr>
+                        </tr>*@
 
 
 
@@ -376,7 +400,7 @@
     <!--JS-->
     <script src="~/Content/js/bootstrap.min.js"></script>
     <script src="~/Content/js/jquery.js"></script>
-
+    <script src="~/Content/js/tablesorter/jquery.tablesorter.min.js"></script>
     <script src="~/Content/js/admin-script.js"></script>
 </body>
 </html>

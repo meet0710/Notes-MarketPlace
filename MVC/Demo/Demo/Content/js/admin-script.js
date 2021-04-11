@@ -133,3 +133,221 @@ function closemodal1(y) {
     var mymodal1 = document.getElementById(y);
     mymodal1.style.display = "none";
 }
+
+
+/*  =====================================
+    Search in Table
+    ===================================== */
+
+$(function () {
+    $('.search-in-table').each(function () {
+
+        //table to be searched
+        var tableBody = $($(this).attr('data-table-id') + ' tbody');
+        var tableBodyString = $($(this).attr('data-table-id') + ' tbody');
+
+        $(this).on('click', function () {
+
+            var resultsFound = false;
+            //search text
+            var text = $($(this).attr('data-search-input')).val();
+            if (!text.trim()) {
+                return
+            }
+
+            text = text.toLowerCase();
+            var doesItContainText;
+
+            //search tbody
+            tableBody.find('tr').filter(function () {
+
+                doesItContainText = $(this).text().toLowerCase().indexOf(text) > -1;
+                $(this).toggle(doesItContainText);
+                if (doesItContainText) {
+                    resultsFound = true;
+                }
+
+            });
+
+            if (!resultsFound) {
+                var colSpan = tableBody.find('tr:first').children().length;
+                tableBody.append('<tr class="no-results"><td class="text-center" colspan="' + colSpan + '">No Record Found</td></tr>');
+                setTimeout(function () {
+
+                    tableBody.find('.no-results').remove();
+
+                    //trigger click on first page to show initial page
+                    $('.pagination-control[pagination-data="' + tableBodyString + '"]').find('.page-no:first').trigger('click');
+
+                }, 3000);
+            }
+
+        });
+
+    });
+});
+
+
+
+/*  =====================================
+    Table sorter
+    ===================================== */
+
+$(function () {
+
+    //initialize table sorter and sort on descending 1st column
+    $('.tablesorter').each(function () {
+
+        //disable sort on action column
+        $(".tablesorter thead tr th:last-child").data("sorter", false);
+        
+
+        //get default sort type
+        var sortType = $(this).attr('data-sort-on-col-and-order').split(',');
+        var sortArr = sortType.map(Number);
+
+        //sort on default sort type
+        $(this).tablesorter({
+
+            sortList: [sortArr],
+
+            dateFormat: "ddmmyyyy"
+
+        });
+
+    });
+
+});
+
+$(function () {
+    $(".publishedsellername").on("change", function () {
+        searchterm = $(this).val();
+        $('#tableData tbody tr').each(function () {
+            var sel = $(this);
+            var txt = sel.find('td:eq(5)').text();
+            if (searchterm != 'all') {
+                if (txt.indexOf(searchterm) === -1) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show()
+                }
+            }
+
+            else {
+                $('#tableData tbody tr').show();
+            }
+        });
+    });
+});
+
+$(function () {
+    $(".underreviewsellername").on("change", function () {
+        searchterm = $(this).val();
+        $('#tableData tbody tr').each(function () {
+            var sel = $(this);
+            var txt = sel.find('td:eq(3)').text();
+            if (searchterm != 'all') {
+                if (txt.indexOf(searchterm) === -1) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show()
+                }
+            }
+
+            else {
+                $('#tableData tbody tr').show();
+            }
+        });
+    });
+});
+
+$(function () {
+    $(".rejectedsellername").on("change", function () {
+        searchterm = $(this).val();
+        $('#tableData tbody tr').each(function () {
+            var sel = $(this);
+            var txt = sel.find('td:eq(3)').text();
+            if (searchterm != 'all') {
+                if (txt.indexOf(searchterm) === -1) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show()
+                }
+            }
+
+            else {
+                $('#tableData tbody tr').show();
+            }
+        });
+    });
+});
+
+$(function () {
+    $(".downloadsnotelist").on("change", function () {
+        searchterm = $(this).val();
+        $('#tableData tbody tr').each(function () {
+            var sel = $(this);
+            var txt = sel.find('td:eq(1)').text();
+            if (searchterm != 'all') {
+                if (txt.indexOf(searchterm) === -1) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show()
+                }
+            }
+
+            else {
+                $('#tableData tbody tr').show();
+            }
+        });
+    });
+});
+
+$(function () {
+    $(".downloadssellerlist").on("change", function () {
+        searchterm = $(this).val();
+        $('#tableData tbody tr').each(function () {
+            var sel = $(this);
+            var txt = sel.find('td:eq(5)').text();
+            if (searchterm != 'all') {
+                if (txt.indexOf(searchterm) === -1) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show()
+                }
+            }
+
+            else {
+                $('#tableData tbody tr').show();
+            }
+        });
+    });
+});
+
+$(function () {
+    $(".downloadsbuyerlist").on("change", function () {
+        searchterm = $(this).val();
+        $('#tableData tbody tr').each(function () {
+            var sel = $(this);
+            var txt = sel.find('td:eq(3)').text();
+            if (searchterm != 'all') {
+                if (txt.indexOf(searchterm) === -1) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show()
+                }
+            }
+
+            else {
+                $('#tableData tbody tr').show();
+            }
+        });
+    });
+});
+

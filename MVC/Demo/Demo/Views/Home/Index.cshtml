@@ -28,7 +28,7 @@
                             <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
                             <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
                             @if (User.Identity.IsAuthenticated)
-                            {
+							{
                                 <li>
                                     <a class="photo" href="@Url.Action("SellYourNotes","User")"><img src="@Url.Content(Session["UserProfile"].ToString())" class="img-circle"></a>
                                     @*<div class="dropdown-content">
@@ -40,7 +40,7 @@
                                         <a href="@Url.Action()">Logout</a>
                                     </div>*@
                                 </li>
-                                <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                             }
                             else
                             {
@@ -73,7 +73,7 @@
                                         <a href="@Url.Action("Logout","User")">Logout</a>
                                     </div>*@
                                 </li>
-                                <li><a href="@Url.Action("Logout", "User")" class="login">Logout</a></li>
+                                <li><a href="@Url.Action("Logout", "User")" class="login" onclick="return confirm('Are you sure, you want to logout?');">Logout</a></li>
                             }
                             else
                             {
@@ -99,7 +99,7 @@
 
 			<h1>Download Free/Paid Notes <br>or Sale your Book</h1>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing <br> tempora harum voluptatibus cuates!</p>
-			<button type="button" class="btn btn-primary">Learn More</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("SearchNotes", "Home")'">Learn More</button>
 
 
 		</div>
@@ -150,7 +150,7 @@
 							<img src="~/Content/img/Homepage/download.png">
 							<h3>Download Free/Paid Notes</h3>
 							<p>Get Material for your <br>Course etc.</p>
-							<a href="html/finalsearch.html">
+							<a href="@Url.Action("SearchNotes","Home")">
 								<button type="button" class="btn btn-primary">Learn More</button>
 							</a>
 						</div>
@@ -160,7 +160,7 @@
 							<img src="~/Content/img/images/seller.png">
 							<h3>Seller</h3>
 							<p>Upload and Download Course<br>and Materials etc.</p>
-							<a href="html/addnotes.html">
+							<a href="@Url.Action("SearchNotes","Home")">
 								<button type="button" class="btn btn-primary">sell book</button>
 							</a>
 						</div>
